@@ -2,19 +2,25 @@ from neuralprophet import NeuralProphet
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
-
+import os
 import json
 
+file_path = os.path.join('.', 'response_1728742642423.json')
 
+with open(file_path, 'r') as file:
+    file_contents = file.read()
+    stocks = json.loads(file_contents)
 
-with open('backend\response_1728742642423.json', 'r') as file:
-    stocks = json.loads(file)
+df = pd.DataFrame(stocks)
+print(df.head())
 
+df = pd.json_normalize(df['prices'])
+df = df.rename(columns={"timestamp": "ds", "price_usd": "y"})
+df['ds'] = pd.to_datetime(df['ds'], unit='ms')
 
-stocks = json.parse('backend\response_1728742642423.json')
 
 model = NeuralProphet()
-model.fit(stocks)
+model.fit(df)
 
 future = model.make_future_dataframe(stocks, periods = 7)
 forecast = model.predict(future)
