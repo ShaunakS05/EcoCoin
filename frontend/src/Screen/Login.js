@@ -31,6 +31,7 @@ const Login = () => {
         if (response.ok) {
             // Handle success response
             setResponseMessage(`Welcome ${data.firstName} ${data.lastName}`);
+            navigate('/dashboard');
           } else {
             // Handle error response
             setResponseMessage(data.message);
