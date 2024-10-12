@@ -1,1 +1,1 @@
-EcoCoin: A Decentralized Trading Platform for emission allowances
+EcoCoin: A Simulated Decentralized Trading Platform for emission allowances
