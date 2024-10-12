@@ -66,7 +66,7 @@ async def createNewUser(userName: str=Form(), password: str=Form(), firstName: s
     user_ref = ref.child(userName)
     if user_ref.get() is not None:
         return {"Error": "Username already exists"}
-    ref.set({
+    user_ref.set({
         userName:
         {
             "Password": password,
