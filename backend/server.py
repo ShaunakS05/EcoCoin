@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-cred_obj = firebase_admin.credentials.Certificate(".\ecocoin-cb8e3-firebase-adminsdk-h4k1v-983f509040.json")
+cred_obj = firebase_admin.credentials.Certificate(".\ecocoin-cb8e3-firebase-adminsdk-h4k1v-34d5791e2d.json")
 default_app = firebase_admin.initialize_app(cred_obj, {
     'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
 })
@@ -84,7 +84,7 @@ async def getMCO2Price(date: str=Form()):
 
 @app.post("/BCT-Price")
 async def getBCTPrice(date: str=Form()):
-    #url = "https://api.coingecko.com/api/v3/coins/toucan-protocol-base-carbon-tonne"
+    #  url = "https://api.coingecko.com/api/v3/coins/toucan-protocol-base-carbon-tonne"
     url = 'https://api.coingecko.com/api/v3/coins/toucan-protocol-base-carbon-tonne/market_chart'
     
     if date == "real-time":
@@ -226,8 +226,8 @@ async def verifyUser(userName: str=Form(), password: str=Form()):
         return JSONResponse(content={"success": False, "message": "User not found"}, status_code=404)
 
 @app.post("/buy-carbon-credit")
-async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int = Form(), recipient_id: Optional[str] = Form(default=None)):
-
+async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: int = Form(), recipient_id: Optional[str] = Form(default=None)):
+    userName = userName.replace(".", ",")
     ref = db.reference(f"users/{userName}")
     results = ref.get()
     transaction = {
@@ -235,13 +235,13 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: in
         'recipient': recipient_id or 'platform',
         'token': token_name,
         'amount': amount,
-        'timstamp': time.time()
+        'timestamp': time.time()
     }
 
     signature = sign_transaction(transaction, results["private_key"])
     transaction['signature'] = signature
 
-    if not verify_signature(transaction, signature, results["public_key"]):
+    if not verify_signature(transaction, signature, results["private_key"]):
         return {'error': 'Invalid transaction signature.'}
     
     transaction_hash = calculate_hash(transaction)
@@ -277,7 +277,7 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: in
         blockchain.append(block_data)
     blockchain_ref.set(blockchain)
 
-    if recipient == "platform":
+    if transaction['recipient'] == "platform":
         sender_balance_ref = db.reference(f'users/{userName}/balances/{token_name}')
         sender_balance = sender_balance_ref.get() or 0
         sender_new_balance = sender_balance + amount
@@ -304,17 +304,19 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: in
 
 @app.post("/sell-carbon-credit")
 async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int = Form()):
-    
+    userName = userName.replace(".", ",")
+    ref = db.reference(f"users/{userName}")
+    results = ref.get()
     transaction = {
         'sender': userName,
         'token_name': token_name,
         'amount': amount
     }
 
-    signature = sign_transaction(transaction, userName["private_key"])
+    signature = sign_transaction(transaction, results["private_key"])
     transaction['signature'] = signature
 
-    if not verify_signature(transaction, signature, userName["public_key"]):
+    if not verify_signature(transaction, signature, results["private_key"]):
         return {'error': 'Invalid transaction signature'}
     
     transaction_hash = calculate_hash(transaction)
@@ -356,8 +358,10 @@ async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: i
 
     # Update balances
     # Decrease user's carbon credit balance
-    user_carbon_balance_ref = db.reference(f'users/userName/balances/{token_name}')
+    user_carbon_balance_ref = db.reference(f'users/{userName}/balances/{token_name}')
     user_carbon_balance = user_carbon_balance_ref.get() or 0
+    print(user_carbon_balance)
+    print(amount)
     if user_carbon_balance < amount:
         return {'error': 'Insufficient carbon credits to sell.'}
     user_carbon_balance_ref.set(user_carbon_balance - amount)

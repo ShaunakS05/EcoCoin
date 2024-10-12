@@ -20,12 +20,16 @@ def proof_of_work(block_data: dict,difficulty: int = 4) -> (str, int):
 
 def sign_transaction(transaction: dict, private_key: str) -> str:
     transaction_string = json.dumps(transaction, sort_keys=True)
+    print(transaction_string)
     signature = calculate_hash({'transaction': transaction_string, 'private_key': private_key})
+    print(signature)
     return signature
 
-def verify_signature(transaction: dict , signature: str, public_key: str) -> bool:
-    transaction_string = json.dumps(transaction, sort_keys=True)
-    expected_signature = calculate_hash({'transaction': transaction_string, 'public_key': public_key})
+def verify_signature(transaction: dict , signature: str, private_key: str) -> bool:
+    transaction_copy = transaction.copy()
+    transaction_copy.pop('signature', None)
+    transaction_string = json.dumps(transaction_copy, sort_keys=True)
+    expected_signature = calculate_hash({'transaction': transaction_string, 'private_key': private_key})
     return expected_signature == signature
 
 
