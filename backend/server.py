@@ -309,7 +309,13 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: i
     }
 
 @app.post("/sell-carbon-credit")
-async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int = Form()):
+async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int=Form()):
+    if token_name == "Carbon":
+        token_name = "MCO2"
+    elif token_name == "Methane":
+        token_name = "BCT"
+    else:
+        token_name = "NCT"
     userName = userName.replace(".", ",")
     ref = db.reference(f"users/{userName}")
     results = ref.get()
