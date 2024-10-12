@@ -8,6 +8,7 @@ from typing import Optional
 import time
 from blockchainfunctions import verify_signature, simulate_consensus, calculate_hash, proof_of_work, sign_transaction
 import uuid
+import datetime
 
 app = FastAPI()
 
@@ -64,8 +65,11 @@ async def getBCTPrice(date: str=Form()):
     formatted_prices = []
     for price_entry in prices:
         timestamp_ms = price_entry[0]
+        date = datetime.datetime.fromtimestamp(timestamp_ms / 1000, datetime.timezone.utc)
+        date_str = date.strftime('%Y-%m-%d %H:%M:%S')
+
         price_usd = price_entry[1]
-        formatted_prices.append({'timestamp': timestamp_ms, 'price_usd': price_usd})
+        formatted_prices.append({"date": date_str, 'price_usd': price_usd})
     #response = requests.get(url, headers=headers)
     #response = response.json()
     return {'prices': formatted_prices}
