@@ -56,9 +56,16 @@ async def getBCTPrice(year: str=Form()):
     
     response = requests.get(url, params=params)
     data = response.json()
+
+    prices = data.get('prices', [])
+    formatted_prices = []
+    for price_entry in prices:
+        timestamp_ms = price_entry[0]
+        price_usd = price_entry[1]
+        formatted_prices.append({'timestamp': timestamp_ms, 'price_usd': price_usd})
     #response = requests.get(url, headers=headers)
     #response = response.json()
-    return data
+    return {'prices': formatted_prices}
 
 @app.get("/NCT-Price")
 async def getNCTPrice():
@@ -112,7 +119,7 @@ async def verifyUser(userName: str=Form(), password: str=Form()):
     else:
         return JSONResponse(content={"success": False, "message": "User not found"}, status_code=404)
 
-@app.post("/buy-carbon=credit")
+@app.post("/buy-carbon-credit")
 async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int = Form(), recipient_id: Optional[str] = Form(default=None)):
 
     ref = db.reference(f"users/{userName}")
