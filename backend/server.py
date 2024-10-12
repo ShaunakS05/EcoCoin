@@ -227,6 +227,12 @@ async def verifyUser(userName: str=Form(), password: str=Form()):
 
 @app.post("/buy-carbon-credit")
 async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: int = Form(), recipient_id: Optional[str] = Form(default=None)):
+    if token_name == "Carbon":
+        token_name = "MCO2"
+    elif token_name == "Methane":
+        token_name = "BCT"
+    else:
+        token_name = "NCT"
     userName = userName.replace(".", ",")
     ref = db.reference(f"users/{userName}")
     results = ref.get()
