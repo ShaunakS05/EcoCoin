@@ -61,6 +61,7 @@ async def getNCTPrice():
 
 @app.post("/create-new-user")
 async def createNewUser(userName: str=Form(), password: str=Form(), firstName: str=Form(), lastName: str=Form()):
+    userName = userName.replace(".", ",")
     ref = db.reference("users")
     user_ref = ref.child(userName)
     if user_ref.get() is not None:
