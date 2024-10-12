@@ -66,6 +66,7 @@
     border-radius: 10px; /* Rounded corners */
     cursor: pointer; /* Cursor changes to pointer on hover */
     transition: background-color 0.3s ease; /* Smooth background color transition */
+   
   }
   
   /* Hover effect for the Stake button */
