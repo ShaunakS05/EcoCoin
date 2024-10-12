@@ -402,3 +402,9 @@ async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form
             "End Date": EndDate,
     })
     return None
+
+@app.post("/return-all-events")
+async def returnAllEvents(EventName: str=Form()):
+    ref = db.reference(EventName)
+    allEvents_ref = ref.get()
+    return allEvents_ref
