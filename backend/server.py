@@ -41,13 +41,16 @@ async def getMCO2Price():
     return response["market_data"]["current_price"]["usd"]
 
 @app.post("/BCT-Price")
-async def getBCTPrice(year: str=Form()):
+async def getBCTPrice(date: str=Form()):
     #url = "https://api.coingecko.com/api/v3/coins/toucan-protocol-base-carbon-tonne"
     url = 'https://api.coingecko.com/api/v3/coins/toucan-protocol-base-carbon-tonne/market_chart'
 
+    if date == "1-Month":
+        days = 30
+
     params = {
         'vs_currency': 'usd',
-        'days': year
+        'days': days
     }
     headers = {
         "accept": "application/json",
