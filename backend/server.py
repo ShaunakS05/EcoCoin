@@ -20,7 +20,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-cred_obj = firebase_admin.credentials.Certificate(".\ecocoin-cb8e3-firebase-adminsdk-h4k1v-34d5791e2d.json")
+cred_obj = firebase_admin.credentials.Certificate(".\_nyanKeys.json")
 default_app = firebase_admin.initialize_app(cred_obj, {
     'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
 })
@@ -289,7 +289,7 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: i
         sender_balance_ref.set(sender_new_balance)
 
         recipient = recipient_id or 'platform'
-        recipient_balance_ref = db.reference(f'users/{recipient}/balances/{token_name}')
+        recipient_balance_ref = db.reference(f'Fundraising Events/{recipient}/Current Coins')
         recipient_balance = recipient_balance_ref.get() or 0
         recipient_new_balance = recipient_balance + amount
         recipient_balance_ref.set(recipient_new_balance)
@@ -391,13 +391,15 @@ async def createNewVolunteeringEvent(EventName: str=Form(), Description: str=For
 
 
 @app.post("/create-new-fundraising-event")
-async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form(), TargetCoins: int=Form(), EndDate: str=Form()):
+async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form(), CurrentCoins: int=Form(), TargetCoins: int=Form(),TypeOfCoins: str=Form(), EndDate: str=Form()):
     EventName = EventName.replace("/", ",")
     ref = db.reference("Fundraising Events")
     user_ref = ref.child(EventName)
 
     user_ref.set({
             "Description": Description,
+            "Type of Coin": TypeOfCoins,
+            "Current Coins": CurrentCoins,
             "Target Coins": TargetCoins,
             "End Date": EndDate,
     })
