@@ -15,7 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-cred_obj = firebase_admin.credentials.Certificate(".\ecocoin-cb8e3-firebase-adminsdk-h4k1v-43144f86dd.json")
+cred_obj = firebase_admin.credentials.Certificate(".\ecocoin-cb8e3-firebase-adminsdk-h4k1v-b597cfefaf.json")
 default_app = firebase_admin.initialize_app(cred_obj, {
     'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
 })

@@ -20,6 +20,10 @@ const TopCreators = () => {
         <span>Shaunak Sinha</span>
         <span>32 tons</span>
       </div>
+      <div>
+        <h3>Current Investments</h3>
+        
+      </div>
     </div>
   );
 };

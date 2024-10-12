@@ -8,10 +8,10 @@ const FeaturedCard = () => {
         isOpen && (
             <div className="featured-card">
                 <img src="https://via.placeholder.com/300" alt="Carbon Project" />
-                <h3>Wondershall</h3>
+                <h3>*NEW* Boston Green Park Project</h3>
                 <p>
-                    There will have text about the art. It will tell about its description.
-                    <a href="https://wondershall.com">https://wondershall.com</a>
+                    This park is going to use 0 zero-emissions and include a group of solar planes that provide free EV-charging for the community. 
+                    <a href="https://wondershall.com">Learn More!</a>
                 </p>
                 <p>Highest Bid: 3.25 ETH</p>
                 <p>Ending in: 6 hours 1 minute</p>

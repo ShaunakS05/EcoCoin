@@ -1,7 +1,12 @@
-import React from "react";
+import {React, useState} from "react";
 import "./Sidebar.css";
 
+
 const Sidebar = () => {
+    const [CO, setCO2] = useState(0);
+    const [Methane, setMethane] = useState(0);
+    const [Oxide, setOxide] = useState(0);
+
   return (
     <div className="sidebar">
       <h2>Recent Activity</h2>
@@ -11,11 +16,27 @@ const Sidebar = () => {
       <div className="activity-item">Sakvator.eth started following you</div>
 
       <h3>Market Stats</h3>
-      <div className="market-stats">
-        <p>Earned by Artists: 2.40 ETH (+5.2%)</p>
-        <p>Secondary Sales: 3.40 ETH (+8.2%)</p>
-        <p>Avg Release Value: 3.20 ETH (+3.1%)</p>
-      </div>
+      
+      <div className="creator-item">
+        <span>CO₂</span>
+        <span>{CO}</span>
+       
+        </div>
+
+        <div className="creator-item">
+        <span>CH₄</span>
+        <span>{Methane}</span>
+       
+        </div>
+
+        <div className="creator-item">
+        <span>N₄O</span>
+        <span>{Oxide}</span>
+        </div>
+
+
+        
+        
     </div>
   );
 };

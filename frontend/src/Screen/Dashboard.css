@@ -4,6 +4,7 @@
     color: #ffffff;
     height: 100vh;
     font-family: 'Arial', sans-serif;
+    overflow: hidden;
   }
   
   /* Main content layout */
@@ -55,4 +56,174 @@
   .featured-card a {
     color: #38b000;
   }
+  .container {
+    height: 100%;
+    width: 100%
+  }
+  /* Centered search bar */
+.searchbar-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the search bar */
+    z-index: 100; /* Ensure it appears above all content */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: top 0.5s ease, transform 0.5s ease; /* Smooth transition when moving to the top */
+}
+
+/* Search bar when moved to the top quarter of the screen */
+.searchbar-at-top {
+    top: 5%; /* Move to the top quarter of the screen */
+    transform: translate(-50%, 0); /* No need for vertical centering */
+}
+
+/* The search bar styling */
+.searchbar {
+    padding: 12px;
+    font-size: 16px;
+    width: 600px;
+    border-radius: 12px;
+    height: 60px;
+    border: 1px solid #ccc;
+    background-color: #2b2b2b;
+    color: white;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+}
+
+/* Trade container close button */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.close-button:hover {
+}
+
+
+/* Focus effect */
+.searchbar:focus {
+    border-color: #4f83ff;
+    background-color: #333;
+}
+
+.trade-container {
+    background-color: #212121; /* Dark background */
+    padding: 40px;
+    position: absolute;
+    top: 1vh/2;
+    right: 1vw/2;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    border-radius: 20px; /* Rounded corners for a comfy feel */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    width: 100%;
+    max-width: 400px;
+    height: 225px;
+    
+    
+
+}
+
+.buy-button {
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+/* Green fade effect */
+.fade-green {
+    background-color: #56e39f;
+}
+
+/* Red fade effect */
+.fade-red {
+    background-color: e35656;
+}
+
+.nothing-button {
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+}
+.sell-button {
+    padding: 15px;
+    background-color: #e35656; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+
+.trade-button {
+    position: absolute;
+    bottom: 20px;
+    right: 23%;
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+    height: 60px;
+    width: 150px;
+    text-align: center;
+}
+
+/* Hover effect for the button */
+.trade-button:hover {
+    background-color: #45d086; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale-up effect */
+}
+
+/* Hover effect */
+.searchbar:hover {
+    border-color: #777;
+}
+
+/* Make the rest of the page content blur smoothly */
+.app {
+    transition: filter 0.3s ease;
+}
+
+  
   
