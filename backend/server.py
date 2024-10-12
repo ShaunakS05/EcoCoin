@@ -29,17 +29,48 @@ default_app = firebase_admin.initialize_app(cred_obj, {
 def root():
     return {"message": "Hello World"}
 
-@app.get("/MCO2-Price")
-async def getMCO2Price():
-    url = "https://api.coingecko.com/api/v3/coins/moss-carbon-credit"
+@app.post("/MCO2-Price")
+async def getMCO2Price(date: str=Form()):
+    #url = "https://api.coingecko.com/api/v3/coins/moss-carbon-credit"
+    url = 'https://api.coingecko.com/api/v3/coins/moss-carbon-credit/market_chart'
 
+    if date == "1-Month":
+        days = 30
+    elif date == "1-week":
+        days = 7
+    elif date == "3-Month":
+        days = 90
+    elif date == "6-Month":
+        days = 180
+    elif date == "1-yr":
+        days = 365
+    else:
+        days = 1
+
+    params = {
+        'vs_currency': 'usd',
+        'days': days
+    }
     headers = {
         "accept": "application/json",
         "x-cg-demo-api-key": "CG-XzwEMefh3qjDwk1qJWeHh3iJ"
         }
-    response = requests.get(url, headers=headers)
-    response = response.json()
-    return response["market_data"]["current_price"]["usd"]
+    
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    prices = data.get('prices', [])
+    formatted_prices = []
+    for price_entry in prices:
+        timestamp_ms = price_entry[0]
+        date = datetime.datetime.fromtimestamp(timestamp_ms / 1000, datetime.timezone.utc)
+        date_str = date.strftime('%Y-%m-%d %H:%M:%S')
+
+        price_usd = price_entry[1]
+        formatted_prices.append({"date": date_str, 'open': price_usd})
+    #response = requests.get(url, headers=headers)
+    #response = response.json()
+    return {'prices': formatted_prices}
 
 @app.post("/BCT-Price")
 async def getBCTPrice(date: str=Form()):
@@ -84,17 +115,47 @@ async def getBCTPrice(date: str=Form()):
     #response = response.json()
     return {'prices': formatted_prices}
 
-@app.get("/NCT-Price")
-async def getNCTPrice():
-    url = "https://api.coingecko.com/api/v3/coins/toucan-protocol-nature-carbon-tonne"
+@app.post("/NCT-Price")
+async def getNCTPrice(date: str=Form()):
+    #url = "https://api.coingecko.com/api/v3/coins/toucan-protocol-nature-carbon-tonne"
+    url = 'https://api.coingecko.com/api/v3/coins/toucan-protocol-nature-carbon-tonne/market_chart'
 
+    if date == "1-Month":
+        days = 30
+    elif date == "1-week":
+        days = 7
+    elif date == "3-Month":
+        days = 90
+    elif date == "6-Month":
+        days = 180
+    elif date == "1-yr":
+        days = 365
+    else:
+        days = 1
+
+    params = {
+        'vs_currency': 'usd',
+        'days': days
+    }
     headers = {
         "accept": "application/json",
         "x-cg-demo-api-key": "CG-XzwEMefh3qjDwk1qJWeHh3iJ"
         }
-    response = requests.get(url, headers=headers)
-    response = response.json()
-    return response["market_data"]["current_price"]["usd"]
+    response = requests.get(url, params=params)
+    data = response.json()
+
+    prices = data.get('prices', [])
+    formatted_prices = []
+    for price_entry in prices:
+        timestamp_ms = price_entry[0]
+        date = datetime.datetime.fromtimestamp(timestamp_ms / 1000, datetime.timezone.utc)
+        date_str = date.strftime('%Y-%m-%d %H:%M:%S')
+
+        price_usd = price_entry[1]
+        formatted_prices.append({"date": date_str, 'open': price_usd})
+    #response = requests.get(url, headers=headers)
+    #response = response.json()
+    return {'prices': formatted_prices}
 
 @app.post("/create-new-user")
 async def createNewUser(userName: str=Form(), password: str=Form(), firstName: str=Form(), lastName: str=Form()):
