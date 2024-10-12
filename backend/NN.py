@@ -92,14 +92,8 @@ future = model.make_future_dataframe(df, periods = 365)
 forecast = model.predict(future)
 actual = model.predict(df)
 
-<<<<<<< HEAD
 plt.plot(forecast['ds'], forecast['yhat1'], label = 'Future Prediction')
 plt.plot(actual['ds'], actual['yhat1'], label = 'Actual Prediction')
 plt.plot(df['ds'], df['y'], label = 'Actual')
-=======
-plt.plot(forecast['ds'], forecast['y'], label = 'Future Prediction')
-plt.plot(actual['ds'], actual['y'], label = 'Actual Prediction')
-plt.plot(stocks['timestamp'], stocks['price_usd'], label = 'Actual')
->>>>>>> c8a862f0e3b3a9afa91028f0c90928cf8f58f017
 plt.legend()
 plt.show()
