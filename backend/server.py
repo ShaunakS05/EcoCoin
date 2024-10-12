@@ -79,6 +79,7 @@ async def createNewUser(userName: str=Form(), password: str=Form(), firstName: s
 
 @app.post("/verify-user")
 async def verifyUser(userName: str=Form(), password: str=Form()):
+    userName = userName.replace(".", ",")
     ref = db.reference(f"users/{userName}")
     results = ref.get()
     if results:
