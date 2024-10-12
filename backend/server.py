@@ -69,7 +69,7 @@ async def getBCTPrice(date: str=Form()):
         date_str = date.strftime('%Y-%m-%d %H:%M:%S')
 
         price_usd = price_entry[1]
-        formatted_prices.append({"date": date_str, 'price_usd': price_usd})
+        formatted_prices.append({"date": date_str, 'open': price_usd})
     #response = requests.get(url, headers=headers)
     #response = response.json()
     return {'prices': formatted_prices}
