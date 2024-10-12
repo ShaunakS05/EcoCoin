@@ -304,17 +304,19 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: i
 
 @app.post("/sell-carbon-credit")
 async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int = Form()):
-    
+    userName = userName.replace(".", ",")
+    ref = db.reference(f"users/{userName}")
+    results = ref.get()
     transaction = {
         'sender': userName,
         'token_name': token_name,
         'amount': amount
     }
 
-    signature = sign_transaction(transaction, userName["private_key"])
+    signature = sign_transaction(transaction, results["private_key"])
     transaction['signature'] = signature
 
-    if not verify_signature(transaction, signature, userName["public_key"]):
+    if not verify_signature(transaction, signature, results["private_key"]):
         return {'error': 'Invalid transaction signature'}
     
     transaction_hash = calculate_hash(transaction)
@@ -356,8 +358,10 @@ async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: i
 
     # Update balances
     # Decrease user's carbon credit balance
-    user_carbon_balance_ref = db.reference(f'users/userName/balances/{token_name}')
+    user_carbon_balance_ref = db.reference(f'users/{userName}/balances/{token_name}')
     user_carbon_balance = user_carbon_balance_ref.get() or 0
+    print(user_carbon_balance)
+    print(amount)
     if user_carbon_balance < amount:
         return {'error': 'Insufficient carbon credits to sell.'}
     user_carbon_balance_ref.set(user_carbon_balance - amount)
