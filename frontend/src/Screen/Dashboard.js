@@ -153,12 +153,7 @@ const availableOverlays = [
         <div className="app">
             {isBlur && (
         <FeaturedCard
-            style={{
-                position: 'absolute',
-                top: '50px',
-                left: '500%',
-                transform: 'translate(-50%, -50%)',
-            }}
+            
             onClose={() => setBlur(false)}
         />
     )}
@@ -321,6 +316,7 @@ const availableOverlays = [
     chartType="Line"                   // Standard line chart
     xAxisMode="Time"
     yAxisMode="Numeric"
+    z-index={100}
     volumeType="None"                  // Hide volume bars
     dataSource={GraphData}
     indicatorTypes={selectedIndicators}
