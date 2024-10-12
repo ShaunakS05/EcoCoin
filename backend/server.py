@@ -48,6 +48,16 @@ async def getBCTPrice(date: str=Form()):
 
     if date == "1-Month":
         days = 30
+    elif date == "1-week":
+        days = 7
+    elif date == "3-Month":
+        days = 90
+    elif date == "6-Month":
+        days = 180
+    elif date == "1-yr":
+        days = 365
+    else:
+        days = 1
 
     params = {
         'vs_currency': 'usd',
