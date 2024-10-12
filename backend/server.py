@@ -97,8 +97,6 @@ async def createNewUser(userName: str=Form(), password: str=Form(), firstName: s
     public_key = calculate_hash({"private_key": private_key})
 
     user_ref.set({
-        userName:
-        {
             "Password": password,
             "First Name": firstName,
             "Last Name": lastName,
@@ -109,7 +107,6 @@ async def createNewUser(userName: str=Form(), password: str=Form(), firstName: s
                 "NCT": 0,
                 "MCO2": 0
             }
-        }
     })
     return None
 
