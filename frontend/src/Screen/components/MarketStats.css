@@ -1,0 +1,38 @@
+/* Market stats container */
+.market-stats {
+    background-color: #2b2b2b; /* Dark background for the card */
+    padding: 30px;
+    border-radius: 30px; /* Rounded corners for the card */
+    width: 250px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-family: 'Comic Sans MS', sans-serif; /* Playful font */
+  }
+  .marketContent {
+    position: absolute;
+    top: 10px;
+  }
+  
+  /* Heading for the market stats section */
+  .market-stats h3 {
+    color: #56e39f; /* Softer green for heading */
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  /* Paragraph for individual market stat */
+  .market-stats p {
+    color: #cccccc; /* Lighter text for stats */
+    font-size: 16px;
+    margin-bottom: 10px;
+    line-height: 1.8; /* Increased line spacing for readability */
+  }
+  
+  /* Hover effect for stat items */
+  .market-stats p:hover {
+    color: #56e39f; /* Green highlight on hover */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: color 0.2s ease; /* Smooth color transition on hover */
+  }
+  

@@ -1,0 +1,53 @@
+/* Sidebar container */
+.sidebar {
+    background-color: #2b2b2b; /* Dark background for sidebar */
+    padding: 30px;
+    border-radius: 30px; /* Rounded corners for the sidebar */
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    color: #ffffff;
+  }
+  
+  /* Sidebar headings */
+  .sidebar h2,
+  .sidebar h3 {
+    color: #56e39f; /* Softer green for headings */
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  /* Activity item styling */
+  .activity-item {
+    background-color: #383838; /* Darker gray background for activity items */
+    padding: 15px;
+    border-radius: 20px; /* Rounded corners for activity items */
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 16px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Light shadow */
+    transition: transform 0.2s ease; /* Smooth transform effect on hover */
+  }
+  
+  /* Hover effect for activity items */
+  .activity-item:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+  }
+  
+  /* Market stats inside the sidebar */
+  .market-stats {
+  }
+  
+  .market-content {
+    position: absolute;
+    top: 100px;
+  }
+  
+  .market-stats p {
+    color: #cccccc; /* Light text for stats */
+    font-size: 16px;
+  }
+  

@@ -1,0 +1,73 @@
+/* Home.css */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2e2e2e; /* Slightly lighter background */
+}
+
+.rotating-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 100px;
+    color: white;
+}
+.one{
+    position: absolute;
+    color: white;
+    top: 25%;
+
+}
+.two{
+    position: absolute;
+    top: 25%;
+
+}
+.three{
+    position: absolute;
+    top: 25%;
+
+}
+.header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white; /* Dark green for the EcoCoin text */
+}
+
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.start-trading-button {
+    padding: 15px 30px;
+    background-color: #38b000; /* Bright green for the button */
+    color: white;
+    font-size: 20px;
+    border: none;
+    position: absolute;
+    top: 75%;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.start-trading-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.start-trading-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+

@@ -1,0 +1,58 @@
+.app {
+    display: flex;
+    background-color: #2e2e2e;
+    color: #ffffff;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Main content layout */
+  .main-content {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  /* Card button styles */
+  button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .purchase-button {
+    background-color: #38b000;
+  }
+  
+  .stake-button {
+    background-color: #555555;
+  }
+  
+  /* Featured card styling */
+  .featured-card {
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .featured-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .featured-card p {
+    color: #b3b3b3;
+  }
+  
+  .featured-card a {
+    color: #38b000;
+  }
+  
