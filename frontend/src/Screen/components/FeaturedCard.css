@@ -1,0 +1,75 @@
+/* Container for the featured card */
+.featured-card {
+    background-color: #1c1c1c; /* Dark background for the card */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    width: 100%;
+    max-width: 400px; /* Maximum width of the card */
+    text-align: center; /* Center the text and content */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for card depth */
+    color: #ffffff; /* White text for visibility */
+    margin: 20px auto; /* Center the card and add spacing */
+  }
+  
+  /* Image for the featured carbon project */
+  .featured-card img {
+    width: 100%; /* Full width of the card */
+    border-radius: 10px; /* Rounded corners for the image */
+    margin-bottom: 15px; /* Space between the image and the text */
+  }
+  
+  /* Paragraph text in the card */
+  .featured-card p {
+    color: #b3b3b3; /* Lighter gray text for descriptions */
+    font-size: 14px; /* Smaller font for descriptions */
+    line-height: 1.5; /* Better readability with more line spacing */
+  }
+  
+  /* Green color for links */
+  .featured-card a {
+    color: #38b000; /* Green for links */
+    text-decoration: none; /* No underline for links */
+  }
+  
+  .featured-card a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  /* Buttons in the card */
+  .card-buttons {
+    margin-top: 20px; /* Add spacing above the buttons */
+  }
+  
+  /* Styling for the Purchase button */
+  .purchase-button {
+    background-color: #38b000; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* No borders */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    margin-right: 10px; /* Space between the buttons */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  /* Hover effect for the Purchase button */
+  .purchase-button:hover {
+    background-color: #2f8e00; /* Darker green on hover */
+  }
+  
+  /* Styling for the Stake button */
+  .stake-button {
+    background-color: #555555; /* Gray background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* No borders */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  /* Hover effect for the Stake button */
+  .stake-button:hover {
+    background-color: #444444; /* Darker gray on hover */
+  }
+  

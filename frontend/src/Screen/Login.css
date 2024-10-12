@@ -1,0 +1,96 @@
+/* General container styling */
+body {
+    background-color: #2e2e2e;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the entire registration page */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Header for the brand name */
+.header {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white; /* Green accent color */
+    position: absolute;
+    top: -20px;
+    left: 20px;
+}
+
+/* Content box for the registration form */
+.register-content {
+    background-color: #212121; /* Dark background */
+    padding: 40px;
+    border-radius: 20px; /* Rounded corners for a comfy feel */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form styling */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Group for individual form items */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Input fields styling */
+.register-input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for input fields */
+.register-input:focus {
+    border-color: #56e39f; /* Green border on focus */
+    box-shadow: 0px 0px 5px #56e39f; /* Green glow on focus */
+}
+
+/* Button styling */
+.register-button {
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+/* Hover effect for the button */
+.register-button:hover {
+    background-color: #45d086; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale-up effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .register-content {
+        width: 90%;
+        padding: 20px;
+    }
+}

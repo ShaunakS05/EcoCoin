@@ -1,0 +1,53 @@
+/* Top creators container */
+.top-creators {
+    background-color: #2b2b2b;
+    padding: 30px;
+    border-radius: 30px; /* Rounded corners for top creators card */
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
+    color: #ffffff;
+  }
+  
+  /* Heading for the top creators section */
+  .top-creators h3 {
+    color: #56e39f; /* Softer green for heading */
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  /* Individual creator item */
+  .creator-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #383838; /* Dark gray for creator cards */
+    padding: 15px;
+    border-radius: 20px; /* Rounded corners for creator items */
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Light shadow */
+    transition: transform 0.2s ease; /* Smooth transform effect on hover */
+  }
+  
+  /* Hover effect for creator items */
+  .creator-item:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+  }
+  
+  /* Profile picture in creator items */
+  .creator-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Circular profile picture */
+    border: 2px solid #56e39f; /* Green border around profile pic */
+  }
+  
+  /* Text for creator names and their stats */
+  .creator-item span {
+    color: #ffffff;
+    font-size: 16px;
+  }
+  

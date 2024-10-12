@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import requests
 import firebase_admin
 from firebase_admin import db
@@ -18,7 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-cred_obj = firebase_admin.credentials.Certificate(".\ecocoin-cb8e3-firebase-adminsdk-h4k1v-f75f599aa6.json")
+cred_obj = firebase_admin.credentials.Certificate(".\ecocoin-cb8e3-firebase-adminsdk-h4k1v-43144f86dd.json")
 default_app = firebase_admin.initialize_app(cred_obj, {
     'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
 })
@@ -105,11 +106,11 @@ async def verifyUser(userName: str=Form(), password: str=Form()):
     results = ref.get()
     if results:
         if results["Password"] == password:
-            return results["First Name"], results["Last Name"]
+            return {"firstName": results["First Name"], "lastName": results["Last Name"]}
         else:
-            return False
+            return JSONResponse(content={"success": False, "message": "Invalid password"}, status_code=400)
     else:
-        return False
+        return JSONResponse(content={"success": False, "message": "User not found"}, status_code=404)
 
 @app.post("/buy-carbon=credit")
 async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int = Form(), recipient_id: Optional[str] = Form(default=None)):
