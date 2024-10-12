@@ -6,6 +6,8 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [responseMessage, setResponseMessage] = useState(null);
+
     const verifyUserEndPoint = "http://localhost:8000/verify-user";
 
     const handleSubmit = async(e) => {
@@ -23,22 +25,20 @@ const Login = () => {
           method: "POST",
           body: formData
         });
-    
+        const data = await response.json();
+
         // Check if the response status is OK (200)
         if (response.ok) {
-            navigate('/dashboard'); // Navigates to the login page, you can change the path if needed
-
-          
-        } else {
-          // If response status is not OK, throw an error
-          throw new Error('Failed tozsasd fetch data');
+            // Handle success response
+            setResponseMessage(`Welcome ${data.firstName} ${data.lastName}`);
+          } else {
+            // Handle error response
+            setResponseMessage(data.message);
+          }
+        } catch (error) {
+          console.error('Error during API call:', error);
+          setResponseMessage('Error occurred while verifying user');
         }
-          
-      }
-      catch(error)
-      {
-        console.error(error);
-      }
     
 
         

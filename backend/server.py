@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 import requests
 import firebase_admin
 from firebase_admin import db
@@ -84,8 +85,8 @@ async def verifyUser(userName: str=Form(), password: str=Form()):
     results = ref.get()
     if results:
         if results["Password"] == password:
-            return results["First Name"], results["Last Name"]
+            return {"firstName": results["First Name"], "lastName": results["Last Name"]}
         else:
-            return False
+            return JSONResponse(content={"success": False, "message": "Invalid password"}, status_code=400)
     else:
-        return False
+        return JSONResponse(content={"success": False, "message": "User not found"}, status_code=404)

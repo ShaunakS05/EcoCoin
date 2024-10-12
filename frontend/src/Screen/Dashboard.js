@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "./components/Sidebar";
 import FeaturedCard from "./components/FeaturedCard";
 import TopCreators from "./components/TopBuyers";
+import SearchIcon from '@mui/icons-material/Search';
 import "./Dashboard.css";
 
 function Dashboard() {
@@ -13,6 +14,9 @@ function Dashboard() {
         {/* Additional content such as market feeds can go here */}
       </div>
       <TopCreators />
+      <SearchIcon style={{ fontSize: 40, color: 'green' }} /> {/* Icon with custom styling */}
+
+      
     </div>
   );
 }
