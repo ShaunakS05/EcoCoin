@@ -51,6 +51,8 @@ function Dashboard() {
     const [transaction, setTransactionDone] = useState(false);
     const [message, setMessage] = useState("");
     const [hashblock, setHashblock] = useState("");
+    const [future, setFuture] = useState(false);
+    const [nothrow, setNoThrow] = useState(false);
     const [tranactionHash, setTransactionHash] = useState("");
 
     const [searched, setSearched] = useState(false);
@@ -222,6 +224,7 @@ function Dashboard() {
             } else {
                 // If not successful (e.g., insufficient funds), show an alert
                 setMessage('You do not have sufficient funds to sell.');
+                setNoThrow(true);
             }
         })
         .catch(error => {
@@ -236,6 +239,7 @@ function Dashboard() {
         if (message) {
             const timer = setTimeout(() => {
                 setMessage(""); // Clear the message after 5 seconds
+                setNoThrow(false);
             }, 5000); // 5 seconds delay
             return () => clearTimeout(timer); // Cleanup the timer on component unmount
         }
@@ -245,7 +249,6 @@ function Dashboard() {
         setTradeColor("");
         setNotSearch(false);
     };
-
     const setTradingToFalse = () => {
         setTrading(false);
         setTransactionDone(false);
@@ -284,21 +287,27 @@ function Dashboard() {
         handleGetName();
       }, []);
 
-    useEffect(() => {
+      useEffect(() => {
         const formData = new FormData();
-        formData.append('date', date);
-
-        if(type === "Carbon") {
-            setEndpoint(BCT);
+        let fetchEndpoint = ''; // Local variable to store the endpoint for the fetch call
+    
+        if (date === "future") {
+            formData.append('tokenName', type);
+            fetchEndpoint = "http://localhost:8000/future-Data";
+        } else {
+            formData.append('date', date);
+    
+            if (type === "Carbon") {
+                fetchEndpoint = BCT;
+            } else if (type === "Methane") {
+                fetchEndpoint = MCO2;
+            } else {
+                fetchEndpoint = NCT;
+            }
         }
-        else if(type === "Methane") {
-            setEndpoint(MCO2);
-        }
-        else
-        {
-            setEndpoint(NCT);
-        }
-        fetch(endpoint, { method: 'POST', body: formData })
+    
+        // Perform the fetch with the local endpoint variable
+        fetch(fetchEndpoint, { method: 'POST', body: formData })
             .then(response => response.json())
             .then(data => {
                 const processedData = data.prices.map(item => ({
@@ -309,10 +318,11 @@ function Dashboard() {
                     Date: new Date(item.date.replace(' ', 'T'))
                 }));
                 setGraphData(processedData);
-                console.log("Data:", GraphData);
+                console.log("Data:", processedData); // Log processed data instead of GraphData
             })
             .catch(error => console.error('Error fetching data:', error));
     }, [date, type]);
+    
 
     const applyBlurEffect = isNotSearch || IsTrading || isBlur ? 'blur(5px)' : 'none';
     const applyPointerEvents = isNotSearch || IsTrading || isBlur ? 'none' : 'auto';
@@ -380,8 +390,8 @@ function Dashboard() {
 
 
                 <button
-                    className={date === "1-week" ? "date-select-button" : "date-button"}
-                    onClick={() => setDate("Future")}
+                    className={date === "future" ? "date-select-button" : "date-button"}
+                    onClick={() => setDate("future")}
                 >
                     Ft
                 </button>
@@ -601,8 +611,10 @@ function Dashboard() {
                     ) : (
                         <div>
                             <p>{message}</p>
+                            {!nothrow && (<>
                             <p>Block Hash: {hashblock}</p>
-                            <p>Transaction Hash: {tranactionHash}</p>
+                            <p>Transaction Hash: {tranactionHash}</p> </>
+                        )}
                         </div>
                     )}
                 </div>
