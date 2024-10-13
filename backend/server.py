@@ -12,6 +12,16 @@ import datetime
 import threading
 from contextlib import asynccontextmanager
 import os
+import json
+import pandas as pd
+from neuralprophet import NeuralProphet
+
+modelBCT = None
+modelMCO = None
+NCTmodel = None
+dfBCT = None
+dfMCO = None
+dfNCT = None
 
 
 
@@ -42,6 +52,63 @@ def monitor_fundraising_events():
 async def lifespan(app: FastAPI):
     monitoring_thread = threading.Thread(target=monitor_fundraising_events, daemon=True)
     monitoring_thread.start()
+
+    global modelBCT, modelMCO, NCTmodel, dfBCT, dfNCT, dfMCO
+    
+    # Perform startup tasks
+    print("Initializing model...")
+    # File reading and data processing
+    file_path_bct = os.path.join('.', 'bct_hourly_data_365_days.json')
+    file_path_nct = os.path.join('.', 'nct_hourly_data_365_days.json')
+    file_path_mco = os.path.join('.', 'MCO2_hourly_data_365_days.json')
+    with open(file_path_nct, 'r') as file:
+        file_contents = file.read()
+        stocks_nct = json.loads(file_contents)
+    
+    with open(file_path_bct, 'r') as file:
+        file_contents = file.read()
+        stocks_bct = json.loads(file_contents)
+    
+    with open(file_path_mco, 'r') as file:
+        file_contents = file.read()
+        stocks_mco = json.loads(file_contents)
+    dfNCT = pd.DataFrame(stocks_nct)
+    # Extract and process prices data
+    dfNCT = dfNCT.rename(columns={"timestamp": "ds", "price_usd": "y"})
+    dfNCT['ds'] = pd.to_datetime(dfNCT['ds'], unit='ms')
+    dfNCT = dfNCT.drop_duplicates(subset=['ds'])
+    dfNCT = dfNCT.set_index('ds')
+    dfNCT = dfNCT.resample('H').mean()
+    dfNCT = dfNCT.dropna()
+    dfNCT = dfNCT.reset_index()
+    # Initialize and train NeuralProphet model
+    NCTmodel = NeuralProphet()
+    NCTmodel.fit(dfNCT)
+
+    dfBCT = pd.DataFrame(stocks_bct)
+    # Extract and process prices data
+    dfBCT = dfBCT.rename(columns={"timestamp": "ds", "price_usd": "y"})
+    dfBCT['ds'] = pd.to_datetime(dfBCT['ds'], unit='ms')
+    dfBCT = dfBCT.drop_duplicates(subset=['ds'])
+    dfBCT = dfBCT.set_index('ds')
+    dfBCT = dfBCT.resample('H').mean()
+    dfBCT = dfBCT.dropna()
+    dfBCT = dfBCT.reset_index()
+    modelBCT = NeuralProphet()
+    modelBCT.fit(dfBCT)
+    dfMCO = pd.DataFrame(stocks_mco)
+    # Extract and process prices data
+    dfMCO = dfMCO.rename(columns={"timestamp": "ds", "price_usd": "y"})
+    dfMCO['ds'] = pd.to_datetime(dfMCO['ds'], unit='ms')
+    dfMCO = dfMCO.drop_duplicates(subset=['ds'])
+    dfMCO = dfMCO.set_index('ds')
+    dfMCO = dfMCO.resample('H').mean()
+    dfMCO = dfMCO.dropna()
+    dfMCO = dfMCO.reset_index()
+    modelMCO = NeuralProphet()
+    modelMCO.fit(dfMCO)
+    print("Model initialized successfully.")
+
     yield
 
 app = FastAPI(lifespan=lifespan)
@@ -620,3 +687,27 @@ def getName(userName: str=Form()):
     user_ref = user_ref.get()
     name = user_ref["First Name"]
     return name
+
+@app.post('/future-Data')
+def futureData(tokenName: str=Form()):
+    if tokenName == "Carbon":
+        future = modelMCO.make_future_dataframe(dfMCO, periods = 365)
+        forecast = modelMCO.predict(future)
+        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'timestamp', 'yhat1': 'price'})
+        forecast_json['timestamp'] = forecast_json['timestamp'].astype(str)
+        forecast_json_output = forecast_json.to_dict(orient='records')
+        return forecast_json_output
+    elif tokenName == "Methane":
+        future = modelBCT.make_future_dataframe(dfBCT, periods = 365)
+        forecast = modelBCT.predict(future)
+        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'timestamp', 'yhat1': 'price'})
+        forecast_json['timestamp'] = forecast_json['timestamp'].astype(str)
+        forecast_json_output = forecast_json.to_dict(orient='records')
+        return forecast_json_output
+    else:
+        future = NCTmodel.make_future_dataframe(dfNCT, periods = 365)
+        forecast = NCTmodel.predict(future)
+        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'timestamp', 'yhat1': 'price'})
+        forecast_json['timestamp'] = forecast_json['timestamp'].astype(str)
+        forecast_json_output = forecast_json.to_dict(orient='records')
+        return forecast_json_output
