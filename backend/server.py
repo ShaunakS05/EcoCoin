@@ -411,10 +411,10 @@ async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form
 
     user_ref.set({
             "Description": Description,
-            "Type of Coin": TypeOfCoins,
-            "Current Coins": CurrentCoins,
-            "Target Coins": TargetCoins,
-            "End Date": EndDate,
+            "TypeofCoin": TypeOfCoins,
+            "CurrentCoins": CurrentCoins,
+            "TargetCoins": TargetCoins,
+            "EndDate": EndDate,
     })
     return None
 
@@ -560,5 +560,3 @@ def returnBalance(userName: str=Form()):
     userName = userName.replace(".",",")
     user_ref = db.reference(f"users/{userName}/balances")
     return user_ref.get()
-
-    
