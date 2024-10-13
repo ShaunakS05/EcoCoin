@@ -67,6 +67,7 @@ async def getMCO2Price(date: str=Form()):
         
         
         response = requests.get(url, params=params)
+        print(response)
         data = response.json()
 
         prices = data.get('prices', [])
@@ -208,7 +209,8 @@ async def createNewUser(userName: str=Form(), password: str=Form(), firstName: s
                 "BCT": 0,
                 "NCT": 0,
                 "MCO2": 0
-            }
+            },
+            "Stakes": {}
     })
     return None
 
@@ -377,7 +379,6 @@ async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: i
     if user_carbon_balance < amount:
         return {'error': 'Insufficient carbon credits to sell.'}
     user_carbon_balance_ref.set(user_carbon_balance - amount)
-
     return {
         'message': f'Transaction added to block {index}.',
         'block_hash': block_hash,
@@ -417,8 +418,140 @@ async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form
     })
     return None
 
+@app.post("/create-new-stake")
+async def createNewStake(EventName: str=Form(),Description: str=Form(),Start_Date: str=Form(),End_Date: str=Form(),Return_Value: float=Form()):
+    ref = db.reference("Stakes")
+    stake_ref = ref.child(EventName)
+
+    stake_ref.set({
+        "Description": Description,
+        "Start Date": Start_Date,
+        "End Date": End_Date,
+        "Return on Investment": Return_Value
+    })
+    return None
+
+@app.post("/invest-in-stake")
+async def investInStake(EventName: str=Form(), token_name: str=Form(), userName: str=Form(), amount: int=Form()):
+    if token_name == "Carbon":
+        token_name = "MCO2"
+    elif token_name == "Methane":
+        token_name = "BCT"
+    else:
+        token_name = "NCT"
+    userName = userName.replace(".", ",")
+    ref = db.reference(f"users/{userName}")
+    results = ref.get()
+    transaction = {
+        'sender': userName,
+        'token_name': token_name,
+        'amount': amount
+    }
+
+    signature = sign_transaction(transaction, results["private_key"])
+    transaction['signature'] = signature
+
+    if not verify_signature(transaction, signature, results["private_key"]):
+        return {'error': 'Invalid transaction signature'}
+    
+    transaction_hash = calculate_hash(transaction)
+    transaction['hash'] = transaction_hash
+
+    blockchain_ref = db.reference('blockchain')
+    blockchain = blockchain_ref.get()
+    if blockchain is None:
+        previous_hash = '0' * 64
+        index = 0
+    else:
+        last_block = blockchain[-1]
+        previous_hash = last_block['hash']
+        index = last_block['index'] + 1
+
+    # Create the new block
+    block_data = {
+        'index': index,
+        'transactions': [transaction],
+        'previous_hash': previous_hash,
+        'timestamp': time.time()
+    }
+
+    # Perform Proof of Work
+    block_hash, nonce = proof_of_work(block_data, difficulty=4)
+    block_data['nonce'] = nonce
+    block_data['hash'] = block_hash
+
+    # Simulate Consensus
+    if not simulate_consensus(block_data):
+        return {'error': 'Consensus not reached. Block not added.'}
+
+    # Add the new block to the blockchain
+    if blockchain is None:
+        blockchain = [block_data]
+    else:
+        blockchain.append(block_data)
+    blockchain_ref.set(blockchain)
+
+    # Update balances
+    # Decrease user's carbon credit balance
+    user_carbon_balance_ref = db.reference(f'users/{userName}/balances/{token_name}')
+    user_carbon_balance = user_carbon_balance_ref.get() or 0
+    print(user_carbon_balance)
+    print(amount)
+    if user_carbon_balance < amount:
+        return {'error': 'Insufficient carbon credits to sell.'}
+    user_carbon_balance_ref.set(user_carbon_balance - amount)
+
+    ref = db.reference(f"Stakes/{EventName}")
+    results = ref.get()
+
+    new_stake = {
+        EventName: {
+            "amount": amount,
+            "date": time.time(),
+            "token": token_name,
+            "ROI": results["Return on Investment"]
+        }
+    }
+    
+    ref = db.reference(f"users/{userName}")
+    ref.child("Stakes").update(new_stake)
+
+    return {
+        'message': f'Transaction added to block {index}.',
+        'block_hash': block_hash,
+        'nonce': nonce,
+        'transaction_hash': transaction_hash,
+        'time': time.time()
+    }
+
 @app.post("/return-all-events")
 async def returnAllEvents(EventName: str=Form()):
     ref = db.reference(EventName)
     allEvents_ref = ref.get()
     return allEvents_ref
+
+@app.get("/return-news-articles")
+async def returnNewsArticles():
+    service_url = 'https://www.googleapis.com/customsearch/v1'
+    params = {
+        'key': "AIzaSyA_gQsnmeeoFJi7lhJ_eY70ukNd2m22Cf0",
+        'cx': "80bfac6f04cd64375",
+        'q': "emission allowances",
+        'num': 4
+    }
+
+    response = requests.get(service_url, params=params)
+    results = response.json()
+    articles = []
+    for item in results.get('items', []):
+        title = item.get('title')
+        snippet = item.get('snippet')
+        link = item.get('link')
+        articles.append({
+            'title': title,
+            'snippet': snippet,
+            'link': link
+        })
+    
+    return articles
+    
