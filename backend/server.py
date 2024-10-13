@@ -417,16 +417,17 @@ async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: i
 
 
 @app.post("/create-new-volunteering-event")
-async def createNewVolunteeringEvent(EventName: str=Form(), Description: str=Form(), Compensation: int=Form(), Location: str=Form(), DateTime: str=Form()):
-    EventName = EventName.replace("/", ",")
+async def createNewVolunteeringEvent(eventName: str=Form(), description: str=Form(), typeOfCoin: str=Form(), compensation: int=Form(), location: str=Form(), dateTime: str=Form()):
+    eventName = eventName.replace("/", ",")
     ref = db.reference("Volunteering Events")
-    user_ref = ref.child(EventName)
+    user_ref = ref.child(eventName)
 
     user_ref.set({
-            "Description": Description,
-            "Compensation": Compensation,
-            "Location": Location,
-            "Date&Time": DateTime,
+            "Description": description,
+            "Compensation": compensation,
+            "Location": location,
+            "Date&Time": dateTime,
+            "typeOfCoin": typeOfCoin
     })
     return None
 
@@ -448,15 +449,15 @@ async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form
     return None
 
 @app.post("/create-new-stake")
-async def createNewStake(EventName: str=Form(),Description: str=Form(),Start_Date: str=Form(),End_Date: str=Form(), Return_Value: float=Form(), lengthOfTime: int=Form(), typeOfCoin: str=Form()):
+async def createNewStake(eventName: str=Form(), description: str=Form(),startDate: str=Form(),endDate: str=Form(), returnValue: float=Form(), lengthOfTime: int=Form(), typeOfCoin: str=Form()):
     ref = db.reference("Stakes")
-    stake_ref = ref.child(EventName)
+    stake_ref = ref.child(eventName)
 
     stake_ref.set({
-        "Description": Description,
-        "StartDate": Start_Date,
-        "EndDate": End_Date,
-        "ReturnOnInvestment": Return_Value,
+        "Description": description,
+        "StartDate": startDate,
+        "EndDate": endDate,
+        "ReturnOnInvestment": returnValue,
         "LengthOfTime": lengthOfTime,
         "TypeOfCoin": typeOfCoin
 
