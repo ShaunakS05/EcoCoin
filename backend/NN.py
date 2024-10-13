@@ -90,6 +90,7 @@ model.fit(df)
 
 future = model.make_future_dataframe(df, periods = 365)
 forecast = model.predict(future)
+print(forecast)
 actual = model.predict(df)
 
 plt.plot(forecast['ds'], forecast['yhat1'], label = 'Future Prediction')

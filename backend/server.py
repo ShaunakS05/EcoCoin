@@ -466,9 +466,9 @@ async def createNewStake(eventName: str=Form(), description: str=Form(),startDat
 
 @app.post("/invest-in-stake")
 async def investInStake(EventName: str=Form(), token_name: str=Form(), userName: str=Form(), amount: int=Form()):
-    if token_name == "Carbon":
+    if token_name == "Carbon" or token_name == "CEC":
         token_name = "MCO2"
-    elif token_name == "Methane":
+    elif token_name == "Methane" or token_name == "MEC":
         token_name = "BCT"
     else:
         token_name = "NCT"
