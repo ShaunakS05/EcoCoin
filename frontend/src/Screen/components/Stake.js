@@ -14,7 +14,9 @@ const Stake = ({ eventName, Description, TypeOfCoin, StartDate, EndDate, ReturnO
   };
 
   // Function to handle the stake request
-  const handleStake = () => {
+  const handleStake = (event) => {
+    event.stopPropagation(); // Prevents the event from bubbling to the parent div
+
     const form = new FormData();
     form.append('amount', quantity);
     form.append('EventName', eventName);
@@ -55,27 +57,25 @@ const Stake = ({ eventName, Description, TypeOfCoin, StartDate, EndDate, ReturnO
         <p className="card-description">{Description}</p>
       </div>
       <br></br>
-      <br></br>
 
       {isExpanded && (
         <div style={{ color: 'white' }}>
-          <br />
           <p className='card-description'>
-           <p>Statement: Invest up to 10,000 {TypeOfCoin} and receive a {ReturnOnInvestment}% return after {LengthOfTime} years</p>
+            Statement: Invest up to 10,000 {TypeOfCoin} and receive a {ReturnOnInvestment}% return after {LengthOfTime} years
           </p>
           <br />
           <input 
             className='register-input' 
-            style={{textAlign: 'center', position: 'relative', left: '50%', transform: 'translateX(-50%)'}}
+            style={{ textAlign: 'center', position: 'relative', left: '50%', transform: 'translateX(-50%)' }}
             value={quantity} 
             onChange={(e) => setQuantity(e.target.value)} // Update quantity state on change
+            placeholder="Enter amount"
           />
-          <br></br>
-          <br></br>
+          <br /><br />
 
           <div 
             className={invested ? "trade-no-color-button" : "trade-color-button"} 
-            onClick={!invested ? handleStake : null} // If invested, onClick does nothing
+            onClick={handleStake} // Only handles staking without expanding/collapsing
           >
             {invested ? <h3>Invested</h3> : <h3>Stake</h3>}
           </div>

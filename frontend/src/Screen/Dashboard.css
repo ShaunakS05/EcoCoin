@@ -244,6 +244,7 @@ select {
   transition: transform 0.2s, background-color 0.3s ease;
  
 }
+
 .date-select-button {
   padding: 15px;
   background-color: #3fab77; /* Green button */
@@ -264,6 +265,15 @@ select {
   position: absolute;
   top: 50px;
   left: 380px;
+}
+
+.event-item {
+  flex: 1 1 calc(33.333% - 20px); /* Each item takes up one-third of the width, minus the gap */
+  box-sizing: border-box;         /* Ensures padding/margins are included in width */
+  min-width: 300px;  
+  display: flex;
+  flex-wrap: wrap;       /* Allows the items to wrap if they exceed the container width */
+  gap: 20px;              /* Minimum width to ensure proper layout at smaller screen sizes */
 }
 
 .event-list

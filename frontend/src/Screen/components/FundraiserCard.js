@@ -78,7 +78,7 @@ const FundraiserCard = ({ eventName, description, currentCoins, targetCoins, typ
             className={invested ? "trade-no-color-button" : "trade-color-button"} 
             onClick={!invested ? handleStake : null} // If invested, onClick does nothing
           >
-            {invested ? <h3>Gave!</h3> : <h3>Donate</h3>}
+            {invested ? <h3>Donated!</h3> : <h3>Donate</h3>}
           </div>
         </div>
       )}
