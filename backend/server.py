@@ -17,7 +17,7 @@ import os
 
 cred_obj = firebase_admin.credentials.Certificate(".\_nyanKeys.json")
 default_app = firebase_admin.initialize_app(cred_obj, {
-    'storageBucket': "gs://ecocoin-cb8e3.appspot.com",
+    'storageBucket': "ecocoin-cb8e3.appspot.com",
     'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
 })
 
@@ -598,7 +598,7 @@ def returnBalance(userName: str=Form()):
 def returnStartImage():
     bucket = storage.bucket()
     blob = bucket.blob('images/startUpImage')
-    blob.upload_from_filename("./boston-common(1).jpg")
+    blob.upload_from_filename("./boston-common (1).jpg")
     blob.make_public()
     image_url = blob.public_url
     ref = db.reference('Startup_Images')
@@ -606,3 +606,5 @@ def returnStartImage():
     event_ref.update({
         "ImageURL": image_url
     })
+
+    return {"ImageURL": image_url}
