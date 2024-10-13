@@ -1,17 +1,22 @@
 .fundraiser-card {
-    border: 2px solid white;
-    padding: 10px;
-    border-radius: 10px;
-    width: 500px;
-    background-color: #000000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    color: #000000;
-    z-index: 15;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 70px; /* Adjusted height for better content fitting */
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 10px;
+  width: 500px;
+  background-color: #2e2e2e;
+  color: white;
+  overflow: hidden; /* Ensure content doesn't overflow */
+  transition: height 0.3s ease, max-height 0.3s ease; /* Smooth transition for height */
 }
+
+.fundraiser-card.collapsed {
+  height: 130px; /* Set the collapsed height */
+}
+
+.fundraiser-card.expanded {
+  height: 1000; /* Set the height to auto when expanded */
+}
+
 
 .card-header {
     margin-bottom: 5px;
@@ -43,7 +48,6 @@
     background-color: #56e39F;
     height: 10px;
     border-radius: 10px;
-    width: 80%;
     margin: 10px auto; /* Center horizontally and add spacing */
     overflow: hidden;
     display: flex;

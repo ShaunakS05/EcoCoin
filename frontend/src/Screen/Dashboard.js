@@ -7,6 +7,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { IgrFinancialChart, FinancialIndicatorType, FinancialOverlayType } from 'igniteui-react-charts';
 import { IgrFinancialChartModule } from 'igniteui-react-charts';
 import { BottomClipper, TrendLineType, typeCast } from 'igniteui-react-core';
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import Stake from "./components/Stake";
+import Volunteer from "./components/Volunteer";
+
 
 import FundraiserCard from "./components/FundraiserCard";
 
@@ -14,12 +18,20 @@ import MenuIcon from '@mui/icons-material/Menu'; // Icon for collapsed state
 import CloseIcon from '@mui/icons-material/Close'; // Icon for expanded state
 import "./Dashboard.css";
 
+
+
 // Registering the chart module
 IgrFinancialChartModule.register();
 
 function Dashboard() {
     const location = useLocation();
     const userName = location.state?.userName; // Retrieve userName from state
+
+
+    const [LookatOP, setLookatOP] = useState(false);
+    const [closeOP, setcloseOP] = useState(false);
+
+    const [LookingSearchResults, setLookingSearchResults] = useState(false);
 
     const [isOverlayCollapsed, setIsOverlayCollapsed] = useState(false);
     const [IsTrading, setTrading] = useState(false);
@@ -41,6 +53,9 @@ function Dashboard() {
 
     const [searched, setSearched] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
+
+    const [searchStake, setStakeResults] = new useState([]);
+    const {searchVol, setVolResults} = new useState([]);
 
 
     const [endpoint, setEndpoint] = useState("http://localhost:8000/BCT-Price");
@@ -86,6 +101,66 @@ function Dashboard() {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+
+
+            const formDataVol = new FormData();
+            formDataVol.append('EventName', "Volunteering Events"); // Send search term in the form data
+            
+            fetch("http://localhost:8000/return-all-events", { 
+                method: 'POST', 
+                body: formDataVol 
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Search results:", data);
+                // Transform the object into an array
+                const events = Object.entries(data).map(([eventName, eventData]) => ({
+                    eventName,
+                    ...eventData
+                }));
+                setVolResults(events);
+                setSearched(true);
+            })
+            
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+
+            const handleOPOpen = () => {
+                setLookingSearchResults(false);
+            }
+
+            const handleOPClose = () => {
+                setLookingSearchResults(false);
+            }
+
+            const formDataStake = new FormData();
+            formDataStake.append('EventName', "Stakes"); // Send search term in the form data
+            
+            fetch("http://localhost:8000/return-all-events", { 
+                method: 'POST',
+                body: formDataStake 
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Search results:", data);
+                // Transform the object into an array
+                const events = Object.entries(data).map(([eventName, eventData]) => ({
+                    eventName,
+                    ...eventData
+                }));
+                setStakeResults(events);
+                setSearched(true);
+            })
+            
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+
+
+
         }
     };
     
@@ -184,6 +259,7 @@ function Dashboard() {
                     Date: new Date(item.date.replace(' ', 'T'))
                 }));
                 setGraphData(processedData);
+                console.log("Data:", GraphData);
             })
             .catch(error => console.error('Error fetching data:', error));
     }, [date, type]);
@@ -265,7 +341,7 @@ function Dashboard() {
                     1Y
                 </button>
             </div>
-                {isOverlayCollapsed && <div  style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents, position:'absolute', left:'380px', top: '180px', zIndex: 1}}>
+                {isOverlayCollapsed && <div  style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents, position:'absolute', left:'380px', top: '180px', zIndex:'30'}}>
             <select
                                     value={type}
                                     onChange={(e) => setType(e.target.value)}
@@ -295,27 +371,71 @@ function Dashboard() {
                     />
                 </div>
             )}
-
-{searched && (
-    <div className="event-list">
-        {searchResults.length === 0 ? (
-            <p>No events found...</p>
-        ) : (
-            searchResults.map((event, index) => (
+{searched && !LookingSearchResults && (
+  <div className="event-list">
+    {/* Check if all arrays have no results */}
+    {searchResults?.length === 0 && searchStake?.length === 0 && searchVol?.length === 0 ? (
+      <p>No events found...</p>
+    ) : (
+      <>
+        {/* Combine all events into one array and handle undefined values */}
+        {[
+          ...(searchResults || []).map((event, index) => ({ ...event, type: 'fundraiser', index })),
+          ...(searchStake || []).map((event, index) => ({ ...event, type: 'stake', index })),
+          ...(searchVol || []).map((event, index) => ({ ...event, type: 'volunteer', index }))
+        ]
+          // Shuffle the combined array
+          .sort(() => Math.random() - 0.5)
+          // Map through the shuffled events and render the corresponding components
+          .map((event) => {
+            if (event.type === 'fundraiser') {
+              return (
                 <FundraiserCard
-                    key={index}
-                    eventName={event.eventName}
-                    description={event.Description}
-                    currentCoins={event.CurrentCoins}
-                    targetCoins={event.TargetCoins}
-                    progress={(event.CurrentCoins / event.TargetCoins)}
-                    endDate={event.EndDate}
+                
+                  key={`fundraiser-${event.index}`}
+                  eventName={event.eventName}
+                  description={event.Description}
+                  currentCoins={event.CurrentCoins}
+                  targetCoins={event.TargetCoins}
+                  progress={event.PercentageChange}
+                  endDate={event.EndDate}
+
                 />
-            ))
-            
-        )}
-    </div>
+              );
+            } else if (event.type === 'stake') {
+              return (
+                <Stake
+                  key={`stake-${event.index}`}
+                  userName={userName}
+                  eventName={event.eventName}
+                  Description={event.Description}
+                  ReturnOnInvestment={event.ReturnOnInvestment}
+                  EndDate={event.EndDate}
+                  StartDate={event.StartDate}
+                  LengthOfTime={event.LengthOfTime}
+                  TypeOfCoin={event.TypeOfCoin}
+                />
+              );
+            } else if (event.type === 'volunteer') {
+              return (
+                <Volunteer
+                  key={`volunteer-${event.index}`}
+                  eventName={event.eventName}
+                  Description={event.Description}
+                  Location={event.CurrentCoins}
+                  DateTime={event.DateTime}
+                  TypeOfCoin={event.typeOfCoin}
+                />
+              );
+            }
+            return null;
+          })}
+      </>
+    )}
+  </div>
 )}
+
+
 
 
             <div style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }} className={`overlay-panel ${isOverlayCollapsed ? 'collapsed' : ''}`}>
@@ -424,6 +544,7 @@ function Dashboard() {
                         xAxisMode="Time"
                         yAxisMode="Numeric"
                         dataSource={GraphData}
+                        zIndex={1}
                         indicatorTypes={selectedIndicators}
                         overlayTypes={selectedOverlays}
                         trendLineType={selectedTrendLineType}
@@ -432,7 +553,7 @@ function Dashboard() {
                         brushes={["#56e39f"]}
                         thickness={2}
                         chartTitle="Emission Allowances"
-                        subtitle="Trading Price of CO2"
+                        subtitle="Trading Price of Emission Allowances"
                         xAxisTitle="Time"
                         yAxisTitle="Price USD"
                         isToolbarVisible={false}
@@ -456,7 +577,7 @@ function Dashboard() {
             </div>
 
             <div style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }}>
-                <TopCreators />
+                <TopCreators userNameProp={userName}/>
                 <input value={date} onChange={(e) => setDate(e.target.value)} />
             </div>
 
