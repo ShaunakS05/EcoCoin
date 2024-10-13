@@ -1,42 +1,43 @@
-import {React, useState} from "react";
+import React, { useState, useEffect } from "react";
 import "./Sidebar.css";
-
+import NewsComponent from "./NewsComponent";
 
 const Sidebar = () => {
-    const [CO, setCO2] = useState(0);
-    const [Methane, setMethane] = useState(0);
-    const [Oxide, setOxide] = useState(0);
+  const [newsItems, setNewsItems] = useState([]);
+
+  const fetchNews = () => {
+    fetch('http://localhost:8000/return-news-articles') // Replace with your actual endpoint
+      .then(response => response.json())
+      .then(data => {
+        // Assume data is an array of news items
+        setNewsItems(data.slice(0, 3)); // Get first 4 news items
+      })
+      .catch(error => {
+        console.error('Error fetching news:', error);
+      });
+  };
+
+  useEffect(() => {
+    fetchNews(); // Initial fetch
+
+    const interval = setInterval(() => {
+      fetchNews(); // Refresh every 15 seconds
+    }, 5000);
+
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, []);
 
   return (
     <div className="sidebar">
-      <h2>Recent Activity</h2>
-      <div className="activity-item">Le Anime liked your post "Mariland Wag"</div>
-      <div className="activity-item">Karma Chameleon purchased 0.5 tons of CO₂</div>
-      <div className="activity-item">You received 0.08 ETH for staking credits</div>
-      <div className="activity-item">Sakvator.eth started following you</div>
-
-      <h3>Market Stats</h3>
-      
-      <div className="creator-item">
-        <span>CO₂</span>
-        <span>{CO}</span>
-       
-        </div>
-
-        <div className="creator-item">
-        <span>CH₄</span>
-        <span>{Methane}</span>
-       
-        </div>
-
-        <div className="creator-item">
-        <span>N₄O</span>
-        <span>{Oxide}</span>
-        </div>
-
-
-        
-        
+      <h2>Environmental News</h2>
+      {newsItems.map((item, index) => (
+        <NewsComponent
+          key={index}
+          title={item.title}
+          link={item.link}
+          snippet={item.snippet}
+        />
+      ))}
     </div>
   );
 };

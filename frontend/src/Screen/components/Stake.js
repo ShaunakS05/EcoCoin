@@ -12,16 +12,34 @@ const Stake = ({ eventName, Description, TypeOfCoin, StartDate, EndDate, ReturnO
     setIsExpanded(true);
   };
 
+  // Function to handle the stake request
   const handleStake = () => {
     const form = new FormData();
-    form.append('quantity', quantity);
+    form.append('amount', quantity);
     form.append('EventName', eventName);
     form.append('token_name', TypeOfCoin);
     form.append('userName', userName);
 
-    fetch('http://localhost:8000/invest-in-stake', {method: 'POST', body: form}).catch(error => console.error('Error:', error));
-      setInvested(true);
-    };
+    fetch("http://localhost:8000/invest-in-stake", { 
+      method: 'POST',
+      body: form 
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log("Stake response:", data);
+      setInvested(true); // Set invested to true upon success
+    })
+    .catch(error => {
+      console.error('Error during staking:', error);
+    });
+  };
+
+
+
+
+
+
+
 
   return (
     <div
@@ -38,7 +56,7 @@ const Stake = ({ eventName, Description, TypeOfCoin, StartDate, EndDate, ReturnO
         <div style={{ color: 'white' }}>
           <br />
           <p className='card-description'>
-            Statement: Invest up to 10,000 BCT and receive a 10% return after 10 years.
+           <p> Statement: Invest up to 10,000 {TypeOfCoin} and receive a {ReturnOnInvestment}% return after {LengthOfTime} years</p>
           </p>
           <br />
           <input 
