@@ -542,7 +542,7 @@ async def investInStake(EventName: str=Form(), token_name: str=Form(), userName:
             "amount": amount,
             "date": time.time(),
             "token": token_name,
-            "ROI": results["Return on Investment"]
+            "ROI": results["ReturnOnInvestment"]
         }
     }
     
