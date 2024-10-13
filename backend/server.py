@@ -297,7 +297,7 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: i
         sender_balance_ref.set(sender_new_balance)
 
         recipient = recipient_id or 'platform'
-        recipient_balance_ref = db.reference(f'Fundraising Events/{recipient}/Current Coins')
+        recipient_balance_ref = db.reference(f'Fundraising Events/{recipient}/CurrentCoins')
         recipient_balance = recipient_balance_ref.get() or 0
         recipient_new_balance = recipient_balance + amount
         recipient_balance_ref.set(recipient_new_balance)
@@ -398,7 +398,7 @@ async def createNewVolunteeringEvent(EventName: str=Form(), Description: str=For
             "Description": Description,
             "Compensation": Compensation,
             "Location": Location,
-            "Date & Time": DateTime,
+            "Date&Time": DateTime,
     })
     return None
 
@@ -414,7 +414,8 @@ async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form
             "TypeofCoin": TypeOfCoins,
             "CurrentCoins": CurrentCoins,
             "TargetCoins": TargetCoins,
-            "EndDate": EndDate,
+            "PercentageComplete": (CurrentCoins/TargetCoins) * 100,
+            "EndDate": EndDate
     })
     return None
 
@@ -425,9 +426,9 @@ async def createNewStake(EventName: str=Form(),Description: str=Form(),Start_Dat
 
     stake_ref.set({
         "Description": Description,
-        "Start Date": Start_Date,
-        "End Date": End_Date,
-        "Return on Investment": Return_Value
+        "StartDate": Start_Date,
+        "EndDate": End_Date,
+        "ReturnOnInvestment": Return_Value
     })
     return None
 
