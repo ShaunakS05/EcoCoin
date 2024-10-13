@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import requests
 import firebase_admin
-from firebase_admin import db
+from firebase_admin import db, storage
 from typing import Optional
 import time
 from blockchainfunctions import verify_signature, simulate_consensus, calculate_hash, proof_of_work, sign_transaction
@@ -11,11 +11,13 @@ import uuid
 import datetime
 import threading
 from contextlib import asynccontextmanager
+import os
 
 
 
 cred_obj = firebase_admin.credentials.Certificate(".\_nyanKeys.json")
 default_app = firebase_admin.initialize_app(cred_obj, {
+    'storageBucket': "gs://ecocoin-cb8e3.appspot.com",
     'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
 })
 
@@ -446,7 +448,7 @@ async def createNewFundraisingEvent(EventName: str=Form(), Description: str=Form
     return None
 
 @app.post("/create-new-stake")
-async def createNewStake(EventName: str=Form(),Description: str=Form(),Start_Date: str=Form(),End_Date: str=Form(),Return_Value: float=Form()):
+async def createNewStake(EventName: str=Form(),Description: str=Form(),Start_Date: str=Form(),End_Date: str=Form(), Return_Value: float=Form(), lengthOfTime: int=Form(), typeOfCoin: str=Form()):
     ref = db.reference("Stakes")
     stake_ref = ref.child(EventName)
 
@@ -454,7 +456,10 @@ async def createNewStake(EventName: str=Form(),Description: str=Form(),Start_Dat
         "Description": Description,
         "StartDate": Start_Date,
         "EndDate": End_Date,
-        "ReturnOnInvestment": Return_Value
+        "ReturnOnInvestment": Return_Value,
+        "LengthOfTime": lengthOfTime,
+        "TypeOfCoin": typeOfCoin
+
     })
     return None
 
@@ -587,3 +592,16 @@ def returnBalance(userName: str=Form()):
     userName = userName.replace(".",",")
     user_ref = db.reference(f"users/{userName}/balances")
     return user_ref.get()
+
+@app.get('/startImage')
+def returnStartImage():
+    bucket = storage.bucket()
+    blob = bucket.blob('images/startUpImage')
+    blob.upload_from_filename("./boston-common(1).jpg")
+    blob.make_public()
+    image_url = blob.public_url
+    ref = db.reference('Startup_Images')
+    event_ref = ref.child("Startup")
+    event_ref.update({
+        "ImageURL": image_url
+    })

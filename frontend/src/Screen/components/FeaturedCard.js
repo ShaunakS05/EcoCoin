@@ -1,5 +1,5 @@
 import "./FeaturedCard.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const FeaturedCard = ({ onClose }) => {
     const [isOpen, setOpen] = useState(true);
@@ -11,6 +11,13 @@ const FeaturedCard = ({ onClose }) => {
         }
     };
 
+    // useEffect(() =>{
+    //     const fetchImageUrl = async () => {
+    //         try {
+    //             const response = await fetch("http://localhost:8000/startImage")
+    //         }
+    //     }
+    // })
     return (
         isOpen && (
             <div className="featured-card">
