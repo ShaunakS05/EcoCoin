@@ -246,7 +246,7 @@ select {
 }
 .date-select-button {
   padding: 15px;
-  background-color: #56e39f; /* Green button */
+  background-color: #3fab77; /* Green button */
   color: white;
   font-size: 18px;
   border-radius: 0px;
@@ -262,7 +262,7 @@ select {
   padding: 0;
   z-index: 10;
   position: absolute;
-  top: 40px;
+  top: 50px;
   left: 380px;
 }
 
@@ -275,9 +275,10 @@ select {
 }
 .date-button-group button {
   margin: 0;
-  padding: 10px 15px;
+  padding: 5px 5px;
   border-left: none;
   color: white;
+  font-size: 14px;
   cursor: pointer;
   outline: none;
   flex: 1;

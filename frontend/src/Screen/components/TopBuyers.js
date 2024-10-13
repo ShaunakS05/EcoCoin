@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./TopCreators.css";
 
-const TopCreators = ({ userNameProp }) => {
+const TopCreators = ({ userNameProp, name}) => {
   const [co2, setco2] = useState(0);
   const [mo2, setmo2] = useState(0);
   const [ch4, setch4] = useState(0);
@@ -33,23 +33,8 @@ const TopCreators = ({ userNameProp }) => {
 
   return (
     <div className="top-creators">
-      <h3>Top Traders</h3>
-      <div className="creator-item">
-        <img src="https://via.placeholder.com/50" alt="Profile" />
-        <span>Nyan Prakash</span>
-        <span>50 tons</span>
-      </div>
-      <div className="creator-item">
-        <img src="https://via.placeholder.com/50" alt="Profile" />
-        <span>Hadi Benkorah</span>
-        <span>44 tons</span>
-      </div>
-      <div className="creator-item">
-        <img src="https://via.placeholder.com/50" alt="Profile" />
-        <span>Shaunak Sinha</span>
-        <span>32 tons</span>
-      </div>
-      <div>
+      <h2>Hi, {name}</h2>
+      <div className="top-creators-header">
         <h3>Current Investments</h3>
         <h4>Carbon Dioxide: {co2} CEC </h4>
          <h4> Methane: {ch4} MEC; </h4>

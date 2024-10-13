@@ -10,6 +10,8 @@ import { BottomClipper, TrendLineType, typeCast } from 'igniteui-react-core';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Stake from "./components/Stake";
 import Volunteer from "./components/Volunteer";
+import Alert from '@mui/material/Alert';
+
 
 
 import FundraiserCard from "./components/FundraiserCard";
@@ -54,9 +56,12 @@ function Dashboard() {
     const [searched, setSearched] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
 
-    const [searchStake, setStakeResults] = new useState([]);
-    const {searchVol, setVolResults} = new useState([]);
+    const [searchStake, setStakeResults] = useState([]);
+    const [searchVol, setVolResults] =  useState([]);
 
+
+
+    const [name, setName] = useState("");
 
     const [endpoint, setEndpoint] = useState("http://localhost:8000/BCT-Price");
 
@@ -119,12 +124,19 @@ function Dashboard() {
                     ...eventData
                 }));
                 setVolResults(events);
+                console.log("Volunteer Results NO:", events);
+                console.log("Volunteer Results NO:", searchVol);
+
                 setSearched(true);
             })
             
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+
+            
+
+            
 
 
             const handleOPOpen = () => {
@@ -191,29 +203,43 @@ function Dashboard() {
 
     // Handle the Sell action
     const handleSell = () => {
-        setTradeColor("red");
         const formData = new FormData();
-        formData.append('userName', userName);
-        formData.append('token_name', type);
-        formData.append('amount', quantity);
-    
+        formData.append('userName', userName); // Assuming userName is defined
+        formData.append('token_name', type); // Assuming type is defined
+        formData.append('amount', quantity); // Assuming quantity is defined
+
         fetch("http://localhost:8000/sell-carbon-credit", { 
             method: 'POST', 
             body: formData 
         })
         .then(response => response.json())
         .then(data => {
-            setHashblock(data.block_hash);
-            setTransactionHash(data.transaction_hash);
-            setMessage(data.message);
+            if (data.success) {
+                // If the transaction was successful, display success message and blockchain details
+                setHashblock(data.block_hash);
+                setTransactionHash(data.transaction_hash);
+                setMessage('Transaction successful!');
+            } else {
+                // If not successful (e.g., insufficient funds), show an alert
+                setMessage('You do not have sufficient funds to sell.');
+            }
         })
         .catch(error => {
             console.error('Error:', error);
-            setMessage('Error occurred while buying credits');
+            setMessage('Error occurred while selling credits');
         })
         .then(() => setTransactionDone(true));
     };
-
+    
+    
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => {
+                setMessage(""); // Clear the message after 5 seconds
+            }, 5000); // 5 seconds delay
+            return () => clearTimeout(timer); // Cleanup the timer on component unmount
+        }
+    }, [message]);
     const toggleTrade = () => {
         setTrading(!IsTrading);
         setTradeColor("");
@@ -233,6 +259,30 @@ function Dashboard() {
         setSearched(false);
         setTrading(false);
     };
+
+
+    const handleGetName = () => {
+        const formDataName = new FormData();
+        formDataName.append('userName', userName);
+        fetch("http://localhost:8000/get-Name", { 
+            method: 'POST', 
+            body: formDataName 
+        })
+        .then(response => response.json())
+        .then(data => {
+            setName(data);
+            console.log("Name:", data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        }
+            
+         )}
+
+
+    useEffect(() => {
+        handleGetName();
+      }, []);
 
     useEffect(() => {
         const formData = new FormData();
@@ -306,10 +356,35 @@ function Dashboard() {
 
     return (
         <div className="app">
+            {message && (
+                <Alert
+                    variant="filled"
+                    severity={message.includes('successful') ? "success" : "error"}
+                    style={{
+                        position: 'fixed', // Fixes the alert at the top
+                        top: 0,            // Positions it at the very top
+                        left: 0,           // Aligns it to the left
+                        right: 0,          // Ensures it spans the full width
+                        zIndex: 1000,      // Places it above other elements
+                        width: '100%',     // Full width
+                        textAlign: 'center' // Center the text
+                    }}
+                >
+                    {message}
+                </Alert>
+            )}
             {isBlur && (
                 <FeaturedCard onClose={() => setBlur(false)} />
             )}
             <div className="date-button-group" style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }}>
+
+
+                <button
+                    className={date === "1-week" ? "date-select-button" : "date-button"}
+                    onClick={() => setDate("Future")}
+                >
+                    Ft
+                </button>
                 <button
                     className={date === "1-Day" ? "date-select-button" : "date-button"}
                     onClick={() => setDate("1-Day")}
@@ -424,6 +499,7 @@ function Dashboard() {
                   eventName={event.eventName}
                   Description={event.Description}
                   Location={event.CurrentCoins}
+                  Compensation={event.Compensation}
                   DateTime={event.DateTime}
                   TypeOfCoin={event.typeOfCoin}
                 />
@@ -578,7 +654,7 @@ function Dashboard() {
             </div>
 
             <div style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }}>
-                <TopCreators userNameProp={userName}/>
+                <TopCreators userNameProp={userName} name={name}/>
                 <input value={date} onChange={(e) => setDate(e.target.value)} />
             </div>
 
@@ -587,7 +663,7 @@ function Dashboard() {
             </div>
 
             <div className="trade-button" style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }} onClick={toggleTrade}>
-                <h3>Trade</h3>
+                <h1 style={{position:'relative', top: -13}}>Trade</h1>
             </div>
             <br></br>
             <br></br>

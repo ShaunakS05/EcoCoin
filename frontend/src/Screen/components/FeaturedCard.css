@@ -1,6 +1,6 @@
 /* Container for the featured card */
 .featured-card {
-    background-color: hsl(0, 0%, 0%); /* Dark background for the card */
+    background-color: #1c1c1c; /* Dark background for the card */
     padding: 20px;
     border-radius: 10px; /* Rounded corners */
     width: 100%;

@@ -16,17 +16,17 @@ const Sidebar = () => {
         console.error('Error fetching news:', error);
       });
   };
-
+/*
   useEffect(() => {
     fetchNews(); // Initial fetch
 
     const interval = setInterval(() => {
       fetchNews(); // Refresh every 15 seconds
-    }, 5000);
+    }, 10000);
 
     return () => clearInterval(interval); // Cleanup on unmount
   }, []);
-
+*/
   return (
     <div className="sidebar">
       <h2>Environmental News</h2>
