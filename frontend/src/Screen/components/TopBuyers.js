@@ -33,6 +33,7 @@ const TopCreators = ({ userNameProp, name}) => {
 
   return (
     <div className="top-creators">
+      <h2>Hi, {name}</h2>
       <div className="top-creators-header">
         <h3>Current Investments</h3>
         <h4>Carbon Dioxide: {co2} CEC </h4>

@@ -56,8 +56,9 @@ function Dashboard() {
     const [searched, setSearched] = useState(false);
     const [searchResults, setSearchResults] = useState([]);
 
-    const [searchStake, setStakeResults] = new useState([]);
-    const {searchVol, setVolResults} = new useState([]);
+    const [searchStake, setStakeResults] = useState([]);
+    const [searchVol, setVolResults] =  useState([]);
+
 
 
     const [name, setName] = useState("");
@@ -123,6 +124,9 @@ function Dashboard() {
                     ...eventData
                 }));
                 setVolResults(events);
+                console.log("Volunteer Results NO:", events);
+                console.log("Volunteer Results NO:", searchVol);
+
                 setSearched(true);
             })
             
@@ -199,29 +203,43 @@ function Dashboard() {
 
     // Handle the Sell action
     const handleSell = () => {
-        setTradeColor("red");
         const formData = new FormData();
-        formData.append('userName', userName);
-        formData.append('token_name', type);
-        formData.append('amount', quantity);
-    
+        formData.append('userName', userName); // Assuming userName is defined
+        formData.append('token_name', type); // Assuming type is defined
+        formData.append('amount', quantity); // Assuming quantity is defined
+
         fetch("http://localhost:8000/sell-carbon-credit", { 
             method: 'POST', 
             body: formData 
         })
         .then(response => response.json())
         .then(data => {
-            setHashblock(data.block_hash);
-            setTransactionHash(data.transaction_hash);
-            setMessage(data.message);
+            if (data.success) {
+                // If the transaction was successful, display success message and blockchain details
+                setHashblock(data.block_hash);
+                setTransactionHash(data.transaction_hash);
+                setMessage('Transaction successful!');
+            } else {
+                // If not successful (e.g., insufficient funds), show an alert
+                setMessage('You do not have sufficient funds to sell.');
+            }
         })
         .catch(error => {
             console.error('Error:', error);
-            setMessage('Error occurred while buying credits');
+            setMessage('Error occurred while selling credits');
         })
         .then(() => setTransactionDone(true));
     };
-
+    
+    
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => {
+                setMessage(""); // Clear the message after 5 seconds
+            }, 5000); // 5 seconds delay
+            return () => clearTimeout(timer); // Cleanup the timer on component unmount
+        }
+    }, [message]);
     const toggleTrade = () => {
         setTrading(!IsTrading);
         setTradeColor("");
@@ -246,13 +264,14 @@ function Dashboard() {
     const handleGetName = () => {
         const formDataName = new FormData();
         formDataName.append('userName', userName);
-        fetch("http://localhost:8000/get-name", { 
+        fetch("http://localhost:8000/get-Name", { 
             method: 'POST', 
             body: formDataName 
         })
         .then(response => response.json())
         .then(data => {
-            setName(data.name);
+            setName(data);
+            console.log("Name:", data);
         })
         .catch(error => {
             console.error('Error:', error);
@@ -337,6 +356,23 @@ function Dashboard() {
 
     return (
         <div className="app">
+            {message && (
+                <Alert
+                    variant="filled"
+                    severity={message.includes('successful') ? "success" : "error"}
+                    style={{
+                        position: 'fixed', // Fixes the alert at the top
+                        top: 0,            // Positions it at the very top
+                        left: 0,           // Aligns it to the left
+                        right: 0,          // Ensures it spans the full width
+                        zIndex: 1000,      // Places it above other elements
+                        width: '100%',     // Full width
+                        textAlign: 'center' // Center the text
+                    }}
+                >
+                    {message}
+                </Alert>
+            )}
             {isBlur && (
                 <FeaturedCard onClose={() => setBlur(false)} />
             )}
@@ -463,6 +499,7 @@ function Dashboard() {
                   eventName={event.eventName}
                   Description={event.Description}
                   Location={event.CurrentCoins}
+                  Compensation={event.Compensation}
                   DateTime={event.DateTime}
                   TypeOfCoin={event.typeOfCoin}
                 />

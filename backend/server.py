@@ -618,4 +618,5 @@ def getName(userName: str=Form()):
     userName = userName.replace(".", ",")
     user_ref = db.reference(f"users/{userName}")
     user_ref = user_ref.get()
-    return user_ref["First Name"]
+    name = user_ref["First Name"]
+    return name
