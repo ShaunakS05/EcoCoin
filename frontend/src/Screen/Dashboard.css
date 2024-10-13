@@ -234,7 +234,7 @@ select {
   transition: transform 0.2s, background-color 0.3s ease;
 }
 .date-button {
-  padding: 15px;
+  padding: 5px;
   background-color: #56e39f; /* Green button */
   color: white;
   font-size: 18px;
@@ -246,7 +246,7 @@ select {
 }
 .date-select-button {
   padding: 15px;
-  background-color: #48c186; /* Green button */
+  background-color: #56e39f; /* Green button */
   color: white;
   font-size: 18px;
   border-radius: 0px;

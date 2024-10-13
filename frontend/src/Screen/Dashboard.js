@@ -395,6 +395,7 @@ function Dashboard() {
                   key={`fundraiser-${event.index}`}
                   eventName={event.eventName}
                   description={event.Description}
+                  userName={userName}
                   currentCoins={event.CurrentCoins}
                   targetCoins={event.TargetCoins}
                   progress={event.PercentageChange}
@@ -588,6 +589,9 @@ function Dashboard() {
             <div className="trade-button" style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }} onClick={toggleTrade}>
                 <h3>Trade</h3>
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
         </div>
     );
 }
