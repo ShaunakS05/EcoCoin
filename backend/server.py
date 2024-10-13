@@ -257,9 +257,9 @@ async def verifyUser(userName: str=Form(), password: str=Form()):
 
 @app.post("/buy-carbon-credit")
 async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: int = Form(), recipient_id: Optional[str] = Form(default=None)):
-    if token_name == "Carbon":
+    if token_name == "Carbon" or token_name == "CEC":
         token_name = "MCO2"
-    elif token_name == "Methane":
+    elif token_name == "Methane" or token_name == "MEC":
         token_name = "BCT"
     else:
         token_name = "NCT"
@@ -340,9 +340,9 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: i
 
 @app.post("/sell-carbon-credit")
 async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int=Form()):
-    if token_name == "Carbon":
+    if token_name == "Carbon" or token_name == "CEC":
         token_name = "MCO2"
-    elif token_name == "Methane":
+    elif token_name == "Methane" or token_name == "MEC":
         token_name = "BCT"
     else:
         token_name = "NCT"
