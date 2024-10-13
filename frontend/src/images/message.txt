@@ -693,21 +693,21 @@ def futureData(tokenName: str=Form()):
     if tokenName == "Carbon":
         future = modelMCO.make_future_dataframe(dfMCO, periods = 365)
         forecast = modelMCO.predict(future)
-        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'date', 'yhat1': 'open'})
-        forecast_json['date'] = forecast_json['date'].astype(str)
+        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'timestamp', 'yhat1': 'price'})
+        forecast_json['timestamp'] = forecast_json['timestamp'].astype(str)
         forecast_json_output = forecast_json.to_dict(orient='records')
         return forecast_json_output
     elif tokenName == "Methane":
         future = modelBCT.make_future_dataframe(dfBCT, periods = 365)
         forecast = modelBCT.predict(future)
-        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'date', 'yhat1': 'open'})
-        forecast_json['date'] = forecast_json['date'].astype(str)
+        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'timestamp', 'yhat1': 'price'})
+        forecast_json['timestamp'] = forecast_json['timestamp'].astype(str)
         forecast_json_output = forecast_json.to_dict(orient='records')
         return forecast_json_output
     else:
         future = NCTmodel.make_future_dataframe(dfNCT, periods = 365)
         forecast = NCTmodel.predict(future)
-        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'date', 'yhat1': 'open'})
-        forecast_json['date'] = forecast_json['date'].astype(str)
+        forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'timestamp', 'yhat1': 'price'})
+        forecast_json['timestamp'] = forecast_json['timestamp'].astype(str)
         forecast_json_output = forecast_json.to_dict(orient='records')
         return forecast_json_output
