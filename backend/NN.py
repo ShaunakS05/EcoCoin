@@ -7,7 +7,7 @@ import json
 import requests 
 import time
 
-
+'''
 def fetch_bct_hourly_data(days):
     # CoinGecko API endpoint for the BCT market chart data
     url = 'https://api.coingecko.com/api/v3/coins/moss-carbon-credit/market_chart'
@@ -102,4 +102,4 @@ plt.plot(actual['ds'], actual['yhat1'], label = 'Actual Prediction')
 plt.plot(df['ds'], df['y'], label = 'Actual')
 plt.legend()
 plt.show()
-'''
+

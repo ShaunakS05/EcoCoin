@@ -13,7 +13,10 @@ import threading
 from contextlib import asynccontextmanager
 import os
 
-
+modelBCT = None
+modelMCO = None
+NCTmodel = None
+df = None
 
 cred_obj = firebase_admin.credentials.Certificate(".\_nyanKeys.json")
 default_app = firebase_admin.initialize_app(cred_obj, {
@@ -42,6 +45,37 @@ def monitor_fundraising_events():
 async def lifespan(app: FastAPI):
     monitoring_thread = threading.Thread(target=monitor_fundraising_events, daemon=True)
     monitoring_thread.start()
+
+    global modelBCT, modelMCO, NCTmodel, df
+    
+    # Perform startup tasks
+    print("Initializing model...")
+
+    # File reading and data processing
+    file_path = os.path.join('.', 'bct_hourly_data_365_days.json')
+
+    with open(file_path, 'r') as file:
+        file_contents = file.read()
+        stocks = json.loads(file_contents)
+
+    df = pd.DataFrame(stocks)
+
+    # Extract and process prices data
+    df = pd.json_normalize(df['prices'])
+    df = df.rename(columns={"timestamp": "ds", "price_usd": "y"})
+    df['ds'] = pd.to_datetime(df['ds'], unit='ms')
+    df = df.drop_duplicates(subset=['ds'])
+    df = df.set_index('ds')
+    df = df.resample('H').mean()
+    df = df.dropna()
+    df = df.reset_index()
+
+    # Initialize and train NeuralProphet model
+    model = NeuralProphet()
+    model.fit(df)
+
+    print("Model initialized successfully.")
+
     yield
 
 app = FastAPI(lifespan=lifespan)
@@ -53,6 +87,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 
 @app.get("/")
 def root():
@@ -405,7 +441,7 @@ async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: i
     print(user_carbon_balance)
     print(amount)
     if user_carbon_balance < amount:
-        return {'error': 'Insufficient carbon credits to sell.'}
+        return False
     user_carbon_balance_ref.set(user_carbon_balance - amount)
     return {
         'message': f'Transaction added to block {index}.',
@@ -531,7 +567,7 @@ async def investInStake(EventName: str=Form(), token_name: str=Form(), userName:
     print(user_carbon_balance)
     print(amount)
     if user_carbon_balance < amount:
-        return {'error': 'Insufficient carbon credits to sell.'}
+        return False
     user_carbon_balance_ref.set(user_carbon_balance - amount)
 
     ref = db.reference(f"Stakes/{EventName}")
