@@ -554,4 +554,11 @@ async def returnNewsArticles():
         })
     
     return articles
+
+@app.post("/balance")
+def returnBalance(userName: str=Form()):
+    userName = userName.replace(".",",")
+    user_ref = db.reference(f"users/{userName}/balances")
+    return user_ref.get()
+
     
