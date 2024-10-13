@@ -1,0 +1,63 @@
+.fundraiser-card {
+    border: 2px solid white;
+    padding: 10px;
+    border-radius: 10px;
+    width: 500px;
+    background-color: #000000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #000000;
+    z-index: 15;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 70px; /* Adjusted height for better content fitting */
+}
+
+.card-header {
+    margin-bottom: 5px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.card-description {
+    font-size: 12px;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.goal-info {
+    font-size: 12px;
+    color: #56e39f;
+    text-align: center;
+    margin-top: 0px; /* Spacing between description and goal info */
+}
+
+.progress-bar-container {
+    background-color: #56e39F;
+    height: 10px;
+    border-radius: 10px;
+    width: 80%;
+    margin: 10px auto; /* Center horizontally and add spacing */
+    overflow: hidden;
+    display: flex;
+}
+
+.progress-bar {
+    background-color: #56e39f;
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 10px;
+}
