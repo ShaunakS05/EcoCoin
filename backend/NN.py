@@ -7,10 +7,10 @@ import json
 import requests 
 import time
 
-'''
+
 def fetch_bct_hourly_data(days):
     # CoinGecko API endpoint for the BCT market chart data
-    url = 'https://api.coingecko.com/api/v3/coins/toucan-protocol-base-carbon-tonne/market_chart'
+    url = 'https://api.coingecko.com/api/v3/coins/moss-carbon-credit/market_chart'
     
     # We're restricted to 90 days of hourly data per request, so split requests
     data = {'prices': []}
@@ -65,7 +65,7 @@ if data:
     reformatted_data = reformat_data(data)
 
     # Save reformatted data as JSON
-    save_data_as_json(reformatted_data, 'bct_hourly_data_365_days.json')
+    save_data_as_json(reformatted_data, 'MCO2_hourly_data_365_days.json')
 '''
 file_path = os.path.join('.', 'bct_hourly_data_365_days.json')
 
@@ -91,6 +91,10 @@ model.fit(df)
 future = model.make_future_dataframe(df, periods = 365)
 forecast = model.predict(future)
 print(forecast)
+forecast_json = forecast[['ds', 'yhat1']].rename(columns={'ds': 'timestamp', 'yhat1': 'price'})
+forecast_json['timestamp'] = forecast_json['timestamp'].astype(str)
+forecast_json_output = forecast_json.to_dict(orient='records')
+print(forecast_json_output)
 actual = model.predict(df)
 
 plt.plot(forecast['ds'], forecast['yhat1'], label = 'Future Prediction')
@@ -98,3 +102,4 @@ plt.plot(actual['ds'], actual['yhat1'], label = 'Actual Prediction')
 plt.plot(df['ds'], df['y'], label = 'Actual')
 plt.legend()
 plt.show()
+'''
