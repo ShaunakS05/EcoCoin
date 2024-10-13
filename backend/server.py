@@ -257,9 +257,9 @@ async def verifyUser(userName: str=Form(), password: str=Form()):
 
 @app.post("/buy-carbon-credit")
 async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: int = Form(), recipient_id: Optional[str] = Form(default=None)):
-    if token_name == "Carbon":
+    if token_name == "Carbon" or token_name == "CEC":
         token_name = "MCO2"
-    elif token_name == "Methane":
+    elif token_name == "Methane" or token_name == "MEC":
         token_name = "BCT"
     else:
         token_name = "NCT"
@@ -340,9 +340,9 @@ async def buyCarbonCredit(userName: str=Form(),token_name: str=Form(), amount: i
 
 @app.post("/sell-carbon-credit")
 async def sellCarbonCredit(userName: str=Form(),token_name: str=Form(),amount: int=Form()):
-    if token_name == "Carbon":
+    if token_name == "Carbon" or token_name == "CEC":
         token_name = "MCO2"
-    elif token_name == "Methane":
+    elif token_name == "Methane" or token_name == "MEC":
         token_name = "BCT"
     else:
         token_name = "NCT"
@@ -542,7 +542,7 @@ async def investInStake(EventName: str=Form(), token_name: str=Form(), userName:
             "amount": amount,
             "date": time.time(),
             "token": token_name,
-            "ROI": results["Return on Investment"]
+            "ROI": results["ReturnOnInvestment"]
         }
     }
     
@@ -563,29 +563,33 @@ async def returnAllEvents(EventName: str=Form()):
     allEvents_ref = ref.get()
     return allEvents_ref
 
+start_index = 1
+
 @app.get("/return-news-articles")
 async def returnNewsArticles():
+    global start_index
     service_url = 'https://www.googleapis.com/customsearch/v1'
     params = {
         'key': "AIzaSyA_gQsnmeeoFJi7lhJ_eY70ukNd2m22Cf0",
         'cx': "80bfac6f04cd64375",
         'q': "emission allowances",
-        'num': 4
+        'num': 4,
+        'start': start_index
     }
 
     response = requests.get(service_url, params=params)
     results = response.json()
+
     articles = []
+
     for item in results.get('items', []):
-        title = item.get('title')
-        snippet = item.get('snippet')
-        link = item.get('link')
         articles.append({
-            'title': title,
-            'snippet': snippet,
-            'link': link
+            'title': item.get('title'),
+            'snippet': item.get('snippet'),
+            'link': item.get('link')
         })
     
+    start_index += 4
     return articles
 
 @app.post("/balance")
