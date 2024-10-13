@@ -9,8 +9,40 @@ import time
 from blockchainfunctions import verify_signature, simulate_consensus, calculate_hash, proof_of_work, sign_transaction
 import uuid
 import datetime
+import threading
+from contextlib import asynccontextmanager
 
-app = FastAPI()
+
+
+cred_obj = firebase_admin.credentials.Certificate(".\_nyanKeys.json")
+default_app = firebase_admin.initialize_app(cred_obj, {
+    'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
+})
+
+def monitor_fundraising_events():
+    ref = db.reference("Fundraising Events")
+    while True:
+        try:
+            all_events = ref.get()
+            if all_events:
+                for event_name, event_data in all_events.items():
+                    if 'CurrentCoins' in event_data and 'TargetCoins' in event_data:
+                        target_coins = event_data['TargetCoins']
+                        current_coins = event_data['CurrentCoins']
+                        percentage_complete = (current_coins / target_coins) * 100 if target_coins > 0 else 0
+                        ref.child(event_name).update({"PercentageComplete": percentage_complete})
+            time.sleep(5)
+        
+        except Exception as e:
+            print(f"Error in monitoring fundraising events: {e}")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    monitoring_thread = threading.Thread(target=monitor_fundraising_events, daemon=True)
+    monitoring_thread.start()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,11 +51,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-cred_obj = firebase_admin.credentials.Certificate(".\_nyanKeys.json")
-default_app = firebase_admin.initialize_app(cred_obj, {
-    'databaseURL': "https://ecocoin-cb8e3-default-rtdb.firebaseio.com/"
-})
 
 @app.get("/")
 def root():
@@ -138,7 +165,6 @@ async def getBCTPrice(date: str=Form()):
 
 @app.post("/NCT-Price")
 async def getNCTPrice(date: str=Form()):
-    #url = "https://api.coingecko.com/api/v3/coins/toucan-protocol-nature-carbon-tonne"
     url = 'https://api.coingecko.com/api/v3/coins/toucan-protocol-nature-carbon-tonne/market_chart'
 
     if date == "real-time":
