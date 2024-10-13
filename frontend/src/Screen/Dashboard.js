@@ -10,6 +10,8 @@ import { BottomClipper, TrendLineType, typeCast } from 'igniteui-react-core';
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import Stake from "./components/Stake";
 import Volunteer from "./components/Volunteer";
+import Alert from '@mui/material/Alert';
+
 
 
 import FundraiserCard from "./components/FundraiserCard";
@@ -57,6 +59,8 @@ function Dashboard() {
     const [searchStake, setStakeResults] = new useState([]);
     const {searchVol, setVolResults} = new useState([]);
 
+
+    const [name, setName] = useState("");
 
     const [endpoint, setEndpoint] = useState("http://localhost:8000/BCT-Price");
 
@@ -125,6 +129,10 @@ function Dashboard() {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
+
+            
+
+            
 
 
             const handleOPOpen = () => {
@@ -234,6 +242,29 @@ function Dashboard() {
         setTrading(false);
     };
 
+
+    const handleGetName = () => {
+        const formDataName = new FormData();
+        formDataName.append('userName', userName);
+        fetch("http://localhost:8000/get-name", { 
+            method: 'POST', 
+            body: formDataName 
+        })
+        .then(response => response.json())
+        .then(data => {
+            setName(data.name);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        }
+            
+         )}
+
+
+    useEffect(() => {
+        handleGetName();
+      }, []);
+
     useEffect(() => {
         const formData = new FormData();
         formData.append('date', date);
@@ -310,6 +341,14 @@ function Dashboard() {
                 <FeaturedCard onClose={() => setBlur(false)} />
             )}
             <div className="date-button-group" style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }}>
+
+
+                <button
+                    className={date === "1-week" ? "date-select-button" : "date-button"}
+                    onClick={() => setDate("Future")}
+                >
+                    Ft
+                </button>
                 <button
                     className={date === "1-Day" ? "date-select-button" : "date-button"}
                     onClick={() => setDate("1-Day")}
@@ -578,7 +617,7 @@ function Dashboard() {
             </div>
 
             <div style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }}>
-                <TopCreators userNameProp={userName}/>
+                <TopCreators userNameProp={userName} name={name}/>
                 <input value={date} onChange={(e) => setDate(e.target.value)} />
             </div>
 
@@ -587,7 +626,7 @@ function Dashboard() {
             </div>
 
             <div className="trade-button" style={{ filter: applyBlurEffect, pointerEvents: applyPointerEvents }} onClick={toggleTrade}>
-                <h3>Trade</h3>
+                <h1 style={{position:'relative', top: -13}}>Trade</h1>
             </div>
             <br></br>
             <br></br>

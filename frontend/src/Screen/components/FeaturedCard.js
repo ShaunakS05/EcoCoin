@@ -1,23 +1,12 @@
 import "./FeaturedCard.css";
 import React, { useEffect, useState } from "react";
+import bp from "./bp.jpg";
 
 const FeaturedCard = ({ onClose }) => {
     const [isOpen, setOpen] = useState(true);
     const [imageUrl, setImageURL] = useState("");
 
-    useEffect(() =>{
-        const fetchImageUrl = async () => {
-            try {
-                const response = await fetch("http://localhost:8000/startImage")
-                const data = await response.json();
-                setImageURL(data.ImageURL)
-            } catch (error){
-                console.error("Error fetching image URL", error);
-            }
-        };
-
-        fetchImageUrl();
-    }, []);
+    
 
     const handleClose = () => {
         setOpen(false);
@@ -30,7 +19,7 @@ const FeaturedCard = ({ onClose }) => {
     return (
         isOpen && (
             <div className="featured-card">
-                <img src={imageUrl || "https://via.placeholder.com/300"} alt="Carbon Project" />
+                <img src={bp} alt="Carbon Project" />
                 <h3>*NEW* Boston Green Park Project</h3>
                 <p>
                     This park is going to use zero-emissions and include a group of solar planes that provide free EV-charging for the community. 
