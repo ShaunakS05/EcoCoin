@@ -31,7 +31,8 @@ const Login = () => {
         if (response.ok) {
             // Handle success response
             setResponseMessage(`Welcome ${data.firstName} ${data.lastName}`);
-            navigate('/dashboard');
+            navigate('/dashboard', { state: { userName: `${email}` } });
+
           } else {
             // Handle error response
             setResponseMessage(data.message);
@@ -42,7 +43,6 @@ const Login = () => {
         }
     
 
-        
 
     };
 

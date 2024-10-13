@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://localhost:3000/dashboard -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  <script defer="" src="./React App_files/bundle.js.download"></script><style>body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9pbmRleC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxTQUFTO0VBQ1Q7O2NBRVk7RUFDWixtQ0FBbUM7RUFDbkMsa0NBQWtDO0FBQ3BDOztBQUVBO0VBQ0U7YUFDVztBQUNiIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XHJcbiAgbWFyZ2luOiAwO1xyXG4gIGZvbnQtZmFtaWx5OiAtYXBwbGUtc3lzdGVtLCBCbGlua01hY1N5c3RlbUZvbnQsICdTZWdvZSBVSScsICdSb2JvdG8nLCAnT3h5Z2VuJyxcclxuICAgICdVYnVudHUnLCAnQ2FudGFyZWxsJywgJ0ZpcmEgU2FucycsICdEcm9pZCBTYW5zJywgJ0hlbHZldGljYSBOZXVlJyxcclxuICAgIHNhbnMtc2VyaWY7XHJcbiAgLXdlYmtpdC1mb250LXNtb290aGluZzogYW50aWFsaWFzZWQ7XHJcbiAgLW1vei1vc3gtZm9udC1zbW9vdGhpbmc6IGdyYXlzY2FsZTtcclxufVxyXG5cclxuY29kZSB7XHJcbiAgZm9udC1mYW1pbHk6IHNvdXJjZS1jb2RlLXBybywgTWVubG8sIE1vbmFjbywgQ29uc29sYXMsICdDb3VyaWVyIE5ldycsXHJcbiAgICBtb25vc3BhY2U7XHJcbn1cclxuIl0sInNvdXJjZVJvb3QiOiIifQ== */</style><style>/* Home.css */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #2e2e2e; /* Slightly lighter background */
+}
+
+.rotating-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 100px;
+    color: white;
+}
+.one{
+    position: absolute;
+    color: white;
+    top: 25%;
+
+}
+.two{
+    position: absolute;
+    top: 25%;
+
+}
+.three{
+    position: absolute;
+    top: 25%;
+
+}
+.header {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white; /* Dark green for the EcoCoin text */
+}
+
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.start-trading-button {
+    padding: 15px 30px;
+    background-color: #38b000; /* Bright green for the button */
+    color: white;
+    font-size: 20px;
+    border: none;
+    position: absolute;
+    top: 75%;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.start-trading-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.start-trading-button:active {
+    transform: scale(0.95);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9TY3JlZW4vSG9tZS5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsYUFBYTtBQUNiO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLGFBQWE7SUFDYix5QkFBeUIsRUFBRSxnQ0FBZ0M7QUFDL0Q7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixZQUFZO0lBQ1osZ0JBQWdCO0lBQ2hCLFlBQVk7QUFDaEI7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osUUFBUTs7QUFFWjtBQUNBO0lBQ0ksa0JBQWtCO0lBQ2xCLFFBQVE7O0FBRVo7QUFDQTtJQUNJLGtCQUFrQjtJQUNsQixRQUFROztBQUVaO0FBQ0E7SUFDSSxrQkFBa0I7SUFDbEIsU0FBUztJQUNULFVBQVU7SUFDVixZQUFZLEVBQUUsb0NBQW9DO0FBQ3REOzs7QUFHQTtJQUNJLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLFlBQVk7QUFDaEI7O0FBRUE7SUFDSSxrQkFBa0I7SUFDbEIseUJBQXlCLEVBQUUsZ0NBQWdDO0lBQzNELFlBQVk7SUFDWixlQUFlO0lBQ2YsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixRQUFRO0lBQ1IsbUJBQW1CO0lBQ25CLGVBQWU7SUFDZiwwQ0FBMEM7SUFDMUMsMkNBQTJDO0FBQy9DOztBQUVBO0lBQ0ksc0JBQXNCO0lBQ3RCLDBDQUEwQztBQUM5Qzs7QUFFQTtJQUNJLHNCQUFzQjtJQUN0QiwwQ0FBMEM7QUFDOUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBIb21lLmNzcyAqL1xyXG4uaG9tZS1jb250YWluZXIge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzJlMmUyZTsgLyogU2xpZ2h0bHkgbGlnaHRlciBiYWNrZ3JvdW5kICovXHJcbn1cclxuXHJcbi5yb3RhdGluZy10ZXh0IHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICBmb250LXNpemU6IDEwMHB4O1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG59XHJcbi5vbmV7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICB0b3A6IDI1JTtcclxuXHJcbn1cclxuLnR3b3tcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogMjUlO1xyXG5cclxufVxyXG4udGhyZWV7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDI1JTtcclxuXHJcbn1cclxuLmhlYWRlciB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDIwcHg7XHJcbiAgICBsZWZ0OiAyMHB4O1xyXG4gICAgY29sb3I6IHdoaXRlOyAvKiBEYXJrIGdyZWVuIGZvciB0aGUgRWNvQ29pbiB0ZXh0ICovXHJcbn1cclxuXHJcblxyXG4uY29udGVudCB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgaGVpZ2h0OiAxMDAlO1xyXG59XHJcblxyXG4uc3RhcnQtdHJhZGluZy1idXR0b24ge1xyXG4gICAgcGFkZGluZzogMTVweCAzMHB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzM4YjAwMDsgLyogQnJpZ2h0IGdyZWVuIGZvciB0aGUgYnV0dG9uICovXHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LXNpemU6IDIwcHg7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDc1JTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICBib3gtc2hhZG93OiAwcHggNHB4IDZweCByZ2JhKDAsIDAsIDAsIDAuMik7XHJcbiAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4ycywgYm94LXNoYWRvdyAwLjJzO1xyXG59XHJcblxyXG4uc3RhcnQtdHJhZGluZy1idXR0b246aG92ZXIge1xyXG4gICAgdHJhbnNmb3JtOiBzY2FsZSgxLjA1KTtcclxuICAgIGJveC1zaGFkb3c6IDBweCA2cHggOHB4IHJnYmEoMCwgMCwgMCwgMC4zKTtcclxufVxyXG5cclxuLnN0YXJ0LXRyYWRpbmctYnV0dG9uOmFjdGl2ZSB7XHJcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDAuOTUpO1xyXG4gICAgYm94LXNoYWRvdzogMHB4IDNweCA1cHggcmdiYSgwLCAwLCAwLCAwLjIpO1xyXG59XHJcblxyXG4iXSwic291cmNlUm9vdCI6IiJ9 */</style><style>/* General container styling */
+body {
+    background-color: #2e2e2e;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the entire registration page */
+.register-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    
+}
+
+/* Header for the brand name */
+.header {
+    font-size: 3rem;
+    font-weight: bold;
+    color: white; /* Green accent color */
+    position: absolute;
+    top: -20px;
+    left: 20px;
+}
+
+/* Content box for the registration form */
+.register-content {
+    background-color: #212121; /* Dark background */
+    padding: 40px;
+    border-radius: 20px; /* Rounded corners for a comfy feel */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form styling */
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Group for individual form items */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+/* Input fields styling */
+.register-input {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+/* Focus state for input fields */
+.register-input:focus {
+    border-color: #56e39f; /* Green border on focus */
+    box-shadow: 0px 0px 5px #56e39f; /* Green glow on focus */
+}
+
+/* Button styling */
+.register-button {
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+/* Hover effect for the button */
+.register-button:hover {
+    background-color: #45d086; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale-up effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .register-content {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9TY3JlZW4vTG9naW4uY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDhCQUE4QjtBQUM5QjtJQUNJLHlCQUF5QjtJQUN6QixZQUFZO0lBQ1osZ0NBQWdDO0lBQ2hDLFNBQVM7SUFDVCxVQUFVO0FBQ2Q7O0FBRUEsK0NBQStDO0FBQy9DO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixtQkFBbUI7SUFDbkIsdUJBQXVCO0lBQ3ZCLGFBQWE7SUFDYixrQkFBa0I7O0FBRXRCOztBQUVBLDhCQUE4QjtBQUM5QjtJQUNJLGVBQWU7SUFDZixpQkFBaUI7SUFDakIsWUFBWSxFQUFFLHVCQUF1QjtJQUNyQyxrQkFBa0I7SUFDbEIsVUFBVTtJQUNWLFVBQVU7QUFDZDs7QUFFQSwwQ0FBMEM7QUFDMUM7SUFDSSx5QkFBeUIsRUFBRSxvQkFBb0I7SUFDL0MsYUFBYTtJQUNiLG1CQUFtQixFQUFFLHFDQUFxQztJQUMxRCwyQ0FBMkMsRUFBRSwwQkFBMEI7SUFDdkUsV0FBVztJQUNYLGdCQUFnQjtBQUNwQjs7QUFFQSxpQkFBaUI7QUFDakI7SUFDSSxhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLFNBQVM7QUFDYjs7QUFFQSxvQ0FBb0M7QUFDcEM7SUFDSSxhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLGdCQUFnQjtBQUNwQjs7QUFFQSx5QkFBeUI7QUFDekI7SUFDSSxhQUFhO0lBQ2IsZUFBZTtJQUNmLG1CQUFtQjtJQUNuQixzQkFBc0I7SUFDdEIsc0JBQXNCO0lBQ3RCLFlBQVk7SUFDWixhQUFhO0lBQ2Isa0NBQWtDO0FBQ3RDOztBQUVBLGlDQUFpQztBQUNqQztJQUNJLHFCQUFxQixFQUFFLDBCQUEwQjtJQUNqRCwrQkFBK0IsRUFBRSx3QkFBd0I7QUFDN0Q7O0FBRUEsbUJBQW1CO0FBQ25CO0lBQ0ksYUFBYTtJQUNiLHlCQUF5QixFQUFFLGlCQUFpQjtJQUM1QyxZQUFZO0lBQ1osZUFBZTtJQUNmLFlBQVk7SUFDWixtQkFBbUIsRUFBRSxtQ0FBbUM7SUFDeEQsZUFBZTtJQUNmLHNEQUFzRDtBQUMxRDs7QUFFQSxnQ0FBZ0M7QUFDaEM7SUFDSSx5QkFBeUIsRUFBRSwwQkFBMEI7SUFDckQsc0JBQXNCLEVBQUUsMkJBQTJCO0FBQ3ZEOztBQUVBLDJCQUEyQjtBQUMzQjtJQUNJO1FBQ0ksVUFBVTtRQUNWLGFBQWE7SUFDakI7QUFDSiIsInNvdXJjZXNDb250ZW50IjpbIi8qIEdlbmVyYWwgY29udGFpbmVyIHN0eWxpbmcgKi9cclxuYm9keSB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMmUyZTJlO1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG4gICAgZm9udC1mYW1pbHk6ICdBcmlhbCcsIHNhbnMtc2VyaWY7XHJcbiAgICBtYXJnaW46IDA7XHJcbiAgICBwYWRkaW5nOiAwO1xyXG59XHJcblxyXG4vKiBDb250YWluZXIgZm9yIHRoZSBlbnRpcmUgcmVnaXN0cmF0aW9uIHBhZ2UgKi9cclxuLnJlZ2lzdGVyLWNvbnRhaW5lciB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICBcclxufVxyXG5cclxuLyogSGVhZGVyIGZvciB0aGUgYnJhbmQgbmFtZSAqL1xyXG4uaGVhZGVyIHtcclxuICAgIGZvbnQtc2l6ZTogM3JlbTtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgY29sb3I6IHdoaXRlOyAvKiBHcmVlbiBhY2NlbnQgY29sb3IgKi9cclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogLTIwcHg7XHJcbiAgICBsZWZ0OiAyMHB4O1xyXG59XHJcblxyXG4vKiBDb250ZW50IGJveCBmb3IgdGhlIHJlZ2lzdHJhdGlvbiBmb3JtICovXHJcbi5yZWdpc3Rlci1jb250ZW50IHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyMTIxMjE7IC8qIERhcmsgYmFja2dyb3VuZCAqL1xyXG4gICAgcGFkZGluZzogNDBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7IC8qIFJvdW5kZWQgY29ybmVycyBmb3IgYSBjb21meSBmZWVsICovXHJcbiAgICBib3gtc2hhZG93OiAwcHggOHB4IDE2cHggcmdiYSgwLCAwLCAwLCAwLjIpOyAvKiBTb2Z0IHNoYWRvdyBmb3IgZGVwdGggKi9cclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgbWF4LXdpZHRoOiA0MDBweDtcclxufVxyXG5cclxuLyogRm9ybSBzdHlsaW5nICovXHJcbi5yZWdpc3Rlci1mb3JtIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgZ2FwOiAyMHB4O1xyXG59XHJcblxyXG4vKiBHcm91cCBmb3IgaW5kaXZpZHVhbCBmb3JtIGl0ZW1zICovXHJcbi5mb3JtLWdyb3VwIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAgdGV4dC1hbGlnbjogbGVmdDtcclxufVxyXG5cclxuLyogSW5wdXQgZmllbGRzIHN0eWxpbmcgKi9cclxuLnJlZ2lzdGVyLWlucHV0IHtcclxuICAgIHBhZGRpbmc6IDEycHg7XHJcbiAgICBmb250LXNpemU6IDE2cHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gICAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzM7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBvdXRsaW5lOiBub25lO1xyXG4gICAgdHJhbnNpdGlvbjogYm9yZGVyLWNvbG9yIDAuM3MgZWFzZTtcclxufVxyXG5cclxuLyogRm9jdXMgc3RhdGUgZm9yIGlucHV0IGZpZWxkcyAqL1xyXG4ucmVnaXN0ZXItaW5wdXQ6Zm9jdXMge1xyXG4gICAgYm9yZGVyLWNvbG9yOiAjNTZlMzlmOyAvKiBHcmVlbiBib3JkZXIgb24gZm9jdXMgKi9cclxuICAgIGJveC1zaGFkb3c6IDBweCAwcHggNXB4ICM1NmUzOWY7IC8qIEdyZWVuIGdsb3cgb24gZm9jdXMgKi9cclxufVxyXG5cclxuLyogQnV0dG9uIHN0eWxpbmcgKi9cclxuLnJlZ2lzdGVyLWJ1dHRvbiB7XHJcbiAgICBwYWRkaW5nOiAxNXB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzU2ZTM5ZjsgLyogR3JlZW4gYnV0dG9uICovXHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRoZSBidXR0b24gKi9cclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzLCBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZTtcclxufVxyXG5cclxuLyogSG92ZXIgZWZmZWN0IGZvciB0aGUgYnV0dG9uICovXHJcbi5yZWdpc3Rlci1idXR0b246aG92ZXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzQ1ZDA4NjsgLyogRGFya2VyIGdyZWVuIG9uIGhvdmVyICovXHJcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyAvKiBTbGlnaHQgc2NhbGUtdXAgZWZmZWN0ICovXHJcbn1cclxuXHJcbi8qIFJlc3BvbnNpdmUgYWRqdXN0bWVudHMgKi9cclxuQG1lZGlhIChtYXgtd2lkdGg6IDYwMHB4KSB7XHJcbiAgICAucmVnaXN0ZXItY29udGVudCB7XHJcbiAgICAgICAgd2lkdGg6IDkwJTtcclxuICAgICAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgfVxyXG59XHJcbiJdLCJzb3VyY2VSb290IjoiIn0= */</style><style data-emotion="css" data-s="">.css-1umw9bq-MuiSvgIcon-root{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:1em;height:1em;display:inline-block;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-transition:fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;fill:currentColor;font-size:1.5rem;}</style><style data-ig-financial-default-templates-style="true">
+.ui-financialchart-container {
+    font-family: "Segoe UI",Arial,sans-serif;
+    font-family: var(--financial-toolbar-font-family, "Segoe UI",Arial,sans-serif);
+    font-size: 12px;
+    font-size: var(--financial-toolbar-font-size, 12px);
+    border-width: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-tap-highlight-color: var(--financial-highlight-color, rgba(0,0,0,0));
+}
+
+.ui-financialchart-mainChart {
+    margin-left: 15px;
+    margin-left: var(--financial-pane-margin-left, 15px);
+}
+
+.ui-financialchart-volumeChart {
+    margin-left: 15px;
+    margin-left: var(--financial-pane-margin-left, 15px);
+}
+
+.financialChartMainGrid {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    display: -ms-grid;
+    -ms-grid-columns: 100%;
+}
+
+.financialChartPrice {
+    grid-row: 3;
+    -ms-grid-row: 3;
+    margin-top: 10px;
+    margin-top: var(--financial-pane-margin-top, 10px);
+}
+.financialChartPrice, .financialChartPrice > div {
+    min-height: 100px;
+}
+.financialChartIndicators {
+    grid-row: 4;
+    -ms-grid-row: 4;
+}
+.financialChartVolume {
+    grid-row: 5;
+    -ms-grid-row: 5;
+}
+.financialChartZoomSlider {
+    grid-row: 6;
+    -ms-grid-row: 6;
+}
+
+/*
+/////////////////////
+*/
+/* Toolbar styles */
+/*
+/////////////////////
+*/
+
+.financialChartToolbar {
+    height: 100%;
+    display: grid;
+    display: -ms-grid;
+    grid-row: 1;
+    -ms-grid-rows: 100%;
+    -ms-grid-row: 1;
+    -ms-grid-columns: 100%;
+    font-family: "Verdana",Arial,sans-serif;
+    font-family: var(--financial-toolbar-font-family, "Verdana",Arial,sans-serif);
+    font-size: 12px;
+    font-size: var(--financial-toolbar-font-size, 12px);
+}
+
+/* scrollbar styles */
+.financialChartToolbar ::-webkit-scrollbar
+{
+    width: 14px;
+    width: var(--financial-toolbar-scrollbar-width, 14px);
+    background-color: #eee;
+    background-color: var(--financial-toolbar-scrollbar-background, #eee);
+}
+.financialChartToolbar ::-webkit-scrollbar-track
+{
+    border-radius: 1px;
+    border-radius: var(--financial-toolbar-scrollbar-track-radius, 1px);
+    background-color: #eee;
+    background-color: var(--financial-toolbar-scrollbar-track-background, #eee);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 var(--financial-toolbar-scrollbar-track-shadow-radius, 6px) var(--financial-toolbar-scrollbar-track-shadow-color, rgba(0,0,0,0.3));
+}
+.financialChartToolbar ::-webkit-scrollbar-thumb
+{
+    border-radius: 1px;
+    border-radius: var(--financial-toolbar-scrollbar-thumb-radius, 1px);
+    background-color: #838383;
+    background-color: var(--financial-toolbar-scrollbar-thumb-background, #838383);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    -webkit-box-shadow: inset 0 0 var(--financial-toolbar-scrollbar-thumb-shadow-radius, 6px) var(--financial-toolbar-scrollbar-thumb-shadow-color, rgba(0,0,0,0.3));
+}
+
+.financialChartToolbar .financialChartToolbar {
+    display: flex;
+    display: -ms-flexbox;
+    align-items: center;
+    border: 1px solid #dadada;
+    border: var(--financial-toolbar-border-thickness, 1px) solid var(--financial-toolbar-border-color, #dadada);
+    color: black;
+    color: var(--financial-toolbar-text-color, black);
+    max-height: 45px;
+    max-height: var(--financial-toolbar-max-height, 45px);
+    background: #eeeeee;
+    background: var(--financial-toolbar-background, #eeeeee);
+}
+
+.financialChartToolbar,
+.financialChartToolbar button {
+    font: 400 13px "Segoe UI", Arial, sans-serif!important;
+    font: var(--financial-toolbar-range-button-font, 400 13px "Segoe UI", Arial, sans-serif!important);
+}
+
+.financialChartRangeSelector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    height: 100%;
+}
+
+.financialChartRangeSelector input {
+    display: none;
+}
+
+.financialChartRangeSelectorLabel {
+    cursor: pointer;
+    height: 100%;
+}
+.financialChartRangeSelectorLabel:hover .financialChartRangeSelectorLabelSpan {
+    color: #4897AA;
+    color: var(--financial-toolbar-range-button-hover-color, #4897AA);
+    background: transparent;
+    background: var(--financial-toolbar-range-button-hover-background, transparent);
+}
+
+.financialChartRangeSelectorLabel input:checked + span {
+    color: #444444;
+    color: var(--financial-toolbar-range-button-check-color, #444444);
+    background-color: #dadada;
+    background-color: var(--financial-toolbar-range-button-check-background, #dadada);
+}
+
+.financialChartRangeSelectorLabelSpan {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    padding: var(--financial-toolbar-range-button-padding, 10px);
+    box-sizing: border-box;
+}
+
+.financialChartRangeSelectorLastOption {
+    border: none;
+    padding-right: 0;
+    padding-right: var(--financial-toolbar-range-button-padding-right, 0px);
+}
+
+.financialChartIndicatorMenu,
+.financialChartTypePicker {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.financialChartTypePicker {
+    margin-left: auto;
+    height: 100%;
+    border-left: 1px solid #dadada;
+    border-left: var(--financial-toolbar-border-thickness, 1px) solid
+                 var(--financial-toolbar-border-color, #dadada);
+}
+
+.financialChartIndicatorMenu {
+    height: 100%;
+    padding:0 10px;
+    border-right: 1px solid #dadada;
+    border-right: var(--financial-toolbar-border-thickness, 1px) solid
+                  var(--financial-toolbar-border-color, #dadada);
+}
+
+.financialChartIndicatorMenuDropDownMenu,
+.financialChartTypePickerDropDownMenu {
+    background: #fff;
+    background: var(--financial-toolbar-dropdown-background-color, #fff);
+    color: black;
+    color: var(--financial-toolbar-dropdown-text-color, black);
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+    position: absolute;
+    top: calc(100% + 1px);
+    top: calc(100% + var(--financial-toolbar-dropdown-top-offset, 1px));
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    box-shadow: var(--financial-toolbar-dropdown-shadow,  0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22));
+    white-space: nowrap;
+    font-family: "Verdana",Arial,sans-serif;
+    font-family: var(--financial-toolbar-dropdown-font-family, "Verdana",Arial,sans-serif);
+    font-size: 12px;
+    font-size: var(--financial-toolbar-dropdown-font-size, 12px);
+}
+
+.financialChartIndicatorMenuDropDownMenu {
+    left: 0;
+    min-width: 100px;
+    min-width: var(--financial-toolbar-dropdown-min-width, 100px);
+    height: 300px;
+    height: var(--financial-toolbar-dropdown-height, 300px);
+    overflow: auto;
+}
+
+.financialChartTypePickerDropDownMenu {
+    right: 0;
+}
+
+.financialChartListItem {
+    cursor: pointer;
+    cursor: var(--financial-toolbar-dropdown-item-cursor, pointer);
+}
+
+.financialChartListItem:hover,
+.financialChartListItem:focus {
+    color: #4897AA;
+    color: var(--financial-toolbar-dropdown-item-hover-color, #4897AA);
+    background: transparent;
+    background: var(--financial-toolbar-dropdown-item-hover-background, transparent);
+}
+
+.financialChartListItem span {
+    position: relative;
+    /* TODO: figure out why we need z-index here */
+    z-index: -1;
+}
+
+.financialChartTypePickerDropDownMenu .financialChartListItem {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.financialChartTypePickerDropDownMenu .ui-icon {
+    margin-right: 5px;
+    margin-right: var(--financial-toolbar-icon-margin-right, 5px);
+}
+
+.financialChartIndicatorMenuDropDownButton,
+.financialChartTypePickerDropDownButton {
+    background-color: transparent;
+    background-color: var(--financial-toolbar-indicators-background-color, transparent);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.financialChartIndicatorMenuDropDownMenuList {
+    font-weight: bold;
+}
+
+.financialChartIndicatorMenuDropDownMenu li.checked,
+.financialChartTypePickerDropDownMenu li.checked {
+    color: #4897AA;
+    color: var(--financial-toolbar-dropdown-item-check-color, #4897AA);
+    background: transparent;
+    background: var(--financial-toolbar-dropdown-item-check-background, transparent);
+}
+
+.financialChartIndicatorMenuDropDownMenu ul,
+.financialChartTypePickerDropDownMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 8px;
+}
+
+.financialChartIndicatorMenuDropDownMenu ul ul,
+.financialChartTypePickerDropDownMenu ul ul {
+    padding-left: 15px;
+    padding-left: var(--financial-toolbar-dropdown-list-padding-left, 15px);
+    font-weight: normal;
+}
+
+.financialChartIndicatorMenuDropDownMenu ul li,
+.financialChartTypePickerDropDownMenu ul li {
+    padding-top: 4px;
+    padding-top: var(--financial-toolbar-dropdown-list-padding-top, 4px);
+    position: relative;
+}
+
+.financialChartIndicatorMenuDropDownMenu li.checked:before{
+    margin-left: -15px;
+    margin-left:  var(--financial-toolbar-dropdown-list-margin-left, -15px);
+    margin-right: 5px;
+    margin-right: var(--financial-toolbar-dropdown-list-margin-right, 5px);
+    content: "\2713";
+    position: absolute;
+}
+
+.financialChartLegend {
+    grid-row: 2;
+    -ms-grid-row: 2;
+}
+
+.ui-ChartButtonWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.financialChartTypePickerDropDownButton .ui-icon-triangle-1-s,
+.ui-ChartButtonWrapper .ui-icon-triangle-1-s {
+    font-size: 10px;
+    font-size: var(--financial-toolbar-icon-font-size, 10px);
+}
+
+.financialChartTypePickerDropDownButton {
+    background-color: transparent;
+    background-color: var(--financial-toolbar-chart-picker-background, transparent);
+    height: 100%;
+    padding: 0 10px;
+    padding: var(--financial-toolbar-chart-picker-padding, 0 10px);
+}
+
+.financialChartIndicatorMenuLabel {
+    margin: 0 5px;
+    margin: var(--financial-toolbar-indicators-label-margin, 0 5px);
+    color: inherit;
+    color: var(--financial-toolbar-indicators-label-normal-color, inherit);
+}
+
+
+/* Icon styles if no theme is included */
+.financialChartToolbar .ui-icon {
+    color: #888888;
+    color: var(--financial-toolbar-icon-color, #888888);
+    width: 16px;
+    width: var(--financial-toolbar-icon-width, 16px);
+    height: 16px;
+    height: var(--financial-toolbar-icon-height, 16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-indent: -99999px;
+    overflow: hidden;
+    position: relative;
+}
+.financialChartToolbar .ui-icon:before {
+    display: block;
+    height: 1em;
+    left: 50%;
+    line-height: 1;
+    margin-left: -0.5em;
+    margin-top: -0.5em;
+    position: absolute;
+    text-indent: 0;
+    top: 50%;
+    width: 1em;
+}
+
+.ui-icon-IndicatorsIcon:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2055%2055%27%20fill%3D%27%23777777%27%3E%3Crect%20x%3D%2746.32%27%20y%3D%2716.34%27%20width%3D%275.97%27%20height%3D%2738.47%27%2F%3E%3Cpolygon%20points%3D%2736.73%2054.8%2042.7%2054.8%2042.7%2020.71%2040.34%2020.71%2036.73%2023.92%2036.73%2054.8%27%2F%3E%3Cpolygon%20points%3D%2727.14%2030.07%2027.14%2054.8%2033.11%2054.8%2033.11%2027.15%2028.46%2031.28%2027.14%2030.07%27%2F%3E%3Cpolygon%20points%3D%2730.74%2020.71%2029.62%2020.71%2030.12%2021.22%2030.74%2020.71%27%2F%3E%3Cpolygon%20points%3D%2717.55%2026.49%2017.55%2054.8%2023.52%2054.8%2023.52%2026.76%2020.26%2023.78%2017.55%2026.49%27%2F%3E%3Cpolygon%20points%3D%277.96%2024.97%207.96%2026.49%209.48%2024.97%207.96%2024.97%27%2F%3E%3Cpolygon%20points%3D%277.96%2054.8%2013.93%2054.8%2013.93%2030.11%207.96%2036.08%207.96%2054.8%27%2F%3E%3Cpolygon%20points%3D%2737.29%200.2%2043.23%206.14%2030.12%2016.96%2021.68%208.51%202.5%2027.69%207.29%2032.48%2020.26%2019.52%2028.46%2027.02%2047.33%2010.23%2052.5%2015.4%2052.5%2014.57%2052.5%200.2%2037.29%200.2%27%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-indicators-normal-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2055%2055%27%20fill%3D%27%23777777%27%3E%3Crect%20x%3D%2746.32%27%20y%3D%2716.34%27%20width%3D%275.97%27%20height%3D%2738.47%27%2F%3E%3Cpolygon%20points%3D%2736.73%2054.8%2042.7%2054.8%2042.7%2020.71%2040.34%2020.71%2036.73%2023.92%2036.73%2054.8%27%2F%3E%3Cpolygon%20points%3D%2727.14%2030.07%2027.14%2054.8%2033.11%2054.8%2033.11%2027.15%2028.46%2031.28%2027.14%2030.07%27%2F%3E%3Cpolygon%20points%3D%2730.74%2020.71%2029.62%2020.71%2030.12%2021.22%2030.74%2020.71%27%2F%3E%3Cpolygon%20points%3D%2717.55%2026.49%2017.55%2054.8%2023.52%2054.8%2023.52%2026.76%2020.26%2023.78%2017.55%2026.49%27%2F%3E%3Cpolygon%20points%3D%277.96%2024.97%207.96%2026.49%209.48%2024.97%207.96%2024.97%27%2F%3E%3Cpolygon%20points%3D%277.96%2054.8%2013.93%2054.8%2013.93%2030.11%207.96%2036.08%207.96%2054.8%27%2F%3E%3Cpolygon%20points%3D%2737.29%200.2%2043.23%206.14%2030.12%2016.96%2021.68%208.51%202.5%2027.69%207.29%2032.48%2020.26%2019.52%2028.46%2027.02%2047.33%2010.23%2052.5%2015.4%2052.5%2014.57%2052.5%200.2%2037.29%200.2%27%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartIndicatorMenuDropDownButton:hover .ui-icon-IndicatorsIcon:before,
+.financialChartIndicatorMenuDropDownButton:focus .ui-icon-IndicatorsIcon:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2055%2055%27%20fill%3D%27%234897AA%27%3E%3Crect%20x%3D%2746.32%27%20y%3D%2716.34%27%20width%3D%275.97%27%20height%3D%2738.47%27%2F%3E%3Cpolygon%20points%3D%2736.73%2054.8%2042.7%2054.8%2042.7%2020.71%2040.34%2020.71%2036.73%2023.92%2036.73%2054.8%27%2F%3E%3Cpolygon%20points%3D%2727.14%2030.07%2027.14%2054.8%2033.11%2054.8%2033.11%2027.15%2028.46%2031.28%2027.14%2030.07%27%2F%3E%3Cpolygon%20points%3D%2730.74%2020.71%2029.62%2020.71%2030.12%2021.22%2030.74%2020.71%27%2F%3E%3Cpolygon%20points%3D%2717.55%2026.49%2017.55%2054.8%2023.52%2054.8%2023.52%2026.76%2020.26%2023.78%2017.55%2026.49%27%2F%3E%3Cpolygon%20points%3D%277.96%2024.97%207.96%2026.49%209.48%2024.97%207.96%2024.97%27%2F%3E%3Cpolygon%20points%3D%277.96%2054.8%2013.93%2054.8%2013.93%2030.11%207.96%2036.08%207.96%2054.8%27%2F%3E%3Cpolygon%20points%3D%2737.29%200.2%2043.23%206.14%2030.12%2016.96%2021.68%208.51%202.5%2027.69%207.29%2032.48%2020.26%2019.52%2028.46%2027.02%2047.33%2010.23%2052.5%2015.4%2052.5%2014.57%2052.5%200.2%2037.29%200.2%27%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-indicators-hover-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2055%2055%27%20fill%3D%27%234897AA%27%3E%3Crect%20x%3D%2746.32%27%20y%3D%2716.34%27%20width%3D%275.97%27%20height%3D%2738.47%27%2F%3E%3Cpolygon%20points%3D%2736.73%2054.8%2042.7%2054.8%2042.7%2020.71%2040.34%2020.71%2036.73%2023.92%2036.73%2054.8%27%2F%3E%3Cpolygon%20points%3D%2727.14%2030.07%2027.14%2054.8%2033.11%2054.8%2033.11%2027.15%2028.46%2031.28%2027.14%2030.07%27%2F%3E%3Cpolygon%20points%3D%2730.74%2020.71%2029.62%2020.71%2030.12%2021.22%2030.74%2020.71%27%2F%3E%3Cpolygon%20points%3D%2717.55%2026.49%2017.55%2054.8%2023.52%2054.8%2023.52%2026.76%2020.26%2023.78%2017.55%2026.49%27%2F%3E%3Cpolygon%20points%3D%277.96%2024.97%207.96%2026.49%209.48%2024.97%207.96%2024.97%27%2F%3E%3Cpolygon%20points%3D%277.96%2054.8%2013.93%2054.8%2013.93%2030.11%207.96%2036.08%207.96%2054.8%27%2F%3E%3Cpolygon%20points%3D%2737.29%200.2%2043.23%206.14%2030.12%2016.96%2021.68%208.51%202.5%2027.69%207.29%2032.48%2020.26%2019.52%2028.46%2027.02%2047.33%2010.23%2052.5%2015.4%2052.5%2014.57%2052.5%200.2%2037.29%200.2%27%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartIndicatorMenuDropDownButton:hover .financialChartIndicatorMenuLabel,
+.financialChartIndicatorMenuDropDownButton:focus .financialChartIndicatorMenuLabel {
+    color: #4897AA;
+    color: var(--financial-toolbar-indicators-label-hover-color, #4897AA);
+}
+
+.ui-icon-toolbar-dd {
+    position: relative;
+    width: 16px;
+    width: var(--financial-toolbar-dropdown-icon-width, 16px);
+    height: 16px;
+    height: var(--financial-toolbar-dropdown-icon-height, 16px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ui-icon-toolbar-dd:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 4px 0 4px;
+    border-color: #666 transparent transparent transparent;
+    border-color: var(--financial-toolbar-dropdown-icon-normal-color, #666) transparent transparent transparent;
+}
+
+.financialChartIndicatorMenuDropDownButton:hover .ui-icon-toolbar-dd:before,
+.financialChartIndicatorMenuDropDownButton:focus .ui-icon-toolbar-dd:before,
+.financialChartTypePickerDropDownButton:hover .ui-icon-toolbar-dd:before,
+.financialChartTypePickerDropDownButton:focus .ui-icon-toolbar-dd:before {
+    content: '';
+    border-color: #4897AA transparent transparent transparent;
+    border-color: var(--financial-toolbar-dropdown-icon-hover-color, #4897AA) transparent transparent transparent;
+}
+
+.financialChartListItem[data-value='Auto'] {
+    padding-bottom: 5px;
+    padding-bottom: var(--financial-toolbar-dropdown-border-bottom-padding, 5px)
+    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--financial-toolbar-dropdown-border-bottom-color, #ddd)
+    margin-bottom: 3px;
+    margin-bottom: var(--financial-toolbar-dropdown-border-bottom-margin, 3px)
+}
+
+.financialChartTypePickerDropDownButton[data-value="Auto"] .ui-icon-chartAuto:before,
+.financialChartListItem[data-value='Auto'] .ui-icon-changeable:before,
+.financialChartListItem[data-value='Auto'] .ui-icon-chartAuto:before,
+.financialChartTypePickerDropDownButton[data-value="Auto"] .ui-icon-changeable:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-auto-normal-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartListItem[data-value='Auto']:hover .ui-icon-chartAuto:before,
+.financialChartListItem[data-value='Auto']:focus .ui-icon-chartAuto:before,
+.financialChartTypePickerDropDownButton[data-value='Auto']:hover .ui-icon-changeable:before,
+.financialChartTypePickerDropDownButton[data-value='Auto']:focus .ui-icon-changeable:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-auto-hover-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartListItem[data-value='Bar'] .ui-icon-BarIcon:before,
+.financialChartTypePickerDropDownButton[data-value="Bar"] .ui-icon-changeable:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20%3E%3Cpath%20d%3D%27M%203%202%20L%203%204%20L%203%206%20L%203%207%20L%200%207%20L%200%209%20L%203%209%20L%203%2012%20L%205%2012%20L%205%209%20L%205%207%20L%205%206%20L%208%206%20L%208%204%20L%205%204%20L%205%202%20L%203%202%20ZM%2010%200%20L%2010%203%20L%2010%205%20L%2010%2010%20L%207%2010%20L%207%2012%20L%2010%2012%20L%2010%2015%20L%2012%2015%20L%2012%2012%20L%2012%2010%20L%2012%205%20L%2015%205%20L%2015%203%20L%2012%203%20L%2012%200%20L%2010%200%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-bar-normal-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20%3E%3Cpath%20d%3D%27M%203%202%20L%203%204%20L%203%206%20L%203%207%20L%200%207%20L%200%209%20L%203%209%20L%203%2012%20L%205%2012%20L%205%209%20L%205%207%20L%205%206%20L%208%206%20L%208%204%20L%205%204%20L%205%202%20L%203%202%20ZM%2010%200%20L%2010%203%20L%2010%205%20L%2010%2010%20L%207%2010%20L%207%2012%20L%2010%2012%20L%2010%2015%20L%2012%2015%20L%2012%2012%20L%2012%2010%20L%2012%205%20L%2015%205%20L%2015%203%20L%2012%203%20L%2012%200%20L%2010%200%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartTypePickerDropDownButton[data-value='Bar']:hover .ui-icon-changeable:before,
+.financialChartTypePickerDropDownButton[data-value='Bar']:focus .ui-icon-changeable:before,
+.financialChartListItem[data-value="Bar"]:hover .ui-icon-BarIcon:before,
+.financialChartListItem[data-value="Bar"]:focus .ui-icon-BarIcon:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%203%202%20L%203%204%20L%203%206%20L%203%207%20L%200%207%20L%200%209%20L%203%209%20L%203%2012%20L%205%2012%20L%205%209%20L%205%207%20L%205%206%20L%208%206%20L%208%204%20L%205%204%20L%205%202%20L%203%202%20ZM%2010%200%20L%2010%203%20L%2010%205%20L%2010%2010%20L%207%2010%20L%207%2012%20L%2010%2012%20L%2010%2015%20L%2012%2015%20L%2012%2012%20L%2012%2010%20L%2012%205%20L%2015%205%20L%2015%203%20L%2012%203%20L%2012%200%20L%2010%200%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-bar-hover-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%203%202%20L%203%204%20L%203%206%20L%203%207%20L%200%207%20L%200%209%20L%203%209%20L%203%2012%20L%205%2012%20L%205%209%20L%205%207%20L%205%206%20L%208%206%20L%208%204%20L%205%204%20L%205%202%20L%203%202%20ZM%2010%200%20L%2010%203%20L%2010%205%20L%2010%2010%20L%207%2010%20L%207%2012%20L%2010%2012%20L%2010%2015%20L%2012%2015%20L%2012%2012%20L%2012%2010%20L%2012%205%20L%2015%205%20L%2015%203%20L%2012%203%20L%2012%200%20L%2010%200%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartListItem[data-value='Line'] .ui-icon-LineIcon:before,
+.financialChartTypePickerDropDownButton[data-value="Line"] .ui-icon-changeable:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2011.3333%20L%201.6842%2013%20L%206.5%208.8125%20L%209.5313%2011.3438%20L%2016%205.5%20L%2014%203.5%20L%209.5313%208.1875%20L%206.5%205.625%20L%200%2011.3333%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-line-normal-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2011.3333%20L%201.6842%2013%20L%206.5%208.8125%20L%209.5313%2011.3438%20L%2016%205.5%20L%2014%203.5%20L%209.5313%208.1875%20L%206.5%205.625%20L%200%2011.3333%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartTypePickerDropDownButton[data-value='Line']:hover .ui-icon-changeable:before,
+.financialChartTypePickerDropDownButton[data-value='Line']:focus .ui-icon-changeable:before,
+.financialChartListItem[data-value="Line"]:hover .ui-icon-LineIcon:before,
+.financialChartListItem[data-value="Line"]:focus .ui-icon-LineIcon:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2011.3333%20L%201.6842%2013%20L%206.5%208.8125%20L%209.5313%2011.3438%20L%2016%205.5%20L%2014%203.5%20L%209.5313%208.1875%20L%206.5%205.625%20L%200%2011.3333%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-line-hover-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2011.3333%20L%201.6842%2013%20L%206.5%208.8125%20L%209.5313%2011.3438%20L%2016%205.5%20L%2014%203.5%20L%209.5313%208.1875%20L%206.5%205.625%20L%200%2011.3333%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartListItem[data-value='Candle'] .ui-icon-CandleIcon:before,
+.financialChartTypePickerDropDownButton[data-value="Candle"] .ui-icon-changeable:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-candle-normal-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartTypePickerDropDownButton[data-value='Candle']:hover .ui-icon-changeable:before,
+.financialChartTypePickerDropDownButton[data-value='Candle']:focus .ui-icon-changeable:before,
+.financialChartListItem[data-value="Candle"]:hover .ui-icon-CandleIcon:before,
+.financialChartListItem[data-value="Candle"]:focus .ui-icon-CandleIcon:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-candle-hover-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%20%3E%3Cpath%20d%3D%27M%208%203%20L%208%2013%20L%2010%2013%20L%2010%2016%20L%2012%2016%20L%2012%2013%20L%2014%2013%20L%2014%203%20L%2012%203%20L%2012%200%20L%2010%200%20L%2010%203%20L%208%203%20ZM%200%205%20L%200%2012%20L%202%2012%20L%202%2015%20L%204%2015%20L%204%2012%20L%206%2012%20L%206%205%20L%204%205%20L%204%202%20L%202%202%20L%202%205%20L%200%205%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+
+.financialChartListItem[data-value='Column'] .ui-icon-ColumnIcon:before,
+.financialChartTypePickerDropDownButton[data-value="Column"] .ui-icon-changeable:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2016%20L%203%2016%20L%203%2011%20L%200%2011%20L%200%2016%20ZM%2011%2016%20L%2011%202%20L%208%202%20L%208%2016%20L%2011%2016%20ZM%2015%2016%20L%2015%204%20L%2012%204%20L%2012%2016%20L%2015%2016%20ZM%207%2016%20L%207%206%20L%204%206%20L%204%2016%20L%207%2016%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-column-normal-icon,
+             url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2016%20L%203%2016%20L%203%2011%20L%200%2011%20L%200%2016%20ZM%2011%2016%20L%2011%202%20L%208%202%20L%208%2016%20L%2011%2016%20ZM%2015%2016%20L%2015%204%20L%2012%204%20L%2012%2016%20L%2015%2016%20ZM%207%2016%20L%207%206%20L%204%206%20L%204%2016%20L%207%2016%20Z%27%20fill%3D%27%23777777%27%20%2F%3E%3C%2Fsvg%3E");
+    );
+}
+
+.financialChartTypePickerDropDownButton[data-value='Column']:hover .ui-icon-changeable:before,
+.financialChartTypePickerDropDownButton[data-value='Column']:focus .ui-icon-changeable:before,
+.financialChartListItem[data-value="Column"]:hover .ui-icon-ColumnIcon:before,
+.financialChartListItem[data-value="Column"]:focus .ui-icon-ColumnIcon:before {
+    content: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2016%20L%203%2016%20L%203%2011%20L%200%2011%20L%200%2016%20ZM%2011%2016%20L%2011%202%20L%208%202%20L%208%2016%20L%2011%2016%20ZM%2015%2016%20L%2015%204%20L%2012%204%20L%2012%2016%20L%2015%2016%20ZM%207%2016%20L%207%206%20L%204%206%20L%204%2016%20L%207%2016%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E");
+    content: var(--financial-toolbar-chart-column-hover-icon,
+        url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2016%2016%27%3E%3Cpath%20d%3D%27M%200%2016%20L%203%2016%20L%203%2011%20L%200%2011%20L%200%2016%20ZM%2011%2016%20L%2011%202%20L%208%202%20L%208%2016%20L%2011%2016%20ZM%2015%2016%20L%2015%204%20L%2012%204%20L%2012%2016%20L%2015%2016%20ZM%207%2016%20L%207%206%20L%204%206%20L%204%2016%20L%207%2016%20Z%27%20fill%3D%27%234897AA%27%20%2F%3E%3C%2Fsvg%3E")
+    );
+}
+</style><style data-ig-tooltip-style="true">
+    .ig-tooltip-container {
+        padding: 5px; 
+        padding: var(--tooltip-container-padding, 5px);
+        background-color: white; 
+        background-color: var(--tooltip-container-background-color, white);
+        border-style: solid; 
+        border-style: var(--tooltip-container-border-style, solid);
+        border-width: 1px; 
+        border-width: var(--tooltip-container-border-width, 1px);
+        color: rgba(78,78,78,1); 
+        color: var(--tooltip-container-text-color, rgba(78,78,78,1));
+        pointer-events: none;
+        white-space: nowrap;
+        border-color: #666;
+        border-color: var(--tooltip-container-border-color, #666);
+        font: 13px Titillium Web, Verdana, Arial, sans-serif;
+        font: var(--tooltip-container-font, 13px Titillium Web, Verdana, Arial, sans-serif);
+    }
+</style><style>/* Sidebar container */
+.sidebar {
+    background-color: #2b2b2b; /* Dark background for sidebar */
+    padding: 30px;
+    border-radius: 30px; /* Rounded corners for the sidebar */
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    color: #ffffff;
+  }
+  
+  /* Sidebar headings */
+  .sidebar h2,
+  .sidebar h3 {
+    color: #56e39f; /* Softer green for headings */
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  /* Activity item styling */
+  .activity-item {
+    background-color: #383838; /* Darker gray background for activity items */
+    padding: 15px;
+    border-radius: 20px; /* Rounded corners for activity items */
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-size: 16px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Light shadow */
+    transition: transform 0.2s ease; /* Smooth transform effect on hover */
+  }
+  
+  /* Hover effect for activity items */
+  .activity-item:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+  }
+  
+  /* Market stats inside the sidebar */
+  .market-stats {
+  }
+  
+  .market-content {
+    position: absolute;
+    top: 100px;
+  }
+  
+  .market-stats p {
+    color: #cccccc; /* Light text for stats */
+    font-size: 16px;
+  }
+  
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9TY3JlZW4vY29tcG9uZW50cy9TaWRlYmFyLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxzQkFBc0I7QUFDdEI7SUFDSSx5QkFBeUIsRUFBRSxnQ0FBZ0M7SUFDM0QsYUFBYTtJQUNiLG1CQUFtQixFQUFFLG9DQUFvQztJQUN6RCxZQUFZO0lBQ1osYUFBYTtJQUNiLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsMkJBQTJCO0lBQzNCLDJDQUEyQyxFQUFFLDBCQUEwQjtJQUN2RSxjQUFjO0VBQ2hCOztFQUVBLHFCQUFxQjtFQUNyQjs7SUFFRSxjQUFjLEVBQUUsOEJBQThCO0lBQzlDLG1CQUFtQjtJQUNuQixlQUFlO0VBQ2pCOztFQUVBLDBCQUEwQjtFQUMxQjtJQUNFLHlCQUF5QixFQUFFLDhDQUE4QztJQUN6RSxhQUFhO0lBQ2IsbUJBQW1CLEVBQUUsdUNBQXVDO0lBQzVELG1CQUFtQjtJQUNuQixjQUFjO0lBQ2QsZUFBZTtJQUNmLDJDQUEyQyxFQUFFLGlCQUFpQjtJQUM5RCwrQkFBK0IsRUFBRSxxQ0FBcUM7RUFDeEU7O0VBRUEsb0NBQW9DO0VBQ3BDO0lBQ0UsMkJBQTJCLEVBQUUseUJBQXlCO0VBQ3hEOztFQUVBLG9DQUFvQztFQUNwQztFQUNBOztFQUVBO0lBQ0Usa0JBQWtCO0lBQ2xCLFVBQVU7RUFDWjs7RUFFQTtJQUNFLGNBQWMsRUFBRSx5QkFBeUI7SUFDekMsZUFBZTtFQUNqQiIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNpZGViYXIgY29udGFpbmVyICovXHJcbi5zaWRlYmFyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyYjJiMmI7IC8qIERhcmsgYmFja2dyb3VuZCBmb3Igc2lkZWJhciAqL1xyXG4gICAgcGFkZGluZzogMzBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDMwcHg7IC8qIFJvdW5kZWQgY29ybmVycyBmb3IgdGhlIHNpZGViYXIgKi9cclxuICAgIHdpZHRoOiAyNTBweDtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogZmxleC1zdGFydDtcclxuICAgIGJveC1zaGFkb3c6IDBweCA4cHggMTZweCByZ2JhKDAsIDAsIDAsIDAuMik7IC8qIFNvZnQgc2hhZG93IGZvciBkZXB0aCAqL1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gIFxyXG4gIC8qIFNpZGViYXIgaGVhZGluZ3MgKi9cclxuICAuc2lkZWJhciBoMixcclxuICAuc2lkZWJhciBoMyB7XHJcbiAgICBjb2xvcjogIzU2ZTM5ZjsgLyogU29mdGVyIGdyZWVuIGZvciBoZWFkaW5ncyAqL1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICB9XHJcbiAgXHJcbiAgLyogQWN0aXZpdHkgaXRlbSBzdHlsaW5nICovXHJcbiAgLmFjdGl2aXR5LWl0ZW0ge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzM4MzgzODsgLyogRGFya2VyIGdyYXkgYmFja2dyb3VuZCBmb3IgYWN0aXZpdHkgaXRlbXMgKi9cclxuICAgIHBhZGRpbmc6IDE1cHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiAyMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIGFjdGl2aXR5IGl0ZW1zICovXHJcbiAgICBtYXJnaW4tYm90dG9tOiAxNXB4O1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgICBmb250LXNpemU6IDE2cHg7XHJcbiAgICBib3gtc2hhZG93OiAwcHggNXB4IDEwcHggcmdiYSgwLCAwLCAwLCAwLjIpOyAvKiBMaWdodCBzaGFkb3cgKi9cclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzIGVhc2U7IC8qIFNtb290aCB0cmFuc2Zvcm0gZWZmZWN0IG9uIGhvdmVyICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIEhvdmVyIGVmZmVjdCBmb3IgYWN0aXZpdHkgaXRlbXMgKi9cclxuICAuYWN0aXZpdHktaXRlbTpob3ZlciB7XHJcbiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoLTNweCk7IC8qIExpZnQgZWZmZWN0IG9uIGhvdmVyICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIE1hcmtldCBzdGF0cyBpbnNpZGUgdGhlIHNpZGViYXIgKi9cclxuICAubWFya2V0LXN0YXRzIHtcclxuICB9XHJcbiAgXHJcbiAgLm1hcmtldC1jb250ZW50IHtcclxuICAgIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHRvcDogMTAwcHg7XHJcbiAgfVxyXG4gIFxyXG4gIC5tYXJrZXQtc3RhdHMgcCB7XHJcbiAgICBjb2xvcjogI2NjY2NjYzsgLyogTGlnaHQgdGV4dCBmb3Igc3RhdHMgKi9cclxuICAgIGZvbnQtc2l6ZTogMTZweDtcclxuICB9XHJcbiAgIl0sInNvdXJjZVJvb3QiOiIifQ== */</style><style>/* Container for the featured card */
+.featured-card {
+    background-color: #1c1c1c; /* Dark background for the card */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    width: 100%;
+    max-width: 400px; /* Maximum width of the card */
+    z-index: 15;
+    text-align: center; /* Center the text and content */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for card depth */
+    color: #ffffff; /* White text for visibility */
+    margin: 20px auto; /* Center the card and add spacing */
+
+    position: absolute;
+    top: 0%;
+    left: 40%;
+  }
+  
+  /* Image for the featured carbon project */
+  .featured-card img {
+    width: 100%; /* Full width of the card */
+    border-radius: 10px; /* Rounded corners for the image */
+    margin-bottom: 15px; /* Space between the image and the text */
+  }
+  
+  /* Paragraph text in the card */
+  .featured-card p {
+    color: #b3b3b3; /* Lighter gray text for descriptions */
+    font-size: 14px; /* Smaller font for descriptions */
+    line-height: 1.5; /* Better readability with more line spacing */
+  }
+  
+  /* Green color for links */
+  .featured-card a {
+    color: #38b000; /* Green for links */
+    text-decoration: none; /* No underline for links */
+  }
+  
+  .featured-card a:hover {
+    text-decoration: underline; /* Underline on hover */
+  }
+  
+  /* Buttons in the card */
+  .card-buttons {
+    margin-top: 20px; /* Add spacing above the buttons */
+  }
+  
+  /* Styling for the Purchase button */
+  .purchase-button {
+    background-color: #38b000; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* No borders */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    margin-right: 10px; /* Space between the buttons */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  /* Hover effect for the Purchase button */
+  .purchase-button:hover {
+    background-color: #2f8e00; /* Darker green on hover */
+  }
+  
+  /* Styling for the Stake button */
+  .stake-button {
+    background-color: #555555; /* Gray background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding inside the button */
+    border: none; /* No borders */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Cursor changes to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+   
+  }
+  
+  /* Hover effect for the Stake button */
+  .stake-button:hover {
+    background-color: #444444; /* Darker gray on hover */
+  }
+  
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9TY3JlZW4vY29tcG9uZW50cy9GZWF0dXJlZENhcmQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLG9DQUFvQztBQUNwQztJQUNJLHlCQUF5QixFQUFFLGlDQUFpQztJQUM1RCxhQUFhO0lBQ2IsbUJBQW1CLEVBQUUsb0JBQW9CO0lBQ3pDLFdBQVc7SUFDWCxnQkFBZ0IsRUFBRSw4QkFBOEI7SUFDaEQsV0FBVztJQUNYLGtCQUFrQixFQUFFLGdDQUFnQztJQUNwRCwwQ0FBMEMsRUFBRSxpQ0FBaUM7SUFDN0UsY0FBYyxFQUFFLDhCQUE4QjtJQUM5QyxpQkFBaUIsRUFBRSxvQ0FBb0M7O0lBRXZELGtCQUFrQjtJQUNsQixPQUFPO0lBQ1AsU0FBUztFQUNYOztFQUVBLDBDQUEwQztFQUMxQztJQUNFLFdBQVcsRUFBRSwyQkFBMkI7SUFDeEMsbUJBQW1CLEVBQUUsa0NBQWtDO0lBQ3ZELG1CQUFtQixFQUFFLHlDQUF5QztFQUNoRTs7RUFFQSwrQkFBK0I7RUFDL0I7SUFDRSxjQUFjLEVBQUUsdUNBQXVDO0lBQ3ZELGVBQWUsRUFBRSxrQ0FBa0M7SUFDbkQsZ0JBQWdCLEVBQUUsOENBQThDO0VBQ2xFOztFQUVBLDBCQUEwQjtFQUMxQjtJQUNFLGNBQWMsRUFBRSxvQkFBb0I7SUFDcEMscUJBQXFCLEVBQUUsMkJBQTJCO0VBQ3BEOztFQUVBO0lBQ0UsMEJBQTBCLEVBQUUsdUJBQXVCO0VBQ3JEOztFQUVBLHdCQUF3QjtFQUN4QjtJQUNFLGdCQUFnQixFQUFFLGtDQUFrQztFQUN0RDs7RUFFQSxvQ0FBb0M7RUFDcEM7SUFDRSx5QkFBeUIsRUFBRSxxQkFBcUI7SUFDaEQsWUFBWSxFQUFFLGVBQWU7SUFDN0Isa0JBQWtCLEVBQUUsOEJBQThCO0lBQ2xELFlBQVksRUFBRSxlQUFlO0lBQzdCLG1CQUFtQixFQUFFLG9CQUFvQjtJQUN6QyxlQUFlLEVBQUUsdUNBQXVDO0lBQ3hELGtCQUFrQixFQUFFLDhCQUE4QjtJQUNsRCxzQ0FBc0MsRUFBRSx1Q0FBdUM7RUFDakY7O0VBRUEseUNBQXlDO0VBQ3pDO0lBQ0UseUJBQXlCLEVBQUUsMEJBQTBCO0VBQ3ZEOztFQUVBLGlDQUFpQztFQUNqQztJQUNFLHlCQUF5QixFQUFFLG9CQUFvQjtJQUMvQyxZQUFZLEVBQUUsZUFBZTtJQUM3QixrQkFBa0IsRUFBRSw4QkFBOEI7SUFDbEQsWUFBWSxFQUFFLGVBQWU7SUFDN0IsbUJBQW1CLEVBQUUsb0JBQW9CO0lBQ3pDLGVBQWUsRUFBRSx1Q0FBdUM7SUFDeEQsc0NBQXNDLEVBQUUsdUNBQXVDOztFQUVqRjs7RUFFQSxzQ0FBc0M7RUFDdEM7SUFDRSx5QkFBeUIsRUFBRSx5QkFBeUI7RUFDdEQiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBDb250YWluZXIgZm9yIHRoZSBmZWF0dXJlZCBjYXJkICovXHJcbi5mZWF0dXJlZC1jYXJkIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMxYzFjMWM7IC8qIERhcmsgYmFja2dyb3VuZCBmb3IgdGhlIGNhcmQgKi9cclxuICAgIHBhZGRpbmc6IDIwcHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgKi9cclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgbWF4LXdpZHRoOiA0MDBweDsgLyogTWF4aW11bSB3aWR0aCBvZiB0aGUgY2FyZCAqL1xyXG4gICAgei1pbmRleDogMTU7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7IC8qIENlbnRlciB0aGUgdGV4dCBhbmQgY29udGVudCAqL1xyXG4gICAgYm94LXNoYWRvdzogMHB4IDRweCA2cHggcmdiYSgwLCAwLCAwLCAwLjEpOyAvKiBTdWJ0bGUgc2hhZG93IGZvciBjYXJkIGRlcHRoICovXHJcbiAgICBjb2xvcjogI2ZmZmZmZjsgLyogV2hpdGUgdGV4dCBmb3IgdmlzaWJpbGl0eSAqL1xyXG4gICAgbWFyZ2luOiAyMHB4IGF1dG87IC8qIENlbnRlciB0aGUgY2FyZCBhbmQgYWRkIHNwYWNpbmcgKi9cclxuXHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDAlO1xyXG4gICAgbGVmdDogNDAlO1xyXG4gIH1cclxuICBcclxuICAvKiBJbWFnZSBmb3IgdGhlIGZlYXR1cmVkIGNhcmJvbiBwcm9qZWN0ICovXHJcbiAgLmZlYXR1cmVkLWNhcmQgaW1nIHtcclxuICAgIHdpZHRoOiAxMDAlOyAvKiBGdWxsIHdpZHRoIG9mIHRoZSBjYXJkICovXHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRoZSBpbWFnZSAqL1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMTVweDsgLyogU3BhY2UgYmV0d2VlbiB0aGUgaW1hZ2UgYW5kIHRoZSB0ZXh0ICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIFBhcmFncmFwaCB0ZXh0IGluIHRoZSBjYXJkICovXHJcbiAgLmZlYXR1cmVkLWNhcmQgcCB7XHJcbiAgICBjb2xvcjogI2IzYjNiMzsgLyogTGlnaHRlciBncmF5IHRleHQgZm9yIGRlc2NyaXB0aW9ucyAqL1xyXG4gICAgZm9udC1zaXplOiAxNHB4OyAvKiBTbWFsbGVyIGZvbnQgZm9yIGRlc2NyaXB0aW9ucyAqL1xyXG4gICAgbGluZS1oZWlnaHQ6IDEuNTsgLyogQmV0dGVyIHJlYWRhYmlsaXR5IHdpdGggbW9yZSBsaW5lIHNwYWNpbmcgKi9cclxuICB9XHJcbiAgXHJcbiAgLyogR3JlZW4gY29sb3IgZm9yIGxpbmtzICovXHJcbiAgLmZlYXR1cmVkLWNhcmQgYSB7XHJcbiAgICBjb2xvcjogIzM4YjAwMDsgLyogR3JlZW4gZm9yIGxpbmtzICovXHJcbiAgICB0ZXh0LWRlY29yYXRpb246IG5vbmU7IC8qIE5vIHVuZGVybGluZSBmb3IgbGlua3MgKi9cclxuICB9XHJcbiAgXHJcbiAgLmZlYXR1cmVkLWNhcmQgYTpob3ZlciB7XHJcbiAgICB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTsgLyogVW5kZXJsaW5lIG9uIGhvdmVyICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIEJ1dHRvbnMgaW4gdGhlIGNhcmQgKi9cclxuICAuY2FyZC1idXR0b25zIHtcclxuICAgIG1hcmdpbi10b3A6IDIwcHg7IC8qIEFkZCBzcGFjaW5nIGFib3ZlIHRoZSBidXR0b25zICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIFN0eWxpbmcgZm9yIHRoZSBQdXJjaGFzZSBidXR0b24gKi9cclxuICAucHVyY2hhc2UtYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMzOGIwMDA7IC8qIEdyZWVuIGJhY2tncm91bmQgKi9cclxuICAgIGNvbG9yOiB3aGl0ZTsgLyogV2hpdGUgdGV4dCAqL1xyXG4gICAgcGFkZGluZzogMTBweCAyMHB4OyAvKiBQYWRkaW5nIGluc2lkZSB0aGUgYnV0dG9uICovXHJcbiAgICBib3JkZXI6IG5vbmU7IC8qIE5vIGJvcmRlcnMgKi9cclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7IC8qIFJvdW5kZWQgY29ybmVycyAqL1xyXG4gICAgY3Vyc29yOiBwb2ludGVyOyAvKiBDdXJzb3IgY2hhbmdlcyB0byBwb2ludGVyIG9uIGhvdmVyICovXHJcbiAgICBtYXJnaW4tcmlnaHQ6IDEwcHg7IC8qIFNwYWNlIGJldHdlZW4gdGhlIGJ1dHRvbnMgKi9cclxuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlOyAvKiBTbW9vdGggYmFja2dyb3VuZCBjb2xvciB0cmFuc2l0aW9uICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIEhvdmVyIGVmZmVjdCBmb3IgdGhlIFB1cmNoYXNlIGJ1dHRvbiAqL1xyXG4gIC5wdXJjaGFzZS1idXR0b246aG92ZXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzJmOGUwMDsgLyogRGFya2VyIGdyZWVuIG9uIGhvdmVyICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIFN0eWxpbmcgZm9yIHRoZSBTdGFrZSBidXR0b24gKi9cclxuICAuc3Rha2UtYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM1NTU1NTU7IC8qIEdyYXkgYmFja2dyb3VuZCAqL1xyXG4gICAgY29sb3I6IHdoaXRlOyAvKiBXaGl0ZSB0ZXh0ICovXHJcbiAgICBwYWRkaW5nOiAxMHB4IDIwcHg7IC8qIFBhZGRpbmcgaW5zaWRlIHRoZSBidXR0b24gKi9cclxuICAgIGJvcmRlcjogbm9uZTsgLyogTm8gYm9yZGVycyAqL1xyXG4gICAgYm9yZGVyLXJhZGl1czogMTBweDsgLyogUm91bmRlZCBjb3JuZXJzICovXHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7IC8qIEN1cnNvciBjaGFuZ2VzIHRvIHBvaW50ZXIgb24gaG92ZXIgKi9cclxuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlOyAvKiBTbW9vdGggYmFja2dyb3VuZCBjb2xvciB0cmFuc2l0aW9uICovXHJcbiAgIFxyXG4gIH1cclxuICBcclxuICAvKiBIb3ZlciBlZmZlY3QgZm9yIHRoZSBTdGFrZSBidXR0b24gKi9cclxuICAuc3Rha2UtYnV0dG9uOmhvdmVyIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM0NDQ0NDQ7IC8qIERhcmtlciBncmF5IG9uIGhvdmVyICovXHJcbiAgfVxyXG4gICJdLCJzb3VyY2VSb290IjoiIn0= */</style><style>/* Top creators container */
+.top-creators {
+    background-color: #2b2b2b;
+    padding: 30px;
+    border-radius: 30px; /* Rounded corners for top creators card */
+    width: 250px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Softer shadow for depth */
+    color: #ffffff;
+  }
+  
+  /* Heading for the top creators section */
+  .top-creators h3 {
+    color: #56e39f; /* Softer green for heading */
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  
+  /* Individual creator item */
+  .creator-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #383838; /* Dark gray for creator cards */
+    padding: 15px;
+    border-radius: 20px; /* Rounded corners for creator items */
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2); /* Light shadow */
+    transition: transform 0.2s ease; /* Smooth transform effect on hover */
+  }
+  
+  /* Hover effect for creator items */
+  .creator-item:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+  }
+  
+  /* Profile picture in creator items */
+  .creator-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Circular profile picture */
+    border: 2px solid #56e39f; /* Green border around profile pic */
+  }
+  
+  /* Text for creator names and their stats */
+  .creator-item span {
+    color: #ffffff;
+    font-size: 16px;
+  }
+  
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9TY3JlZW4vY29tcG9uZW50cy9Ub3BDcmVhdG9ycy5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkJBQTJCO0FBQzNCO0lBQ0kseUJBQXlCO0lBQ3pCLGFBQWE7SUFDYixtQkFBbUIsRUFBRSwwQ0FBMEM7SUFDL0QsWUFBWTtJQUNaLGFBQWE7SUFDYixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLDJCQUEyQjtJQUMzQiwyQ0FBMkMsRUFBRSw0QkFBNEI7SUFDekUsY0FBYztFQUNoQjs7RUFFQSx5Q0FBeUM7RUFDekM7SUFDRSxjQUFjLEVBQUUsNkJBQTZCO0lBQzdDLG1CQUFtQjtJQUNuQixlQUFlO0VBQ2pCOztFQUVBLDRCQUE0QjtFQUM1QjtJQUNFLGFBQWE7SUFDYiw4QkFBOEI7SUFDOUIsbUJBQW1CO0lBQ25CLHlCQUF5QixFQUFFLGdDQUFnQztJQUMzRCxhQUFhO0lBQ2IsbUJBQW1CLEVBQUUsc0NBQXNDO0lBQzNELG1CQUFtQjtJQUNuQiwyQ0FBMkMsRUFBRSxpQkFBaUI7SUFDOUQsK0JBQStCLEVBQUUscUNBQXFDO0VBQ3hFOztFQUVBLG1DQUFtQztFQUNuQztJQUNFLDJCQUEyQixFQUFFLHlCQUF5QjtFQUN4RDs7RUFFQSxxQ0FBcUM7RUFDckM7SUFDRSxXQUFXO0lBQ1gsWUFBWTtJQUNaLGtCQUFrQixFQUFFLDZCQUE2QjtJQUNqRCx5QkFBeUIsRUFBRSxvQ0FBb0M7RUFDakU7O0VBRUEsMkNBQTJDO0VBQzNDO0lBQ0UsY0FBYztJQUNkLGVBQWU7RUFDakIiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBUb3AgY3JlYXRvcnMgY29udGFpbmVyICovXHJcbi50b3AtY3JlYXRvcnMge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzJiMmIyYjtcclxuICAgIHBhZGRpbmc6IDMwcHg7XHJcbiAgICBib3JkZXItcmFkaXVzOiAzMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRvcCBjcmVhdG9ycyBjYXJkICovXHJcbiAgICB3aWR0aDogMjUwcHg7XHJcbiAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgICBib3gtc2hhZG93OiAwcHggOHB4IDE2cHggcmdiYSgwLCAwLCAwLCAwLjIpOyAvKiBTb2Z0ZXIgc2hhZG93IGZvciBkZXB0aCAqL1xyXG4gICAgY29sb3I6ICNmZmZmZmY7XHJcbiAgfVxyXG4gIFxyXG4gIC8qIEhlYWRpbmcgZm9yIHRoZSB0b3AgY3JlYXRvcnMgc2VjdGlvbiAqL1xyXG4gIC50b3AtY3JlYXRvcnMgaDMge1xyXG4gICAgY29sb3I6ICM1NmUzOWY7IC8qIFNvZnRlciBncmVlbiBmb3IgaGVhZGluZyAqL1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICB9XHJcbiAgXHJcbiAgLyogSW5kaXZpZHVhbCBjcmVhdG9yIGl0ZW0gKi9cclxuICAuY3JlYXRvci1pdGVtIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzM4MzgzODsgLyogRGFyayBncmF5IGZvciBjcmVhdG9yIGNhcmRzICovXHJcbiAgICBwYWRkaW5nOiAxNXB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMjBweDsgLyogUm91bmRlZCBjb3JuZXJzIGZvciBjcmVhdG9yIGl0ZW1zICovXHJcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xyXG4gICAgYm94LXNoYWRvdzogMHB4IDVweCAxMHB4IHJnYmEoMCwgMCwgMCwgMC4yKTsgLyogTGlnaHQgc2hhZG93ICovXHJcbiAgICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4ycyBlYXNlOyAvKiBTbW9vdGggdHJhbnNmb3JtIGVmZmVjdCBvbiBob3ZlciAqL1xyXG4gIH1cclxuICBcclxuICAvKiBIb3ZlciBlZmZlY3QgZm9yIGNyZWF0b3IgaXRlbXMgKi9cclxuICAuY3JlYXRvci1pdGVtOmhvdmVyIHtcclxuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlWSgtM3B4KTsgLyogTGlmdCBlZmZlY3Qgb24gaG92ZXIgKi9cclxuICB9XHJcbiAgXHJcbiAgLyogUHJvZmlsZSBwaWN0dXJlIGluIGNyZWF0b3IgaXRlbXMgKi9cclxuICAuY3JlYXRvci1pdGVtIGltZyB7XHJcbiAgICB3aWR0aDogNTBweDtcclxuICAgIGhlaWdodDogNTBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDUwJTsgLyogQ2lyY3VsYXIgcHJvZmlsZSBwaWN0dXJlICovXHJcbiAgICBib3JkZXI6IDJweCBzb2xpZCAjNTZlMzlmOyAvKiBHcmVlbiBib3JkZXIgYXJvdW5kIHByb2ZpbGUgcGljICovXHJcbiAgfVxyXG4gIFxyXG4gIC8qIFRleHQgZm9yIGNyZWF0b3IgbmFtZXMgYW5kIHRoZWlyIHN0YXRzICovXHJcbiAgLmNyZWF0b3ItaXRlbSBzcGFuIHtcclxuICAgIGNvbG9yOiAjZmZmZmZmO1xyXG4gICAgZm9udC1zaXplOiAxNnB4O1xyXG4gIH1cclxuICAiXSwic291cmNlUm9vdCI6IiJ9 */</style><style>.fundraiser-card {
+    border: 2px solid white;
+    padding: 10px; /* Reduced padding to fit smaller height */
+    border-radius: 10px;
+    width: 500px;
+    background-color: #2e2e2e;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333; /* Dark text for contrast */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100px; /* Let content decide height instead of fixed height */
+  }
+  
+  .card-header {
+    margin-bottom: 5px; /* Reduced margin */
+  }
+  
+  .card-title {
+    font-size: 16px; /* Reduced font size */
+    font-weight: bold;
+    color: white; /* Ensures title is visible */
+    margin: 0;
+    text-align: center;
+  }
+  
+  .card-description {
+    font-size: 12px; /* Reduced font size */
+    color: white; /* Lighter gray for better readability */
+    margin: 0;
+    text-align: center;
+  }
+  
+  .progress-bar-container {
+    background-color: #ddd;
+    height: 10px;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: 0px;
+    position: relative;
+    top: 700%;
+    margin: 0 auto; /* Center horizontally */
+    overflow: hidden;
+    display: flex; /* Make sure it's flex to align content */
+  }
+  
+  .progress-bar {
+    background-color: #56e39f;
+    height: 100%;
+    width: 50%; /* Example width */
+    transition: width 0.5s ease;
+  }
+  
+  
+  .goal-info {
+    font-size: 12px; /* Reduced font size */
+    color: #56e39f;
+    text-align: center;
+    position: relative;
+    bottom: 40%;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+  }
+  
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9TY3JlZW4vY29tcG9uZW50cy9ldmVudHMuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksdUJBQXVCO0lBQ3ZCLGFBQWEsRUFBRSwwQ0FBMEM7SUFDekQsbUJBQW1CO0lBQ25CLFlBQVk7SUFDWix5QkFBeUI7SUFDekIsd0NBQXdDO0lBQ3hDLFdBQVcsRUFBRSwyQkFBMkI7SUFDeEMsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qiw4QkFBOEI7SUFDOUIsaUJBQWlCLEVBQUUsc0RBQXNEO0VBQzNFOztFQUVBO0lBQ0Usa0JBQWtCLEVBQUUsbUJBQW1CO0VBQ3pDOztFQUVBO0lBQ0UsZUFBZSxFQUFFLHNCQUFzQjtJQUN2QyxpQkFBaUI7SUFDakIsWUFBWSxFQUFFLDZCQUE2QjtJQUMzQyxTQUFTO0lBQ1Qsa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsZUFBZSxFQUFFLHNCQUFzQjtJQUN2QyxZQUFZLEVBQUUsd0NBQXdDO0lBQ3RELFNBQVM7SUFDVCxrQkFBa0I7RUFDcEI7O0VBRUE7SUFDRSxzQkFBc0I7SUFDdEIsWUFBWTtJQUNaLG1CQUFtQjtJQUNuQixVQUFVO0lBQ1YsZ0JBQWdCO0lBQ2hCLGtCQUFrQjtJQUNsQixTQUFTO0lBQ1QsY0FBYyxFQUFFLHdCQUF3QjtJQUN4QyxnQkFBZ0I7SUFDaEIsYUFBYSxFQUFFLHlDQUF5QztFQUMxRDs7RUFFQTtJQUNFLHlCQUF5QjtJQUN6QixZQUFZO0lBQ1osVUFBVSxFQUFFLGtCQUFrQjtJQUM5QiwyQkFBMkI7RUFDN0I7OztFQUdBO0lBQ0UsZUFBZSxFQUFFLHNCQUFzQjtJQUN2QyxjQUFjO0lBQ2Qsa0JBQWtCO0lBQ2xCLGtCQUFrQjtJQUNsQixXQUFXO0VBQ2I7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLFFBQVE7RUFDViIsInNvdXJjZXNDb250ZW50IjpbIi5mdW5kcmFpc2VyLWNhcmQge1xyXG4gICAgYm9yZGVyOiAycHggc29saWQgd2hpdGU7XHJcbiAgICBwYWRkaW5nOiAxMHB4OyAvKiBSZWR1Y2VkIHBhZGRpbmcgdG8gZml0IHNtYWxsZXIgaGVpZ2h0ICovXHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4O1xyXG4gICAgd2lkdGg6IDUwMHB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzJlMmUyZTtcclxuICAgIGJveC1zaGFkb3c6IDAgNHB4IDZweCByZ2JhKDAsIDAsIDAsIDAuMSk7XHJcbiAgICBjb2xvcjogIzMzMzsgLyogRGFyayB0ZXh0IGZvciBjb250cmFzdCAqL1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbiAgICBtaW4taGVpZ2h0OiAxMDBweDsgLyogTGV0IGNvbnRlbnQgZGVjaWRlIGhlaWdodCBpbnN0ZWFkIG9mIGZpeGVkIGhlaWdodCAqL1xyXG4gIH1cclxuICBcclxuICAuY2FyZC1oZWFkZXIge1xyXG4gICAgbWFyZ2luLWJvdHRvbTogNXB4OyAvKiBSZWR1Y2VkIG1hcmdpbiAqL1xyXG4gIH1cclxuICBcclxuICAuY2FyZC10aXRsZSB7XHJcbiAgICBmb250LXNpemU6IDE2cHg7IC8qIFJlZHVjZWQgZm9udCBzaXplICovXHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIGNvbG9yOiB3aGl0ZTsgLyogRW5zdXJlcyB0aXRsZSBpcyB2aXNpYmxlICovXHJcbiAgICBtYXJnaW46IDA7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgfVxyXG4gIFxyXG4gIC5jYXJkLWRlc2NyaXB0aW9uIHtcclxuICAgIGZvbnQtc2l6ZTogMTJweDsgLyogUmVkdWNlZCBmb250IHNpemUgKi9cclxuICAgIGNvbG9yOiB3aGl0ZTsgLyogTGlnaHRlciBncmF5IGZvciBiZXR0ZXIgcmVhZGFiaWxpdHkgKi9cclxuICAgIG1hcmdpbjogMDtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICB9XHJcbiAgXHJcbiAgLnByb2dyZXNzLWJhci1jb250YWluZXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2RkZDtcclxuICAgIGhlaWdodDogMTBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICB3aWR0aDogODAlO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDBweDtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIHRvcDogNzAwJTtcclxuICAgIG1hcmdpbjogMCBhdXRvOyAvKiBDZW50ZXIgaG9yaXpvbnRhbGx5ICovXHJcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gICAgZGlzcGxheTogZmxleDsgLyogTWFrZSBzdXJlIGl0J3MgZmxleCB0byBhbGlnbiBjb250ZW50ICovXHJcbiAgfVxyXG4gIFxyXG4gIC5wcm9ncmVzcy1iYXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzU2ZTM5ZjtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIHdpZHRoOiA1MCU7IC8qIEV4YW1wbGUgd2lkdGggKi9cclxuICAgIHRyYW5zaXRpb246IHdpZHRoIDAuNXMgZWFzZTtcclxuICB9XHJcbiAgXHJcbiAgXHJcbiAgLmdvYWwtaW5mbyB7XHJcbiAgICBmb250LXNpemU6IDEycHg7IC8qIFJlZHVjZWQgZm9udCBzaXplICovXHJcbiAgICBjb2xvcjogIzU2ZTM5ZjtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIGJvdHRvbTogNDAlO1xyXG4gIH1cclxuICBcclxuICAuYWN0aW9ucyB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBnYXA6IDVweDtcclxuICB9XHJcbiAgIl0sInNvdXJjZVJvb3QiOiIifQ== */</style><style>.app {
+    display: flex;
+    background-color: #2e2e2e;
+    color: #ffffff;
+    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+  }
+  
+  /* Main content layout */
+  .main-content {
+    flex: 1 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  /* Overlay Panel Styles */
+/* Overlay Panel Styles */
+.overlay-panel {
+  background-color: rgba(245, 245, 245, 0.3); /* Slightly transparent */
+  padding: 5px; /* Reduced padding for more compact design */
+  border-radius: 5px; /* Smaller border radius */
+  z-index: 10;
+  width: 200px; /* Smaller width for a more compact panel */
+  transition: transform 0.3s ease;
+  position: absolute;
+  top: 100px;
+  left: 380px;
+  font-size: 12px; /* Smaller font size */
+}
+
+.overlay-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.collapse-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-right: 0px;
+  color: #333;
+}
+
+.collapse-button:hover {
+  color: #000;
+}
+
+.overlay-panel h4 {
+  margin: 0; /* Removes all margins */
+  padding: 0px; /* Removes padding */
+  font-size: 14px; /* Smaller header font */
+}
+
+.overlay-panel div {
+  display: flex;
+  align-items: center;
+  margin: 0; /* Removes all margins */
+  padding: 2px 0; /* Reduced padding for spacing */
+}
+
+.overlay-panel input[type="checkbox"],
+.overlay-panel label {
+  margin: 0; /* Removes all margins */
+}
+
+.overlay-panel label {
+  margin-left: 3px; /* Space between checkbox and label */
+  font-size: 12px; /* Smaller label font */
+}
+
+select {
+  font-size: 12px; /* Smaller dropdown font */
+  padding: 5px; /* Smaller padding for the dropdown */
+  width: 100%; /* Ensures it doesn't overflow */
+}
+
+  
+  /* Card button styles */
+  button {
+    padding: 10px 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+  }
+  
+  .purchase-button {
+    background-color: #38b000;
+  }
+  
+  .stake-button {
+    background-color: #555555;
+  }
+  
+  /* Featured card styling */
+  .featured-card {
+    background-color: #1c1c1c;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .featured-card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .featured-card p {
+    color: #b3b3b3;
+  }
+  
+  .featured-card a {
+    color: #38b000;
+  }
+  .container {
+    height: 100%;
+    width: 100%
+  }
+  /* Centered search bar */
+.searchbar-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the search bar */
+    z-index: 100; /* Ensure it appears above all content */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: top 0.5s ease, transform 0.5s ease; /* Smooth transition when moving to the top */
+}
+
+/* Search bar when moved to the top quarter of the screen */
+.searchbar-at-top {
+    top: 5%; /* Move to the top quarter of the screen */
+    transform: translate(-50%, 0); /* No need for vertical centering */
+}
+
+/* The search bar styling */
+.searchbar {
+    padding: 12px;
+    font-size: 16px;
+    width: 600px;
+    border-radius: 12px;
+    height: 60px;
+    border: 1px solid #ccc;
+    background-color: #2b2b2b;
+    color: white;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Add some shadow for depth */
+}
+
+/* Trade container close button */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.close-button:hover {
+}
+
+
+/* Focus effect */
+.searchbar:focus {
+    border-color: #4f83ff;
+    background-color: #333;
+}
+
+.trade-container {
+  position: fixed; /* Changed from absolute to fixed */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100; /* Ensure it's above other elements */
+  background-color: #212121;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  height: 225px;
+}
+
+
+.date-Front-button {
+  padding: 15px;
+  background-color: #56e39f; /* Green button */
+  color: white;
+  font-size: 18px;
+  border-radius: 0px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s ease;
+}
+.date-button {
+  padding: 15px;
+  background-color: #56e39f; /* Green button */
+  color: white;
+  font-size: 18px;
+  border-radius: 0px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s ease;
+ 
+}
+.date-select-button {
+  padding: 15px;
+  background-color: #48c186; /* Green button */
+  color: white;
+  font-size: 18px;
+  border-radius: 0px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s ease;
+}
+
+.date-button-group {
+  display: flex;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  position: absolute;
+  top: 40px;
+  left: 380px;
+}
+
+.event-list
+{
+  position: absolute;
+  top: 150px;
+  left: 510px;
+  z-index: 10;
+}
+.date-button-group button {
+  margin: 0;
+  padding: 10px 15px;
+  border-left: none;
+  color: white;
+  cursor: pointer;
+  outline: none;
+  flex: 1 1;
+}
+
+.date-button-group button:first-child {
+  border-left: 1px solid #ccc;
+  border-radius: 5px 0 0 5px;
+}
+
+.date-button-group button:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.date-button-group button:not(:first-child) {
+  margin-left: -1px;
+}
+.search-container {
+  position: absolute;
+  top: 5px;
+  right: 5px
+}
+.date-button-group button:hover {
+  background-color: #45d086;
+}
+
+.date-button-group button:active {
+  background-color: #3ab65b;
+}
+
+.date-Back-button {
+  padding: 15px;
+  background-color: #56e39f; /* Green button */
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 0px 10px 10px 0px; /* Rounded corners for the button */
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s ease;
+}
+
+.buy-button {
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+/* Green fade effect */
+.fade-green {
+    background-color: #56e39f;
+}
+
+/* Red fade effect */
+.fade-red {
+    background-color: #e35656;
+}
+
+.nothing-button {
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    bottom: 25px;
+    right: 20px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #333;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+
+}
+.sell-button {
+    padding: 15px;
+    background-color: #e35656; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+}
+
+
+.trade-button {
+    position: absolute;
+    bottom: 20px;
+    right: 35px;
+    padding: 15px;
+    background-color: #56e39f; /* Green button */
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px; /* Rounded corners for the button */
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s ease;
+    height: 60px;
+    width: 270px;
+    text-align: center;
+}
+
+/* Hover effect for the button */
+.trade-button:hover {
+    background-color: #45d086; /* Darker green on hover */
+    transform: scale(1.05); /* Slight scale-up effect */
+}
+
+.stock-chart {
+    flex: 1 1; /* Take full height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ensure the chart fills the container */
+    width: 100%;
+}
+
+/* Ensure the chart itself takes up all available space */
+.igr-financial-chart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Hover effect */
+.searchbar:hover {
+    border-color: #777;
+}
+
+/* Make the rest of the page content blur smoothly */
+.app {
+    transition: filter 0.3s ease;
+}
+
+  
+  
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9TY3JlZW4vRGFzaGJvYXJkLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYix5QkFBeUI7SUFDekIsY0FBYztJQUNkLGFBQWE7SUFDYixnQ0FBZ0M7SUFDaEMsZ0JBQWdCO0VBQ2xCOztFQUVBLHdCQUF3QjtFQUN4QjtJQUNFLFNBQU87SUFDUCxhQUFhO0lBQ2IsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QiwyQkFBMkI7SUFDM0IsbUJBQW1CO0VBQ3JCOztFQUVBLHlCQUF5QjtBQUMzQix5QkFBeUI7QUFDekI7RUFDRSwwQ0FBMEMsRUFBRSx5QkFBeUI7RUFDckUsWUFBWSxFQUFFLDRDQUE0QztFQUMxRCxrQkFBa0IsRUFBRSwwQkFBMEI7RUFDOUMsV0FBVztFQUNYLFlBQVksRUFBRSwyQ0FBMkM7RUFDekQsK0JBQStCO0VBQy9CLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsV0FBVztFQUNYLGVBQWUsRUFBRSxzQkFBc0I7QUFDekM7O0FBRUE7RUFDRSxhQUFhO0VBQ2IsOEJBQThCO0VBQzlCLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGdCQUFnQjtFQUNoQixZQUFZO0VBQ1osZUFBZTtFQUNmLGtCQUFrQjtFQUNsQixXQUFXO0FBQ2I7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUE7RUFDRSxTQUFTLEVBQUUsd0JBQXdCO0VBQ25DLFlBQVksRUFBRSxvQkFBb0I7RUFDbEMsZUFBZSxFQUFFLHdCQUF3QjtBQUMzQzs7QUFFQTtFQUNFLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsU0FBUyxFQUFFLHdCQUF3QjtFQUNuQyxjQUFjLEVBQUUsZ0NBQWdDO0FBQ2xEOztBQUVBOztFQUVFLFNBQVMsRUFBRSx3QkFBd0I7QUFDckM7O0FBRUE7RUFDRSxnQkFBZ0IsRUFBRSxxQ0FBcUM7RUFDdkQsZUFBZSxFQUFFLHVCQUF1QjtBQUMxQzs7QUFFQTtFQUNFLGVBQWUsRUFBRSwwQkFBMEI7RUFDM0MsWUFBWSxFQUFFLHFDQUFxQztFQUNuRCxXQUFXLEVBQUUsZ0NBQWdDO0FBQy9DOzs7RUFHRSx1QkFBdUI7RUFDdkI7SUFDRSxrQkFBa0I7SUFDbEIsa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixtQkFBbUI7SUFDbkIsV0FBVztFQUNiOztFQUVBO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBLDBCQUEwQjtFQUMxQjtJQUNFLHlCQUF5QjtJQUN6QixhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLFdBQVc7SUFDWCxnQkFBZ0I7SUFDaEIsa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsV0FBVztJQUNYLG1CQUFtQjtFQUNyQjs7RUFFQTtJQUNFLGNBQWM7RUFDaEI7O0VBRUE7SUFDRSxjQUFjO0VBQ2hCO0VBQ0E7SUFDRSxZQUFZO0lBQ1o7RUFDRjtFQUNBLHdCQUF3QjtBQUMxQjtJQUNJLGVBQWU7SUFDZixRQUFRO0lBQ1IsU0FBUztJQUNULGdDQUFnQyxFQUFFLDBCQUEwQjtJQUM1RCxZQUFZLEVBQUUsd0NBQXdDO0lBQ3RELFdBQVc7SUFDWCxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQiw4Q0FBOEMsRUFBRSw2Q0FBNkM7QUFDakc7O0FBRUEsMkRBQTJEO0FBQzNEO0lBQ0ksT0FBTyxFQUFFLDBDQUEwQztJQUNuRCw2QkFBNkIsRUFBRSxtQ0FBbUM7QUFDdEU7O0FBRUEsMkJBQTJCO0FBQzNCO0lBQ0ksYUFBYTtJQUNiLGVBQWU7SUFDZixZQUFZO0lBQ1osbUJBQW1CO0lBQ25CLFlBQVk7SUFDWixzQkFBc0I7SUFDdEIseUJBQXlCO0lBQ3pCLFlBQVk7SUFDWiw4REFBOEQ7SUFDOUQsdUNBQXVDLEVBQUUsOEJBQThCO0FBQzNFOztBQUVBLGlDQUFpQztBQUNqQztJQUNJLGtCQUFrQjtJQUNsQixTQUFTO0lBQ1QsV0FBVztJQUNYLGVBQWU7SUFDZixjQUFjO0lBQ2QsZUFBZTtJQUNmLFlBQVk7SUFDWixrQkFBa0I7QUFDdEI7O0FBRUE7QUFDQTs7O0FBR0EsaUJBQWlCO0FBQ2pCO0lBQ0kscUJBQXFCO0lBQ3JCLHNCQUFzQjtBQUMxQjs7QUFFQTtFQUNFLGVBQWUsRUFBRSxtQ0FBbUM7RUFDcEQsUUFBUTtFQUNSLFNBQVM7RUFDVCxnQ0FBZ0M7RUFDaEMsWUFBWSxFQUFFLHFDQUFxQztFQUNuRCx5QkFBeUI7RUFDekIsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQiwyQ0FBMkM7RUFDM0MsYUFBYTtBQUNmOzs7QUFHQTtFQUNFLGFBQWE7RUFDYix5QkFBeUIsRUFBRSxpQkFBaUI7RUFDNUMsWUFBWTtFQUNaLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLGVBQWU7RUFDZixzREFBc0Q7QUFDeEQ7QUFDQTtFQUNFLGFBQWE7RUFDYix5QkFBeUIsRUFBRSxpQkFBaUI7RUFDNUMsWUFBWTtFQUNaLGVBQWU7RUFDZixrQkFBa0I7RUFDbEIsWUFBWTtFQUNaLGVBQWU7RUFDZixzREFBc0Q7O0FBRXhEO0FBQ0E7RUFDRSxhQUFhO0VBQ2IseUJBQXlCLEVBQUUsaUJBQWlCO0VBQzVDLFlBQVk7RUFDWixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLFlBQVk7RUFDWixlQUFlO0VBQ2Ysc0RBQXNEO0FBQ3hEOztBQUVBO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixTQUFTO0VBQ1QsVUFBVTtFQUNWLFdBQVc7RUFDWCxrQkFBa0I7RUFDbEIsU0FBUztFQUNULFdBQVc7QUFDYjs7QUFFQTs7RUFFRSxrQkFBa0I7RUFDbEIsVUFBVTtFQUNWLFdBQVc7RUFDWCxXQUFXO0FBQ2I7QUFDQTtFQUNFLFNBQVM7RUFDVCxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLFlBQVk7RUFDWixlQUFlO0VBQ2YsYUFBYTtFQUNiLFNBQU87QUFDVDs7QUFFQTtFQUNFLDJCQUEyQjtFQUMzQiwwQkFBMEI7QUFDNUI7O0FBRUE7RUFDRSwwQkFBMEI7QUFDNUI7O0FBRUE7RUFDRSxpQkFBaUI7QUFDbkI7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1I7QUFDRjtBQUNBO0VBQ0UseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsYUFBYTtFQUNiLHlCQUF5QixFQUFFLGlCQUFpQjtFQUM1QyxZQUFZO0VBQ1osZUFBZTtFQUNmLFlBQVk7RUFDWixnQ0FBZ0MsRUFBRSxtQ0FBbUM7RUFDckUsZUFBZTtFQUNmLHNEQUFzRDtBQUN4RDs7QUFFQTtJQUNJLGFBQWE7SUFDYix5QkFBeUIsRUFBRSxpQkFBaUI7SUFDNUMsWUFBWTtJQUNaLGVBQWU7SUFDZixZQUFZO0lBQ1osbUJBQW1CLEVBQUUsbUNBQW1DO0lBQ3hELGVBQWU7SUFDZixzREFBc0Q7QUFDMUQ7O0FBRUEsc0JBQXNCO0FBQ3RCO0lBQ0kseUJBQXlCO0FBQzdCOztBQUVBLG9CQUFvQjtBQUNwQjtJQUNJLHlCQUF5QjtBQUM3Qjs7QUFFQTtJQUNJLGFBQWE7SUFDYix5QkFBeUIsRUFBRSxpQkFBaUI7SUFDNUMsWUFBWTtJQUNaLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLFdBQVc7SUFDWCxZQUFZO0lBQ1osbUJBQW1CLEVBQUUsbUNBQW1DO0lBQ3hELGVBQWU7SUFDZixzREFBc0Q7O0lBRXRELGFBQWE7SUFDYixlQUFlO0lBQ2YsbUJBQW1CO0lBQ25CLHNCQUFzQjtJQUN0QixzQkFBc0I7SUFDdEIsWUFBWTtJQUNaLGFBQWE7SUFDYixrQ0FBa0M7O0FBRXRDO0FBQ0E7SUFDSSxhQUFhO0lBQ2IseUJBQXlCLEVBQUUsaUJBQWlCO0lBQzVDLFlBQVk7SUFDWixlQUFlO0lBQ2YsWUFBWTtJQUNaLG1CQUFtQixFQUFFLG1DQUFtQztJQUN4RCxlQUFlO0lBQ2Ysc0RBQXNEO0FBQzFEOzs7QUFHQTtJQUNJLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osV0FBVztJQUNYLGFBQWE7SUFDYix5QkFBeUIsRUFBRSxpQkFBaUI7SUFDNUMsWUFBWTtJQUNaLGVBQWU7SUFDZixZQUFZO0lBQ1osbUJBQW1CLEVBQUUsbUNBQW1DO0lBQ3hELGVBQWU7SUFDZixzREFBc0Q7SUFDdEQsWUFBWTtJQUNaLFlBQVk7SUFDWixrQkFBa0I7QUFDdEI7O0FBRUEsZ0NBQWdDO0FBQ2hDO0lBQ0kseUJBQXlCLEVBQUUsMEJBQTBCO0lBQ3JELHNCQUFzQixFQUFFLDJCQUEyQjtBQUN2RDs7QUFFQTtJQUNJLFNBQU8sRUFBRSxxQkFBcUI7SUFDOUIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLFlBQVksRUFBRSx5Q0FBeUM7SUFDdkQsV0FBVztBQUNmOztBQUVBLHlEQUF5RDtBQUN6RDtJQUNJLHNCQUFzQjtJQUN0Qix1QkFBdUI7QUFDM0I7O0FBRUEsaUJBQWlCO0FBQ2pCO0lBQ0ksa0JBQWtCO0FBQ3RCOztBQUVBLG9EQUFvRDtBQUNwRDtJQUNJLDRCQUE0QjtBQUNoQyIsInNvdXJjZXNDb250ZW50IjpbIi5hcHAge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMyZTJlMmU7XHJcbiAgICBjb2xvcjogI2ZmZmZmZjtcclxuICAgIGhlaWdodDogMTAwdmg7XHJcbiAgICBmb250LWZhbWlseTogJ0FyaWFsJywgc2Fucy1zZXJpZjtcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgfVxyXG4gIFxyXG4gIC8qIE1haW4gY29udGVudCBsYXlvdXQgKi9cclxuICAubWFpbi1jb250ZW50IHtcclxuICAgIGZsZXg6IDE7XHJcbiAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIH1cclxuXHJcbiAgLyogT3ZlcmxheSBQYW5lbCBTdHlsZXMgKi9cclxuLyogT3ZlcmxheSBQYW5lbCBTdHlsZXMgKi9cclxuLm92ZXJsYXktcGFuZWwge1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjQ1LCAyNDUsIDI0NSwgMC4zKTsgLyogU2xpZ2h0bHkgdHJhbnNwYXJlbnQgKi9cclxuICBwYWRkaW5nOiA1cHg7IC8qIFJlZHVjZWQgcGFkZGluZyBmb3IgbW9yZSBjb21wYWN0IGRlc2lnbiAqL1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDsgLyogU21hbGxlciBib3JkZXIgcmFkaXVzICovXHJcbiAgei1pbmRleDogMTA7XHJcbiAgd2lkdGg6IDIwMHB4OyAvKiBTbWFsbGVyIHdpZHRoIGZvciBhIG1vcmUgY29tcGFjdCBwYW5lbCAqL1xyXG4gIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjNzIGVhc2U7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogMTAwcHg7XHJcbiAgbGVmdDogMzgwcHg7XHJcbiAgZm9udC1zaXplOiAxMnB4OyAvKiBTbWFsbGVyIGZvbnQgc2l6ZSAqL1xyXG59XHJcblxyXG4ub3ZlcmxheS1oZWFkZXIge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAganVzdGlmeS1jb250ZW50OiBzcGFjZS1iZXR3ZWVuO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5jb2xsYXBzZS1idXR0b24ge1xyXG4gIGJhY2tncm91bmQ6IG5vbmU7XHJcbiAgYm9yZGVyOiBub25lO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICBwYWRkaW5nLXJpZ2h0OiAwcHg7XHJcbiAgY29sb3I6ICMzMzM7XHJcbn1cclxuXHJcbi5jb2xsYXBzZS1idXR0b246aG92ZXIge1xyXG4gIGNvbG9yOiAjMDAwO1xyXG59XHJcblxyXG4ub3ZlcmxheS1wYW5lbCBoNCB7XHJcbiAgbWFyZ2luOiAwOyAvKiBSZW1vdmVzIGFsbCBtYXJnaW5zICovXHJcbiAgcGFkZGluZzogMHB4OyAvKiBSZW1vdmVzIHBhZGRpbmcgKi9cclxuICBmb250LXNpemU6IDE0cHg7IC8qIFNtYWxsZXIgaGVhZGVyIGZvbnQgKi9cclxufVxyXG5cclxuLm92ZXJsYXktcGFuZWwgZGl2IHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgbWFyZ2luOiAwOyAvKiBSZW1vdmVzIGFsbCBtYXJnaW5zICovXHJcbiAgcGFkZGluZzogMnB4IDA7IC8qIFJlZHVjZWQgcGFkZGluZyBmb3Igc3BhY2luZyAqL1xyXG59XHJcblxyXG4ub3ZlcmxheS1wYW5lbCBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl0sXHJcbi5vdmVybGF5LXBhbmVsIGxhYmVsIHtcclxuICBtYXJnaW46IDA7IC8qIFJlbW92ZXMgYWxsIG1hcmdpbnMgKi9cclxufVxyXG5cclxuLm92ZXJsYXktcGFuZWwgbGFiZWwge1xyXG4gIG1hcmdpbi1sZWZ0OiAzcHg7IC8qIFNwYWNlIGJldHdlZW4gY2hlY2tib3ggYW5kIGxhYmVsICovXHJcbiAgZm9udC1zaXplOiAxMnB4OyAvKiBTbWFsbGVyIGxhYmVsIGZvbnQgKi9cclxufVxyXG5cclxuc2VsZWN0IHtcclxuICBmb250LXNpemU6IDEycHg7IC8qIFNtYWxsZXIgZHJvcGRvd24gZm9udCAqL1xyXG4gIHBhZGRpbmc6IDVweDsgLyogU21hbGxlciBwYWRkaW5nIGZvciB0aGUgZHJvcGRvd24gKi9cclxuICB3aWR0aDogMTAwJTsgLyogRW5zdXJlcyBpdCBkb2Vzbid0IG92ZXJmbG93ICovXHJcbn1cclxuXHJcbiAgXHJcbiAgLyogQ2FyZCBidXR0b24gc3R5bGVzICovXHJcbiAgYnV0dG9uIHtcclxuICAgIHBhZGRpbmc6IDEwcHggMTBweDtcclxuICAgIG1hcmdpbi1yaWdodDogMTBweDtcclxuICAgIGJvcmRlcjogbm9uZTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEwcHg7XHJcbiAgICBjb2xvcjogI2ZmZjtcclxuICB9XHJcbiAgXHJcbiAgLnB1cmNoYXNlLWJ1dHRvbiB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzhiMDAwO1xyXG4gIH1cclxuICBcclxuICAuc3Rha2UtYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM1NTU1NTU7XHJcbiAgfVxyXG4gIFxyXG4gIC8qIEZlYXR1cmVkIGNhcmQgc3R5bGluZyAqL1xyXG4gIC5mZWF0dXJlZC1jYXJkIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMxYzFjMWM7XHJcbiAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgbWF4LXdpZHRoOiA0MDBweDtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxuICB9XHJcbiAgXHJcbiAgLmZlYXR1cmVkLWNhcmQgaW1nIHtcclxuICAgIHdpZHRoOiAxMDAlO1xyXG4gICAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICB9XHJcbiAgXHJcbiAgLmZlYXR1cmVkLWNhcmQgcCB7XHJcbiAgICBjb2xvcjogI2IzYjNiMztcclxuICB9XHJcbiAgXHJcbiAgLmZlYXR1cmVkLWNhcmQgYSB7XHJcbiAgICBjb2xvcjogIzM4YjAwMDtcclxuICB9XHJcbiAgLmNvbnRhaW5lciB7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICB3aWR0aDogMTAwJVxyXG4gIH1cclxuICAvKiBDZW50ZXJlZCBzZWFyY2ggYmFyICovXHJcbi5zZWFyY2hiYXItY29udGFpbmVyIHtcclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogNTAlO1xyXG4gICAgbGVmdDogNTAlO1xyXG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7IC8qIENlbnRlciB0aGUgc2VhcmNoIGJhciAqL1xyXG4gICAgei1pbmRleDogMTAwOyAvKiBFbnN1cmUgaXQgYXBwZWFycyBhYm92ZSBhbGwgY29udGVudCAqL1xyXG4gICAgd2lkdGg6IDEwMCU7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgdHJhbnNpdGlvbjogdG9wIDAuNXMgZWFzZSwgdHJhbnNmb3JtIDAuNXMgZWFzZTsgLyogU21vb3RoIHRyYW5zaXRpb24gd2hlbiBtb3ZpbmcgdG8gdGhlIHRvcCAqL1xyXG59XHJcblxyXG4vKiBTZWFyY2ggYmFyIHdoZW4gbW92ZWQgdG8gdGhlIHRvcCBxdWFydGVyIG9mIHRoZSBzY3JlZW4gKi9cclxuLnNlYXJjaGJhci1hdC10b3Age1xyXG4gICAgdG9wOiA1JTsgLyogTW92ZSB0byB0aGUgdG9wIHF1YXJ0ZXIgb2YgdGhlIHNjcmVlbiAqL1xyXG4gICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgMCk7IC8qIE5vIG5lZWQgZm9yIHZlcnRpY2FsIGNlbnRlcmluZyAqL1xyXG59XHJcblxyXG4vKiBUaGUgc2VhcmNoIGJhciBzdHlsaW5nICovXHJcbi5zZWFyY2hiYXIge1xyXG4gICAgcGFkZGluZzogMTJweDtcclxuICAgIGZvbnQtc2l6ZTogMTZweDtcclxuICAgIHdpZHRoOiA2MDBweDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDEycHg7XHJcbiAgICBoZWlnaHQ6IDYwcHg7XHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzJiMmIyYjtcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxuICAgIHRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjNzIGVhc2UsIGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlO1xyXG4gICAgYm94LXNoYWRvdzogMCAwIDE1cHggcmdiYSgwLCAwLCAwLCAwLjIpOyAvKiBBZGQgc29tZSBzaGFkb3cgZm9yIGRlcHRoICovXHJcbn1cclxuXHJcbi8qIFRyYWRlIGNvbnRhaW5lciBjbG9zZSBidXR0b24gKi9cclxuLmNsb3NlLWJ1dHRvbiB7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICB0b3A6IDE1cHg7XHJcbiAgICByaWdodDogMTVweDtcclxuICAgIGZvbnQtc2l6ZTogMjBweDtcclxuICAgIGNvbG9yOiAjZmZmZmZmO1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gICAgcGFkZGluZzogNXB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG59XHJcblxyXG4uY2xvc2UtYnV0dG9uOmhvdmVyIHtcclxufVxyXG5cclxuXHJcbi8qIEZvY3VzIGVmZmVjdCAqL1xyXG4uc2VhcmNoYmFyOmZvY3VzIHtcclxuICAgIGJvcmRlci1jb2xvcjogIzRmODNmZjtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMzMzM7XHJcbn1cclxuXHJcbi50cmFkZS1jb250YWluZXIge1xyXG4gIHBvc2l0aW9uOiBmaXhlZDsgLyogQ2hhbmdlZCBmcm9tIGFic29sdXRlIHRvIGZpeGVkICovXHJcbiAgdG9wOiA1MCU7XHJcbiAgbGVmdDogNTAlO1xyXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xyXG4gIHotaW5kZXg6IDEwMDsgLyogRW5zdXJlIGl0J3MgYWJvdmUgb3RoZXIgZWxlbWVudHMgKi9cclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjEyMTIxO1xyXG4gIHBhZGRpbmc6IDQwcHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMjBweDtcclxuICBib3gtc2hhZG93OiAwcHggOHB4IDE2cHggcmdiYSgwLCAwLCAwLCAwLjIpO1xyXG4gIGhlaWdodDogMjI1cHg7XHJcbn1cclxuXHJcblxyXG4uZGF0ZS1Gcm9udC1idXR0b24ge1xyXG4gIHBhZGRpbmc6IDE1cHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzU2ZTM5ZjsgLyogR3JlZW4gYnV0dG9uICovXHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGZvbnQtc2l6ZTogMThweDtcclxuICBib3JkZXItcmFkaXVzOiAwcHg7XHJcbiAgYm9yZGVyOiBub25lO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gMC4ycywgYmFja2dyb3VuZC1jb2xvciAwLjNzIGVhc2U7XHJcbn1cclxuLmRhdGUtYnV0dG9uIHtcclxuICBwYWRkaW5nOiAxNXB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICM1NmUzOWY7IC8qIEdyZWVuIGJ1dHRvbiAqL1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBmb250LXNpemU6IDE4cHg7XHJcbiAgYm9yZGVyLXJhZGl1czogMHB4O1xyXG4gIGJvcmRlcjogbm9uZTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIDAuMnMsIGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlO1xyXG4gXHJcbn1cclxuLmRhdGUtc2VsZWN0LWJ1dHRvbiB7XHJcbiAgcGFkZGluZzogMTVweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjNDhjMTg2OyAvKiBHcmVlbiBidXR0b24gKi9cclxuICBjb2xvcjogd2hpdGU7XHJcbiAgZm9udC1zaXplOiAxOHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDBweDtcclxuICBib3JkZXI6IG5vbmU7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzLCBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZTtcclxufVxyXG5cclxuLmRhdGUtYnV0dG9uLWdyb3VwIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgbWFyZ2luOiAwO1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgei1pbmRleDogMTA7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogNDBweDtcclxuICBsZWZ0OiAzODBweDtcclxufVxyXG5cclxuLmV2ZW50LWxpc3Rcclxue1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDE1MHB4O1xyXG4gIGxlZnQ6IDUxMHB4O1xyXG4gIHotaW5kZXg6IDEwO1xyXG59XHJcbi5kYXRlLWJ1dHRvbi1ncm91cCBidXR0b24ge1xyXG4gIG1hcmdpbjogMDtcclxuICBwYWRkaW5nOiAxMHB4IDE1cHg7XHJcbiAgYm9yZGVyLWxlZnQ6IG5vbmU7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxuICBvdXRsaW5lOiBub25lO1xyXG4gIGZsZXg6IDE7XHJcbn1cclxuXHJcbi5kYXRlLWJ1dHRvbi1ncm91cCBidXR0b246Zmlyc3QtY2hpbGQge1xyXG4gIGJvcmRlci1sZWZ0OiAxcHggc29saWQgI2NjYztcclxuICBib3JkZXItcmFkaXVzOiA1cHggMCAwIDVweDtcclxufVxyXG5cclxuLmRhdGUtYnV0dG9uLWdyb3VwIGJ1dHRvbjpsYXN0LWNoaWxkIHtcclxuICBib3JkZXItcmFkaXVzOiAwIDVweCA1cHggMDtcclxufVxyXG5cclxuLmRhdGUtYnV0dG9uLWdyb3VwIGJ1dHRvbjpub3QoOmZpcnN0LWNoaWxkKSB7XHJcbiAgbWFyZ2luLWxlZnQ6IC0xcHg7XHJcbn1cclxuLnNlYXJjaC1jb250YWluZXIge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDVweDtcclxuICByaWdodDogNXB4XHJcbn1cclxuLmRhdGUtYnV0dG9uLWdyb3VwIGJ1dHRvbjpob3ZlciB7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogIzQ1ZDA4NjtcclxufVxyXG5cclxuLmRhdGUtYnV0dG9uLWdyb3VwIGJ1dHRvbjphY3RpdmUge1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICMzYWI2NWI7XHJcbn1cclxuXHJcbi5kYXRlLUJhY2stYnV0dG9uIHtcclxuICBwYWRkaW5nOiAxNXB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6ICM1NmUzOWY7IC8qIEdyZWVuIGJ1dHRvbiAqL1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBmb250LXNpemU6IDE4cHg7XHJcbiAgYm9yZGVyOiBub25lO1xyXG4gIGJvcmRlci1yYWRpdXM6IDBweCAxMHB4IDEwcHggMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRoZSBidXR0b24gKi9cclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgdHJhbnNpdGlvbjogdHJhbnNmb3JtIDAuMnMsIGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlO1xyXG59XHJcblxyXG4uYnV5LWJ1dHRvbiB7XHJcbiAgICBwYWRkaW5nOiAxNXB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzU2ZTM5ZjsgLyogR3JlZW4gYnV0dG9uICovXHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRoZSBidXR0b24gKi9cclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzLCBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZTtcclxufVxyXG5cclxuLyogR3JlZW4gZmFkZSBlZmZlY3QgKi9cclxuLmZhZGUtZ3JlZW4ge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzU2ZTM5ZjtcclxufVxyXG5cclxuLyogUmVkIGZhZGUgZWZmZWN0ICovXHJcbi5mYWRlLXJlZCB7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZTM1NjU2O1xyXG59XHJcblxyXG4ubm90aGluZy1idXR0b24ge1xyXG4gICAgcGFkZGluZzogMTVweDtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICM1NmUzOWY7IC8qIEdyZWVuIGJ1dHRvbiAqL1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG4gICAgZm9udC1zaXplOiAxOHB4O1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgYm90dG9tOiAyNXB4O1xyXG4gICAgcmlnaHQ6IDIwcHg7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRoZSBidXR0b24gKi9cclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzLCBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZTtcclxuXHJcbiAgICBwYWRkaW5nOiAxMnB4O1xyXG4gICAgZm9udC1zaXplOiAxNnB4O1xyXG4gICAgYm9yZGVyLXJhZGl1czogMTBweDtcclxuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMzMzO1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG4gICAgb3V0bGluZTogbm9uZTtcclxuICAgIHRyYW5zaXRpb246IGJvcmRlci1jb2xvciAwLjNzIGVhc2U7XHJcblxyXG59XHJcbi5zZWxsLWJ1dHRvbiB7XHJcbiAgICBwYWRkaW5nOiAxNXB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2UzNTY1NjsgLyogR3JlZW4gYnV0dG9uICovXHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRoZSBidXR0b24gKi9cclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzLCBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZTtcclxufVxyXG5cclxuXHJcbi50cmFkZS1idXR0b24ge1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgYm90dG9tOiAyMHB4O1xyXG4gICAgcmlnaHQ6IDM1cHg7XHJcbiAgICBwYWRkaW5nOiAxNXB4O1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzU2ZTM5ZjsgLyogR3JlZW4gYnV0dG9uICovXHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LXNpemU6IDE4cHg7XHJcbiAgICBib3JkZXI6IG5vbmU7XHJcbiAgICBib3JkZXItcmFkaXVzOiAxMHB4OyAvKiBSb3VuZGVkIGNvcm5lcnMgZm9yIHRoZSBidXR0b24gKi9cclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjJzLCBiYWNrZ3JvdW5kLWNvbG9yIDAuM3MgZWFzZTtcclxuICAgIGhlaWdodDogNjBweDtcclxuICAgIHdpZHRoOiAyNzBweDtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLyogSG92ZXIgZWZmZWN0IGZvciB0aGUgYnV0dG9uICovXHJcbi50cmFkZS1idXR0b246aG92ZXIge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzQ1ZDA4NjsgLyogRGFya2VyIGdyZWVuIG9uIGhvdmVyICovXHJcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDEuMDUpOyAvKiBTbGlnaHQgc2NhbGUtdXAgZWZmZWN0ICovXHJcbn1cclxuXHJcbi5zdG9jay1jaGFydCB7XHJcbiAgICBmbGV4OiAxOyAvKiBUYWtlIGZ1bGwgaGVpZ2h0ICovXHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGhlaWdodDogMTAwJTsgLyogRW5zdXJlIHRoZSBjaGFydCBmaWxscyB0aGUgY29udGFpbmVyICovXHJcbiAgICB3aWR0aDogMTAwJTtcclxufVxyXG5cclxuLyogRW5zdXJlIHRoZSBjaGFydCBpdHNlbGYgdGFrZXMgdXAgYWxsIGF2YWlsYWJsZSBzcGFjZSAqL1xyXG4uaWdyLWZpbmFuY2lhbC1jaGFydCB7XHJcbiAgICB3aWR0aDogMTAwJSAhaW1wb3J0YW50O1xyXG4gICAgaGVpZ2h0OiAxMDAlICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi8qIEhvdmVyIGVmZmVjdCAqL1xyXG4uc2VhcmNoYmFyOmhvdmVyIHtcclxuICAgIGJvcmRlci1jb2xvcjogIzc3NztcclxufVxyXG5cclxuLyogTWFrZSB0aGUgcmVzdCBvZiB0aGUgcGFnZSBjb250ZW50IGJsdXIgc21vb3RobHkgKi9cclxuLmFwcCB7XHJcbiAgICB0cmFuc2l0aW9uOiBmaWx0ZXIgMC4zcyBlYXNlO1xyXG59XHJcblxyXG4gIFxyXG4gIFxyXG4iXSwic291cmNlUm9vdCI6IiJ9 */</style><style data-emotion="css" data-s="">.css-1umw9bq-MuiSvgIcon-root{-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;width:1em;height:1em;display:inline-block;-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0;-webkit-transition:fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;transition:fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;fill:currentColor;font-size:1.5rem;}</style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div><div class="app"><div class="date-button-group" style="filter: blur(5px); pointer-events: none;"><button class="date-button">1D</button><button class="date-button">1W</button><button class="date-select-button">1M</button><button class="date-button">6M</button><button class="date-button">1Y</button></div><div class="searchbar-container searchbar-at-top"><input type="text" class="searchbar" placeholder="Search..." value="new" style="font-size: 30px;"></div><div class="event-list"><div><div class="fundraiser-card"><div class="card-header"><h2 class="card-title"></h2><p class="card-description">The green future gala brings together environmental advocates, industry leaders and the public for an evening dedicated to sustainability.</p></div><div class="goal-info"><span>Goal  / </span></div><div class="actions"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div><div class="progress-bar-container"><div class="progress-bar"></div></div></div><div><div class="fundraiser-card"><div class="card-header"><h2 class="card-title"></h2><p class="card-description">Migrate Carbon is a supported by the Environmental Protection Agency as a event to reduce the amount of carbon emissions in the environment. The event encourages users to donate carbon credits which will then be sold to support conservation efforts and greenhouse initiatives throughout the country.</p></div><div class="goal-info"><span>Goal  / </span></div><div class="actions"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div></div><div class="progress-bar-container"><div class="progress-bar"></div></div></div></div><div class="overlay-panel " style="filter: blur(5px); pointer-events: none;"><div class="overlay-header"><h3>Selected Indicators</h3><button class="collapse-button"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CloseIcon"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></button></div><div><input type="checkbox" value=""><label>Moving Average</label></div><div><input type="checkbox" value="25"><label>Relative Strength Index</label></div><h3>Select Overlays</h3><div><input type="checkbox" value="0"><label>Bollinger Bands</label></div><div><input type="checkbox" value="1"><label>Price Channel</label></div><h3>Select Trend Line</h3><select><option value="0">None</option><option value="9">Simple Moving Average</option><option value="10">Exponential Moving Average</option></select></div><div style="filter: blur(5px); pointer-events: none;"><div class="sidebar"><h2>Recent Activity</h2><div class="activity-item">Le Anime liked your post "Mariland Wag"</div><div class="activity-item">Karma Chameleon purchased 0.5 tons of CO₂</div><div class="activity-item">You received 0.08 ETH for staking credits</div><div class="activity-item">Sakvator.eth started following you</div><h3>Market Stats</h3><div class="creator-item"><span>CO₂</span><span>0</span></div><div class="creator-item"><span>CH₄</span><span>0</span></div><div class="creator-item"><span>N₄O</span><span>0</span></div></div></div><div class="main-content" style="filter: blur(5px); pointer-events: none;"><div class="stock-chart"><div class="ig-financial-chart igr-financial-chart" style="height: 600px; width: 100%;"><div class="financialChartMainGrid" style="height: 100%; width: 100%; text-align: left; display: grid; grid-template-rows: 0px 0px auto 0px 0px 100px;"><div class="financialChartToolbarArea" style="grid-row: 1; display: none;"><div class="ui-template-container" style="display: contents;"><div class="financialChartToolbar"><div class="financialChartToolbar"><div class="financialChartIndicatorMenu"><button class="financialChartIndicatorMenuDropDownButton"><div class="ui-ChartButtonWrapper"><span class="ui-icon ui-icon-IndicatorsIcon"></span><span class="financialChartIndicatorMenuLabel">Indicators</span><span class="ui-icon-toolbar-dd"></span></div></button><div class="financialChartIndicatorMenuDropDownMenu" style="display: none;"><ul class="financialChartIndicatorMenuDropDownMenuList"><li data-value="FinancialOverlayType"><span>Overlays</span><ul><li class="financialChartListItem" data-value="BollingerBands">Bollinger Bands</li><li class="financialChartListItem" data-value="PriceChannel">Price Channel</li></ul></li><li data-value="TrendLineType"><span>Trendlines</span><ul><li class="financialChartListItem" data-value="LinearFit">Linear Fit</li><li class="financialChartListItem" data-value="QuadraticFit">Quadratic Fit</li><li class="financialChartListItem" data-value="CubicFit">Cubic Fit</li><li class="financialChartListItem" data-value="QuarticFit">Quartic Fit</li><li class="financialChartListItem" data-value="QuinticFit">Quintic Fit</li><li class="financialChartListItem" data-value="LogarithmicFit">Logarithmic Fit</li><li class="financialChartListItem" data-value="ExponentialFit">Exponential Fit</li><li class="financialChartListItem" data-value="PowerLawFit">PowerLaw Fit</li><li class="financialChartListItem" data-value="SimpleAverage">Simple Average</li><li class="financialChartListItem" data-value="ExponentialAverage">Exponential Average</li><li class="financialChartListItem" data-value="ModifiedAverage">Modified Average</li><li class="financialChartListItem" data-value="CumulativeAverage">Cumulative Average</li><li class="financialChartListItem" data-value="WeightedAverage">Weighted Average</li></ul></li><li data-value="FinancialChartVolumeType"><span>Volumes</span><ul><li class="financialChartListItem" data-value="Column">Column</li><li class="financialChartListItem" data-value="Line">Line</li><li class="financialChartListItem" data-value="Area">Area</li></ul></li><li data-value="FinancialIndicatorType"><span>Standalone Indicators</span><ul><li class="financialChartListItem" data-value="AbsoluteVolumeOscillator">Absolute Volume Oscillator</li><li class="financialChartListItem" data-value="AccumulationDistribution">Accumulation Distribution</li><li class="financialChartListItem" data-value="AverageDirectionalIndex">Standalone Indicators</li><li class="financialChartListItem" data-value="AverageTrueRange">Average True Range</li><li class="financialChartListItem" data-value="BollingerBandWidth">Bollinger Band Width</li><li class="financialChartListItem" data-value="ChaikinOscillator">Chaikin Oscillator</li><li class="financialChartListItem" data-value="ChaikinVolatility">Chaikin Volatility</li><li class="financialChartListItem" data-value="CommodityChannelIndex">Commodity Channel Index</li><li class="financialChartListItem" data-value="DetrendedPriceOscillator">Detrended Price Oscillator</li><li class="financialChartListItem" data-value="EaseOfMovement">Ease Of Movement</li><li class="financialChartListItem" data-value="FastStochasticOscillator">Fast Stochastic Oscillator</li><li class="financialChartListItem" data-value="ForceIndex">Force Index</li><li class="financialChartListItem" data-value="FullStochasticOscillator">Full Stochastic Oscillator</li><li class="financialChartListItem" data-value="MarketFacilitationIndex">Market Facilitation Index</li><li class="financialChartListItem" data-value="MassIndex">Mass Index</li><li class="financialChartListItem" data-value="MedianPrice">Median Price</li><li class="financialChartListItem" data-value="MoneyFlowIndex">Money Flow Index</li><li class="financialChartListItem" data-value="MovingAverageConvergenceDivergence">MACD</li><li class="financialChartListItem" data-value="NegativeVolumeIndex">Negative Volume Index</li><li class="financialChartListItem" data-value="OnBalanceVolume">On Balance Volume</li><li class="financialChartListItem" data-value="PercentagePriceOscillator">Percentage Price Oscillator</li><li class="financialChartListItem" data-value="PercentageVolumeOscillator">Percentage Volume Oscillator</li><li class="financialChartListItem" data-value="PositiveVolumeIndex">Positive Volume Index</li><li class="financialChartListItem" data-value="PriceVolumeTrend">Price Volume Trend</li><li class="financialChartListItem" data-value="RateOfChangeAndMomentum">ROC</li><li class="financialChartListItem" data-value="RelativeStrengthIndex">RSI</li><li class="financialChartListItem" data-value="SlowStochasticOscillator">Slow Stochastic Oscillator</li><li class="financialChartListItem" data-value="StandardDeviation">Standard Deviation</li><li class="financialChartListItem" data-value="StochRSI">Stoch RSI</li><li class="financialChartListItem" data-value="TRIX">TRIX</li><li class="financialChartListItem" data-value="TypicalPrice">Typical Price</li><li class="financialChartListItem" data-value="UltimateOscillator">Ultimate Oscillator</li><li class="financialChartListItem" data-value="WeightedClose">Weighted Closez</li><li class="financialChartListItem" data-value="WilliamsPercentR">Williams %R</li></ul></li></ul></div></div><div class="financialChartRangeSelector"><div class="financialChartRangeSelector"><label class="financialChartRangeSelectorLabel rangeSelectorAll"><input type="radio" value="all" checked=""><span class="financialChartRangeSelectorLabelSpan">ALL</span></label></div></div><div class="financialChartTypePicker"><button class="financialChartTypePickerDropDownButton" data-value="Line"><span class="ui-icon ui-icon-changeable"></span><span class="ui-icon-toolbar-dd"></span></button><div class="financialChartTypePickerDropDownMenu" style="display: none;"><ul><li class="financialChartListItem" data-value="Auto"><span class="ui-icon ui-icon-chartAuto"></span><span>Auto</span></li><li class="financialChartListItem" data-value="Bar"><span class="ui-icon ui-icon-BarIcon"></span><span>Bar</span></li><li class="financialChartListItem" data-value="Line"><span class="ui-icon ui-icon-LineIcon"></span><span>Line</span></li><li class="financialChartListItem" data-value="Candle"><span class="ui-icon ui-icon-CandleIcon"></span><span>Candle</span></li><li class="financialChartListItem" data-value="Column"><span class="ui-icon ui-icon-ColumnIcon"></span><span>Column</span></li></ul></div></div></div></div></div></div><div class="financialChartLegend" style="grid-row: 2;"><div style="width: 100%; height: 100%;"><div class="ig-chart-legend-items-list"></div></div></div><div class="financialChartPrice" style="grid-row: 3;"><div style="width: 100%; height: 100%; position: relative;"><canvas width="189" height="996" style="position: absolute; top: 0px; left: 0px; width: 94.4px; height: 498px;"></canvas><canvas width="189" height="996" style="position: absolute; top: 0px; left: 0px; width: 94.4px; height: 498px;"></canvas><canvas width="189" height="996" tabindex="0" style="position: absolute; top: 0px; left: 0px; touch-action: none; user-select: none; width: 94.4px; height: 498px; outline: 0px;"></canvas><div style="display: none; position: absolute; z-index: 10000;"></div></div></div><div class="financialChartIndicators" style="grid-row: 4;"><div style="width: 100%; height: 100%;"><div style="height: 100%; width: 100%; display: grid;"></div></div></div><div class="financialChartVolume" style="grid-row: 5;"><div style="width: 100%; height: 100%;"></div></div><div class="financialChartZoomSlider" style="grid-row: 6;"><div class="ui-zoomslider-container" style="width: 100%; height: 100%; position: relative; touch-action: none; user-select: none; cursor: move;"><canvas style="position: absolute; top: 0px; left: 0px; width: 94.4px; height: 100px;" width="189" height="200"></canvas><canvas style="position: absolute; top: 0px; left: 0px; width: 94.4px; height: 100px;" width="189" height="200"></canvas><canvas style="position: absolute; top: 0px; left: 0px; touch-action: none; user-select: none; width: 94.4px; height: 100px; outline: 0px;" width="189" height="200" tabindex="0"></canvas><div style="display: none; position: absolute; z-index: 10000;"></div><canvas width="0" height="0" style="position: absolute; width: 0px; height: 0px;"></canvas><canvas width="188" height="200" style="position: absolute; width: 94px; height: 100px;"></canvas></div></div></div></div></div></div><div style="filter: blur(5px); pointer-events: none;"><div class="top-creators"><h3>Top Traders</h3><div class="creator-item"><img src="./React App_files/50" alt="Profile"><span>Nyan Prakash</span><span>50 tons</span></div><div class="creator-item"><img src="./React App_files/50" alt="Profile"><span>Hadi Benkorah</span><span>44 tons</span></div><div class="creator-item"><img src="./React App_files/50" alt="Profile"><span>Shaunak Sinha</span><span>32 tons</span></div><div><h3>Current Investments</h3></div></div><input value="1-Month"></div><div class="search-container"><svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium searchbar css-1umw9bq-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="CloseIcon"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></div><div class="trade-button" style="filter: blur(5px); pointer-events: none;"><h3>Trade</h3></div></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  
+
+</body><style>
+@media print {
+  #simplify-jobs-container {
+    display: none;
+  }
+}
+</style><div id="simplify-jobs-container" style="position: absolute; top: 0px; left: 0px; width: 0px; height: 0px; overflow: visible; z-index: 2147483647;"></div><script id="simplify-jobs-page-script" src="chrome-extension://pbanhockgagggenencehbnadejlgchfc/js/pageScript.bundle.js"></script></html>

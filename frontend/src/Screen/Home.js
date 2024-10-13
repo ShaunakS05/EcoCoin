@@ -3,6 +3,7 @@ import './Home.css'; // Import the CSS file for styling
 import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import SplitTextJS from 'split-text-js';
+import coolBackground from './cool-background.png';
 
 const Home = () => {
     useEffect(() => {
@@ -46,7 +47,7 @@ const Home = () => {
     };
 
     return (
-        <div className="home-container">
+        <div className="home-container" style={{ backgroundImage: `url(${coolBackground})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="header">
                 <p>EcoCoin</p>
             </div>
