@@ -563,29 +563,33 @@ async def returnAllEvents(EventName: str=Form()):
     allEvents_ref = ref.get()
     return allEvents_ref
 
+start_index = 1
+
 @app.get("/return-news-articles")
 async def returnNewsArticles():
+    global start_index
     service_url = 'https://www.googleapis.com/customsearch/v1'
     params = {
         'key': "AIzaSyA_gQsnmeeoFJi7lhJ_eY70ukNd2m22Cf0",
         'cx': "80bfac6f04cd64375",
         'q': "emission allowances",
-        'num': 4
+        'num': 4,
+        'start': start_index
     }
 
     response = requests.get(service_url, params=params)
     results = response.json()
+
     articles = []
+
     for item in results.get('items', []):
-        title = item.get('title')
-        snippet = item.get('snippet')
-        link = item.get('link')
         articles.append({
-            'title': title,
-            'snippet': snippet,
-            'link': link
+            'title': item.get('title'),
+            'snippet': item.get('snippet'),
+            'link': item.get('link')
         })
     
+    start_index += 4
     return articles
 
 @app.post("/balance")
